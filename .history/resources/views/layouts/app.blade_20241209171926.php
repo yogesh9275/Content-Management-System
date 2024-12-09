@@ -14,12 +14,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS (optional) -->
-
-    <!-- Scripts -->
-    <link href="{{ asset('css/Login.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/Dashboard.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/Shop.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/Loader.css') }}" rel="stylesheet">
     <style>
         body {
             background-color: #f8f9fa;
@@ -32,6 +26,20 @@
 
 <body>
     <div id="app">
+        <div class="sidebar bg-dark text-white" style="width: 250px; height: 100vh; position: fixed; top:0">
+            <div class="sidebar-header p-4">
+                <h4>Content Management</h4>
+            </div>
+            <ul class="nav flex-column p-3">
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="{{ route('galleries.index') }}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="{{ route('galleries.create') }}">Add Image</a>
+                </li>
+            </ul>
+        </div>
+
         <!-- Loading Spinner -->
         <div id="loading-spinner">
             <div class="loader"></div>

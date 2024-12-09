@@ -16,6 +16,7 @@
     <!-- Custom CSS (optional) -->
 
     <!-- Scripts -->
+    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     <link href="{{ asset('css/Login.css') }}" rel="stylesheet">
     <link href="{{ asset('css/Dashboard.css') }}" rel="stylesheet">
     <link href="{{ asset('css/Shop.css') }}" rel="stylesheet">

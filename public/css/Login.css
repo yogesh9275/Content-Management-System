@@ -1,0 +1,131 @@
+/* login.css */
+
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&family=Spline+Sans+Mono:ital,wght@0,300..700;1,300..700&display=swap");
+
+body {
+    font-family: "Quicksand", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    background-color: #eeee;
+}
+.navbar .container{
+    max-width: 100%;
+}
+.navbar .navbar-brand{
+    font-size: 1.5rem;
+}
+.navbar .nav-item .nav-link{
+    font-size: 1.5rem;
+}
+.dropdown-menu .dropdown-item{
+    font-size: 1.2rem;
+}
+.no-arrow::after {
+    display: none;
+}
+
+.card-header {
+    background-color: transparent;
+}
+/* Center the login card vertically and horizontally */
+.login-container {
+    height: 90vh;
+}
+
+/* Style the login card */
+.login-card {
+    font-size: large;
+    width: 100%;
+    max-width: 450px;
+    padding: 20px;
+    border-radius: 30px;
+    background-color: #fff;
+}
+
+/* Add shadow and smooth transitions */
+.login-card.shadow-lg {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+.login-card.shadow-lg:hover {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+/* Style the input fields */
+input[type="text"].form-control {
+    padding: 12px;
+    font-size: 1.1rem;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    background-color: transparent;
+}
+.custom-input{
+    padding: 12px;
+    font-size: 1.1rem;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    background-color: transparent;
+}
+.password{
+    margin-bottom: 0 !important;
+}
+
+/* Style the buttons */
+button.btn {
+    font-size: 1.1rem;
+    padding: 12px;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+
+/* Make the buttons large */
+button.btn-lg {
+    font-size: 1.5rem;
+    padding: 5px 15px;
+}
+
+/* Style the form checkboxes */
+.form-check-input {
+    margin-right: 10px;
+}
+
+.form-check-label {
+    font-size: 1rem;
+}
+
+/* Link for Forgot Password */
+a.btn-link {
+    font-size: 1.2rem;
+    text-decoration: none;
+    color: #007bff;
+}
+
+a.btn-link:hover {
+    text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 576px) {
+    .login-card {
+        max-width: 90%;
+        padding: 10px;
+    }
+
+    .login-container {
+        height: 90vh;
+    }
+
+    input.form-control,
+    button.btn-lg {
+        font-size: 1rem;
+    }
+
+    a.btn-link {
+        font-size: 1rem;
+    }
+    .card-body{
+        font-size: 1rem;
+    }
+}

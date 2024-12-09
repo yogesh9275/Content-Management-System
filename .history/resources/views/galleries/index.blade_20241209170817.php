@@ -1,6 +1,6 @@
-@extends('layouts.home')
+@extends('layouts.app')
 
-@section('page')
+@section('content')
 <div class="container mt-5">
     <div class="card shadow">
         <div class="card-header bg-primary text-white">
@@ -17,7 +17,7 @@
                 @forelse ($galleries as $gallery)
                     <div class="col-md-4 mb-4">
                         <div class="card">
-                            <img src="{{ asset($gallery->path) }}" class="card-img-top" alt="Gallery Image">
+                            <img src="{{ asset($gallery->path) }}" class="card-img-top" alt="Gallery Image" style="height: 5">
                             <div class="card-body">
                                 <h5 class="card-title">{{ $gallery->category }}</h5>
                                 <a href="{{ route('galleries.edit', $gallery->id) }}" class="btn btn-warning btn-sm">Edit</a>
