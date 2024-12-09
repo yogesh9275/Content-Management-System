@@ -15,4 +15,3 @@ Route::post('/about-us/store', [AboutUsElementController::class, 'store']);
 Route::get('/about-us/{id}/edit', [AboutUsElementController::class, 'edit']);
 Route::put('/about-us/{id}', [AboutUsElementController::class, 'update']);
 Route::delete('/about-us/{id}', [AboutUsElementController::class, 'destroy']);
-Route::get('/api/about-us', [AboutUsElementController::class, 'response']);

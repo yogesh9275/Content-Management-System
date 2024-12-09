@@ -15,4 +15,11 @@ Route::post('/about-us/store', [AboutUsElementController::class, 'store']);
 Route::get('/about-us/{id}/edit', [AboutUsElementController::class, 'edit']);
 Route::put('/about-us/{id}', [AboutUsElementController::class, 'update']);
 Route::delete('/about-us/{id}', [AboutUsElementController::class, 'destroy']);
-Route::get('/api/about-us', [AboutUsElementController::class, 'response']);
+
+
+use Illuminate\Support\Facades\Route;
+use App\Models\AboutUsElement;
+
+Route::get('/api/about-us', function () {
+    return response()->json(AboutUsElement::all());
+});
