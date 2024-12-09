@@ -23,12 +23,12 @@
                 <ul class="list-group">
                     @foreach ($elements as $element)
                         <li class="list-group-item d-flex justify-content-between align-items-center">
-                            <div class="d-flex flex-column">
+                            <div>
                                 <strong>{{ $element->element }}:</strong>
                                 <!-- Check if the element type is 'Image' -->
                                 @if($element->element == 'Image')
                                     <!-- Display image using the URL stored in $data -->
-                                    <img src="{{ asset($element->data) }}" alt="Image" class="img-fluid" style="max-height: 25rem;">
+                                    <img src="{{ asset($element->data) }}" alt="Image" class="img-fluid" style="width: 200px; height: 200px;">
                                 @else
                                     @php
                                         $data = $element->data;

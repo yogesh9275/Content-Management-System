@@ -9,6 +9,8 @@ Route::get('/', function () {
 
 use App\Http\Controllers\AboutUsElementController;
 
+use App\Http\Controllers\AboutUsElementController;
+
 // Route to manage about-us elements with resource controller
 Route::resource('about-us', AboutUsElementController::class);
 
