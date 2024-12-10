@@ -1,6 +1,30 @@
 @extends('layouts.home')
 
 @section('page')
+    <script>
+        // Function to toggle divs based on selected element type
+        function toggleDivs() {
+            var selectedElement = document.getElementById("element").value;
+
+            // Hide all divs first
+            var allDivs = document.querySelectorAll(".element-div");
+            allDivs.forEach(function(div) {
+                div.style.display = "none";
+            });
+
+            // Show the div for the selected element
+            if (selectedElement) {
+                var selectedDiv = document.getElementById(selectedElement);
+                if (selectedDiv) {
+                    selectedDiv.style.display = "block";
+                }
+            }
+        }
+
+        // Call toggleDivs function on page load to set the initial state
+        window.onload = toggleDivs;
+    </script>
+</head>
 <div class="container mt-5">
     <div class="row">
         <div class="col-12">
@@ -58,26 +82,18 @@
 </div>
 
 <script>
-    // Function to toggle divs based on selected element type
     function toggleDivs() {
-        var selectedElement = document.getElementById("element").value;
-
-        // Hide all divs first
-        var allDivs = document.querySelectorAll(".element-div");
-        allDivs.forEach(function(div) {
-            div.style.display = "none";
-        });
-
-        // Show the div for the selected element
+        const selectedElement = document.getElementById("element").value;
+        const divs = document.querySelectorAll('.element-div');
+        divs.forEach(div => div.style.display = 'none'); // Hide all divs
         if (selectedElement) {
-            var selectedDiv = document.getElementById(selectedElement);
-            if (selectedDiv) {
-                selectedDiv.style.display = "block";
-            }
+            document.getElementById(selectedElement).style.display = 'block'; // Show the selected element's div
         }
     }
 
-    // Call toggleDivs function on page load to set the initial state
-    window.onload = toggleDivs;
+    document.addEventListener("DOMContentLoaded", function() {
+        toggleDivs(); // Ensure the correct div is shown when the page loads
+    });
 </script>
+
     @endsection

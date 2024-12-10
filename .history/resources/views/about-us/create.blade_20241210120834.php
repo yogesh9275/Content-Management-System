@@ -1,6 +1,51 @@
 @extends('layouts.home')
 
 @section('page')
+<script>
+    // Function to toggle divs based on selected element type
+    function toggleDivs() {
+        var selectedElement = document.getElementById("element").value;
+
+        // Hide all divs first
+        var allDivs = document.querySelectorAll(".element-div");
+        allDivs.forEach(function(div) {
+            div.style.display = "none";
+        });
+
+        // Show the div for the selected element
+        if (selectedElement) {
+            var selectedDiv = document.getElementById(selectedElement);
+            if (selectedDiv) {
+                selectedDiv.style.display = "block";
+            }
+        }
+    }
+
+    // Function to check image size before submitting the form
+    function checkImageSize(event) {
+        const fileInput = event.target;
+        const file = fileInput.files[0];
+
+        if (file) {
+            const fileSize = file.size / 1024 / 1024; // Convert to MB
+            const maxSize = 2; // 2 MB
+
+            if (fileSize > maxSize) {
+                // Show error message and clear the file input
+                document.getElementById("file-size-error").textContent = "File size exceeds 2MB. Please upload a smaller image.";
+                fileInput.value = ""; // Clear the file input
+            } else {
+                // Clear any previous error message
+                document.getElementById("file-size-error").textContent = "";
+            }
+        }
+    }
+
+    // Call toggleDivs function on page load to set the initial state
+    window.onload = toggleDivs;
+</script>
+
+<body class="bg-light">
     <div class="container mt-5">
         <h3 class="mb-4 text-primary">Add About Us Element</h3>
         <form action="/about-us/store" method="POST" enctype="multipart/form-data">
@@ -34,8 +79,7 @@
             <div class="mb-4 element-div" id="Image" style="display:none;">
                 <label for="data-image" class="form-label">Upload Image</label>
                 <!-- File input to accept image files -->
-                <input type="file" class="form-control" name="data-image" id="data-image" accept="image/*"
-                    onchange="checkImageSize(event)">
+                <input type="file" class="form-control" name="data-image" id="data-image" accept="image/*" onchange="checkImageSize(event)">
                 <!-- Error message for file size -->
                 <div id="file-size-error" class="text-danger mt-2"></div>
             </div>
@@ -52,48 +96,5 @@
             </div>
         </form>
     </div>
-    <script>
-        // Function to toggle divs based on selected element type
-        function toggleDivs() {
-            var selectedElement = document.getElementById("element").value;
-
-            // Hide all divs first
-            var allDivs = document.querySelectorAll(".element-div");
-            allDivs.forEach(function(div) {
-                div.style.display = "none";
-            });
-
-            // Show the div for the selected element
-            if (selectedElement) {
-                var selectedDiv = document.getElementById(selectedElement);
-                if (selectedDiv) {
-                    selectedDiv.style.display = "block";
-                }
-            }
-        }
-
-        // Function to check image size before submitting the form
-        function checkImageSize(event) {
-            const fileInput = event.target;
-            const file = fileInput.files[0];
-
-            if (file) {
-                const fileSize = file.size / 1024 / 1024; // Convert to MB
-                const maxSize = 2; // 2 MB
-
-                if (fileSize > maxSize) {
-                    // Show error message and clear the file input
-                    document.getElementById("file-size-error").textContent =
-                        "File size exceeds 2MB. Please upload a smaller image.";
-                    fileInput.value = ""; // Clear the file input
-                } else {
-                    // Clear any previous error message
-                    document.getElementById("file-size-error").textContent = "";
-                }
-            }
-        }
-
-        // Call toggleDivs function on page load to set the initial state
-        window.onload = toggleDivs;
-    </script>
+</body>
 @endsection

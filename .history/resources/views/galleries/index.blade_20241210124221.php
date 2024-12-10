@@ -2,11 +2,11 @@
 
 @section('page')
 <div class="container mt-5">
-    <div class="d-flex justify-content-between align-items-center mb-3 border-bottom">
-        <h3 class="text-center mb-4 flex-grow-1">Gallery Management</h3>
-        <a href="{{ route('galleries.create') }}" class="btn btn-success mb-3">Add New Image</a>
-    </div>
+    <div class="d-flex justify-content-end mb-3">
+    <h3 class="text-center mb-4">Gallery Management</h3>
 
+    <a href="{{ route('galleries.create') }}" class="btn btn-success mb-3">Add New Image</a>
+    </div>
     @if (session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>
     @endif

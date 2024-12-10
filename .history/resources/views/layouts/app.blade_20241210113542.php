@@ -49,7 +49,7 @@
     <script>
         $(document).ready(function() {
             // List of IDs to exclude from showing the loader
-            const excludeIds = ['user-info', 'close-btn','cancel-btn', 'close-filter-btn','profileLink']; // Add more IDs as needed
+            const excludeIds = ['user-info', 'close-btn', 'close-filter-btn','profileLink']; // Add more IDs as needed
 
             // Show loading spinner before navigating (only if not opening in a new tab)
             $('a, button').on('click', function(event) {

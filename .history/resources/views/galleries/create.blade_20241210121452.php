@@ -52,9 +52,9 @@
         </div>
 
         <!-- Display the uploaded image preview below the image input field -->
-        <div class="mb-4" id="image-preview" style="display:none;flex-direction: column;">
+        <div class="mb-4" id="image-preview" style="display:none;flex-direction: column; align-items: center;">
             <label class="form-label">Uploaded Image</label>
-            <img id="uploaded-image" src="" alt="Uploaded Image" class="img-fluid">
+            <img id="uploaded-image" src="" alt="Uploaded Image" class="img-fluid" style="max-width: 100%; max-height: 25rem;">
         </div>
 
 

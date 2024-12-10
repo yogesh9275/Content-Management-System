@@ -433,27 +433,77 @@
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {
+        const submenus = document.querySelectorAll('.collapse'); // All submenu divs
+        const toggleArrows = document.querySelectorAll('.toggle-arrow'); // All toggle arrows
+
+        // Function to toggle the arrow direction based on collapse state
+        function toggleArrow(arrow, expanded) {
+            if (expanded) {
+                arrow.innerHTML = '<x-simpleline-arrow-down class="arrow-size" />'; // Show down arrow
+            } else {
+                arrow.innerHTML = '<x-simpleline-arrow-up class="arrow-size" />'; // Show up arrow
+            }
+            arrow.setAttribute('aria-expanded', !expanded);
+        }
+
+        // Function to close all submenus except the currently targeted one
+        function closeOtherSubmenus(currentId) {
+            submenus.forEach(submenu => {
+                if (submenu.id !== currentId) {
+                    submenu.classList.remove('show'); // Collapse other submenus
+                }
+            });
+
+            // Reset arrows for non-active submenus
+            toggleArrows.forEach(arrow => {
+                const targetId = arrow.getAttribute('data-bs-target').replace('#', '');
+                if (targetId !== currentId) {
+                    toggleArrow(arrow, true); // Reset to collapsed state (down arrow)
+                }
+            });
+        }
+
+        // Add event listeners to toggle arrows
+        toggleArrows.forEach(arrow => {
+            arrow.addEventListener('click', function() {
+                const targetId = arrow.getAttribute('data-bs-target').replace('#', '');
+                const targetElement = document.querySelector(`#${targetId}`);
+                const expanded = arrow.getAttribute('aria-expanded') === 'true';
+
+                // Close other submenus before toggling this one
+                closeOtherSubmenus(targetId);
+
+                // Toggle the current submenu
+                if (expanded) {
+                    targetElement.classList.remove('show'); // Collapse current submenu
+                } else {
+                    targetElement.classList.add('show'); // Expand current submenu
+                }
+
+                // Update the arrow direction for the current toggle
+                toggleArrow(arrow, expanded);
+            });
+        });
+
+        // Profile link behavior adjustment for responsiveness
         const profileLink = document.getElementById("profileLink");
 
-        // Ensure the profileLink exists before modifying it
-        if (profileLink) {
-            function updateProfileLink() {
-                if (window.innerWidth < 992) { // Small screens (less than lg)
-                    profileLink.removeAttribute("href");
-                    profileLink.removeAttribute("data-bs-toggle");
-                    profileLink.style.cursor = "default";
-                } else { // Large screens
-                    profileLink.setAttribute("href", "#profilesubmenu");
-                    profileLink.setAttribute("data-bs-toggle", "collapse");
-                    profileLink.style.cursor = "pointer";
-                }
+        function updateProfileLink() {
+            if (window.innerWidth < 992) { // Small screens (less than lg)
+                profileLink.removeAttribute("href");
+                profileLink.removeAttribute("data-bs-toggle");
+                profileLink.style.cursor = "default";
+            } else { // Large screens
+                profileLink.setAttribute("href", "#profilesubmenu");
+                profileLink.setAttribute("data-bs-toggle", "collapse");
+                profileLink.style.cursor = "pointer";
             }
-
-            // Run profile link update on page load
-            updateProfileLink();
-
-            // Run profile link update on window resize
-            window.addEventListener("resize", updateProfileLink);
         }
+
+        // Run profile link update on page load
+        updateProfileLink();
+
+        // Run profile link update on window resize
+        window.addEventListener("resize", updateProfileLink);
     });
 </script>

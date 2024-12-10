@@ -34,8 +34,7 @@
             <div class="mb-4 element-div" id="Image" style="display:none;">
                 <label for="data-image" class="form-label">Upload Image</label>
                 <!-- File input to accept image files -->
-                <input type="file" class="form-control" name="data-image" id="data-image" accept="image/*"
-                    onchange="checkImageSize(event)">
+                <input type="file" class="form-control" name="data-image" id="data-image" accept="image/*" onchange="checkImageSize(event)">
                 <!-- Error message for file size -->
                 <div id="file-size-error" class="text-danger mt-2"></div>
             </div>
@@ -83,8 +82,7 @@
 
                 if (fileSize > maxSize) {
                     // Show error message and clear the file input
-                    document.getElementById("file-size-error").textContent =
-                        "File size exceeds 2MB. Please upload a smaller image.";
+                    document.getElementById("file-size-error").textContent = "File size exceeds 2MB. Please upload a smaller image.";
                     fileInput.value = ""; // Clear the file input
                 } else {
                     // Clear any previous error message
@@ -96,4 +94,5 @@
         // Call toggleDivs function on page load to set the initial state
         window.onload = toggleDivs;
     </script>
+
 @endsection

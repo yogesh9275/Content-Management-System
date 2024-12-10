@@ -3,7 +3,7 @@
 @section('page')
     <div class="container mt-5">
         <div class="shadow-sm p-4 rounded bg-white">
-            <div class="d-flex justify-content-between align-items-center border-bottom pb-3">
+            <div class="d-flex justify-content-between align-items-center border-bottom pb-3 mb-4">
                 <h3 class="mb-0 text-primary">About Us - Manage Elements</h3>
                 <a href="/about-us/create" class="btn btn-primary">Add New Element</a>
             </div>
@@ -37,6 +37,7 @@
                                 </button>
                             </form>
                         </div>
+
                     </div>
                 </div>
             @endforeach

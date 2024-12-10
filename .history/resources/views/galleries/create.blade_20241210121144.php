@@ -52,11 +52,10 @@
         </div>
 
         <!-- Display the uploaded image preview below the image input field -->
-        <div class="mb-4" id="image-preview" style="display:none;flex-direction: column;">
+        <div class="mb-4" id="image-preview" style="display:none;">
             <label class="form-label">Uploaded Image</label>
-            <img id="uploaded-image" src="" alt="Uploaded Image" class="img-fluid">
+            <img id="uploaded-image" src="" alt="Uploaded Image" class="img-fluid" style="max-width: 100%; max-height: 25rem;">
         </div>
-
 
         <div class="d-flex justify-content-between">
             <a href="{{ route('galleries.index') }}" class="btn btn-secondary">Back</a>
@@ -75,7 +74,7 @@
             var imagePreview = document.getElementById('image-preview');
             var uploadedImage = document.getElementById('uploaded-image');
             uploadedImage.src = e.target.result;
-            imagePreview.style.display = 'flex'; // Show the preview
+            imagePreview.style.display = 'block'; // Show the preview
         };
 
         // Check if a file is selected

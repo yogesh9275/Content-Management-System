@@ -49,7 +49,7 @@
                 </div>
 
                 <div class="d-flex justify-content-between">
-                    <a href="/about-us" class="btn btn-secondary">Back</a>
+                    <a href="/about-us" class="btn btn-secondary" style="">Back</a>
                     <button type="submit" class="btn btn-primary">Update</button>
                 </div>
             </form>
