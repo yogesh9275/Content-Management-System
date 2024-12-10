@@ -21,6 +21,11 @@
     <link href="{{ asset('css/Dashboard.css') }}" rel="stylesheet">
     <link href="{{ asset('css/Shop.css') }}" rel="stylesheet">
     <link href="{{ asset('css/Loader.css') }}" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+    </style>
 
     <!-- Custom Styles -->
     <link href="{{ asset('css/Shop.css') }}" rel="stylesheet">

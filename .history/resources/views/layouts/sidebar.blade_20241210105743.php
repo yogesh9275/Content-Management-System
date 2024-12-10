@@ -17,30 +17,110 @@
 
             <!-- Manage Shops with unique ID and target -->
             <li class="nav-item">
-                <div class="sidebar-link {{ request()->is('galleries*') ? 'active' : '' }}">
-                    <a class="collapsed submenu" href="{{ route('galleries.index') }}">
+                <div class="sidebar-link {{ request()->is('shop*') ? 'active' : '' }}">
+                    <a class="collapsed submenu" href="#">
                         <span class="icon">
-                            <x-bi-image class="icon-size" />
+                            <x-bi-shop class="icon-size" />
                         </span>
                         <span class="d-none d-md-inline">
-                            Gallery
+                            Shop
                         </span>
                     </a>
+                    <span class="icon toggle-arrow d-none d-md-inline" data-bs-toggle="collapse"
+                        data-bs-target="#shopSubmenu" aria-expanded="false" aria-controls="shopSubmenu">
+                        @if (request()->has('shopSubmenu') && request('shopSubmenu') == 'expanded')
+                            <x-simpleline-arrow-up class="arrow-size" />
+                        @else
+                            <x-simpleline-arrow-down class="arrow-size" />
+                        @endif
+                    </span>
+                </div>
+
+                <div id="shopSubmenu" class="collapse">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link submenu-link {{ request()->routeIs('shop.create') ? 'active' : '' }}"
+                                href="#">
+                                <span>Add Shop</span>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link submenu-link {{ request()->routeIs('shop') ? 'active' : '' }}"
+                                href="#">
+                                <span>View Shops</span>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link submenu-link" href="#">
+                                <span>Edit Shop</span>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link submenu-link" href="#">
+                                <span>Delete Shop</span>
+                            </a>
+                        </li>
+                    </ul>
                 </div>
             </li>
 
 
             <!-- Inventory Management with unique ID and target -->
             <li class="nav-item">
-                <div class="sidebar-link {{ request()->is('about-us*') ? 'active' : '' }}">
-                    <a class="collapsed submenu" href="{{ route('about-us.index') }}">
+                <div class="sidebar-link {{ request()->is('inventory*') ? 'active' : '' }}">
+                    <a class="collapsed submenu" href="#">
                         <span class="icon">
-                            <x-simpleline-user class="icon-size" />
+                            <x-bi-boxes class="icon-size" />
                         </span>
                         <span class="d-none d-md-inline">
-                            About Us
+                            Inventory
                         </span>
                     </a>
+                    <span class="icon toggle-arrow d-none d-md-inline" data-bs-toggle="collapse"
+                        data-bs-target="#inventorySubmenu" aria-expanded="false" aria-controls="inventorySubmenu">
+                        @if (request()->has('inventorySubmenu') && request('inventorySubmenu') == 'expanded')
+                            <x-simpleline-arrow-up class="arrow-size" />
+                        @else
+                            <x-simpleline-arrow-down class="arrow-size" />
+                        @endif
+                    </span>
+                </div>
+
+                <div id="inventorySubmenu" class="collapse">
+                    <ul class="nav flex-column">
+                        <!-- Check for 'Full control' role or permission for 'create inventory' -->
+                        <li class="nav-item">
+                            <a class="nav-link submenu-link {{ request()->routeIs('inventory.create') ? 'active' : '' }}"
+                                href="#">
+                                <span>Add Inventory</span>
+                            </a>
+                        </li>
+
+                        <!-- Check for 'Full control' role or permission for 'view inventory' -->
+                        <li class="nav-item">
+                            <a class="nav-link submenu-link {{ request()->routeIs('inventory') ? 'active' : '' }}"
+                                href="#">
+                                <span>View Inventory</span>
+                            </a>
+                        </li>
+
+                        <!-- Check for 'Full control' role or permission for 'edit inventory' -->
+                        <li class="nav-item">
+                            <a class="nav-link submenu-link" href="#">
+                                <span>Edit Inventory</span>
+                            </a>
+                        </li>
+
+                        <!-- Check for 'Full control' role or permission for 'delete inventory' -->
+                        <li class="nav-item">
+                            <a class="nav-link submenu-link" href="#">
+                                <span>Delete Inventory</span>
+                            </a>
+                        </li>
+                    </ul>
                 </div>
             </li>
 

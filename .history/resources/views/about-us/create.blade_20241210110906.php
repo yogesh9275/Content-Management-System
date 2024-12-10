@@ -1,6 +1,6 @@
-@extends('layouts.home')
+@extends('layouts.app')
 
-@section('page')
+@section('content')
     <script>
         // Function to toggle divs based on selected element type
         function toggleDivs() {

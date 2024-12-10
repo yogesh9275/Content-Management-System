@@ -1,6 +1,7 @@
 @extends('layouts.home')
 
 @section('page')
+
     <div class="container mt-5">
         <div class="card shadow">
             <div class="card-header bg-warning text-white">

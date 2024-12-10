@@ -1,6 +1,6 @@
-@extends('layouts.home')
+@extends('layouts.app')
 
-@section('page')
+@section('content')
     <div class="container mt-5">
         <div class="card shadow">
             <div class="card-header bg-info text-white">
@@ -42,5 +42,9 @@
             </div>
         </div>
     </div>
-    @endsection
 
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

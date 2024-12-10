@@ -1,6 +1,6 @@
-@extends('layouts.home')
+@extends('layouts.app')
 
-@section('page')
+@section('content')
     <script>
         // Function to toggle divs based on selected element type
         function toggleDivs() {
@@ -103,4 +103,9 @@
             </div>
         </div>
     </div>
-    @endsection
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

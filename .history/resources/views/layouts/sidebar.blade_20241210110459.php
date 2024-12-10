@@ -32,10 +32,10 @@
 
             <!-- Inventory Management with unique ID and target -->
             <li class="nav-item">
-                <div class="sidebar-link {{ request()->is('about-us*') ? 'active' : '' }}">
+                <div class="sidebar-link {{ request()->is('inventory*') ? 'active' : '' }}">
                     <a class="collapsed submenu" href="{{ route('about-us.index') }}">
                         <span class="icon">
-                            <x-simpleline-user class="icon-size" />
+                            <x-bi-boxes class="icon-size" />
                         </span>
                         <span class="d-none d-md-inline">
                             About Us

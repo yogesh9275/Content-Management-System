@@ -32,15 +32,49 @@
 
             <!-- Inventory Management with unique ID and target -->
             <li class="nav-item">
-                <div class="sidebar-link {{ request()->is('about-us*') ? 'active' : '' }}">
+                <div class="sidebar-link {{ request()->is('inventory*') ? 'active' : '' }}">
                     <a class="collapsed submenu" href="{{ route('about-us.index') }}">
                         <span class="icon">
-                            <x-simpleline-user class="icon-size" />
+                            <x-bi-boxes class="icon-size" />
                         </span>
                         <span class="d-none d-md-inline">
-                            About Us
+                            Inventory
                         </span>
                     </a>
+                </div>
+
+                <div id="inventorySubmenu" class="collapse">
+                    <ul class="nav flex-column">
+                        <!-- Check for 'Full control' role or permission for 'create inventory' -->
+                        <li class="nav-item">
+                            <a class="nav-link submenu-link {{ request()->routeIs('inventory.create') ? 'active' : '' }}"
+                                href="#">
+                                <span>Add Inventory</span>
+                            </a>
+                        </li>
+
+                        <!-- Check for 'Full control' role or permission for 'view inventory' -->
+                        <li class="nav-item">
+                            <a class="nav-link submenu-link {{ request()->routeIs('inventory') ? 'active' : '' }}"
+                                href="#">
+                                <span>View Inventory</span>
+                            </a>
+                        </li>
+
+                        <!-- Check for 'Full control' role or permission for 'edit inventory' -->
+                        <li class="nav-item">
+                            <a class="nav-link submenu-link" href="#">
+                                <span>Edit Inventory</span>
+                            </a>
+                        </li>
+
+                        <!-- Check for 'Full control' role or permission for 'delete inventory' -->
+                        <li class="nav-item">
+                            <a class="nav-link submenu-link" href="#">
+                                <span>Delete Inventory</span>
+                            </a>
+                        </li>
+                    </ul>
                 </div>
             </li>
 
