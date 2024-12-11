@@ -10,7 +10,7 @@
 
             @foreach ($elements as $element)
                 <div class="py-4 border-bottom">
-                    <div class="d-flex justify-content-between align-items-start gap-3">
+                    <div class="d-flex justify-content-between align-items-start">
                         <div class="content">
                             <h5 class="text-dark mb-3 fw-bold">{{ $element->element }}</h5>
                             @if($element->element == 'Image')

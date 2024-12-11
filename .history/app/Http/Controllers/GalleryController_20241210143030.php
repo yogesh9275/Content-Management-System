@@ -137,14 +137,29 @@ class GalleryController extends Controller
 
     public function response()
     {
-        // Get all Gallery records
-        $galleries = Gallery::all();
+        // Get all AboutUsElement records
+        $elements = Gallery::all();
+
+        // Loop through each element to check if it is "Long Text"
+        foreach ($elements as $element) {
+            // Check if the element type is "Long Text"
+            if ($element->element == 'Long Text') {
+                // Wrap each paragraph in <p></p> tags
+                $paragraphs = explode("\n", $element->data); // Split the data into paragraphs by new lines
+                $wrappedParagraphs = array_map(function ($paragraph) {
+                    return '<p>' . e($paragraph) . '</p>'; // Wrap each paragraph in <p></p> and escape HTML characters
+                }, $paragraphs);
+
+                // Join the wrapped paragraphs back into a single string
+                $element->data = implode("\n", $wrappedParagraphs);
+            }
+        }
 
         // Customize the response as per your needs
         return response()->json([
             'status' => 'success',
-            'data' => $galleries,
-            'message' => 'Gallery elements retrieved successfully',
+            'data' => $elements,
+            'message' => 'About Us elements retrieved successfully',
         ]);
     }
 }

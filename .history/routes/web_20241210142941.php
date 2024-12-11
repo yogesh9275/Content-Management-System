@@ -23,4 +23,4 @@ use App\Http\Controllers\GalleryController;
 Route::resource('galleries', GalleryController::class);
 
 // API route for fetching about-us data
-Route::get('/api/about-us', [GalleryController::class, 'response']);
+Route::get('/api/about-us', [AboutUsElementController::class, 'response']);

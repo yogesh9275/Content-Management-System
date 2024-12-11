@@ -147,4 +147,5 @@ class GalleryController extends Controller
             'message' => 'Gallery elements retrieved successfully',
         ]);
     }
+
 }
