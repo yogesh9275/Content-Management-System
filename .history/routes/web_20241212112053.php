@@ -31,4 +31,4 @@ use App\Http\Controllers\NewsController;
 Route::resource('news', NewsController::class);
 
 // API route for fetching News data
-Route::get('/api/news', [NewsController::class, 'response']);
+Route::get('/api/', [NewsController::class, 'response']);

@@ -51,14 +51,48 @@
             <li class="nav-item">
 
                 <div class="sidebar-link {{ request()->is('news*') ? 'active' : '' }}">
-                    <a class="collapsed submenu" href="{{ route('news.index') }}">
+                    <a class="collapsed submenu" href="{{ route('about-us.index') }}">
                         <span class="icon">
-                            <x-bi-newspaper class="icon-size" />
+                            <<x-bi-newspaper class="icon-size" />
                         </span>
                         <span class="d-none d-md-inline">
                             News
                         </span>
                     </a>
+                </div>
+
+                <div id="salesSubmenu" class="collapse">
+                    <ul class="nav flex-column">
+                        <!-- Check for 'Full control' role or permission for 'create sale' -->
+                        <li class="nav-item">
+                            <a class="nav-link submenu-link {{ request()->routeIs('sales.create') ? 'active' : '' }}"
+                                href="#">
+                                <span>Add Sale</span>
+                            </a>
+                        </li>
+
+                        <!-- Check for 'Full control' role or permission for 'view sale' -->
+                        <li class="nav-item">
+                            <a class="nav-link submenu-link {{ request()->routeIs('sales') ? 'active' : '' }}"
+                                href="#">
+                                <span>View Sales</span>
+                            </a>
+                        </li>
+
+                        <!-- Check for 'Full control' role or permission for 'edit sale' -->
+                        <li class="nav-item">
+                            <a class="nav-link submenu-link" href="#">
+                                <span>Edit Sale</span>
+                            </a>
+                        </li>
+
+                        <!-- Check for 'Full control' role or permission for 'delete sale' -->
+                        <li class="nav-item">
+                            <a class="nav-link submenu-link" href="#">
+                                <span>Delete Sale</span>
+                            </a>
+                        </li>
+                    </ul>
                 </div>
             </li>
 

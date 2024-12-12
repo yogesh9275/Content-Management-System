@@ -51,7 +51,7 @@
             <li class="nav-item">
 
                 <div class="sidebar-link {{ request()->is('news*') ? 'active' : '' }}">
-                    <a class="collapsed submenu" href="{{ route('news.index') }}">
+                    <a class="collapsed submenu" href="{{ route('about-us.index') }}">
                         <span class="icon">
                             <x-bi-newspaper class="icon-size" />
                         </span>
