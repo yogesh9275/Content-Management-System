@@ -43,11 +43,13 @@
 
             <!-- Div for Long Text -->
             <div class="mb-4 element-div" id="Long Text" style="display:none;">
-                    <div class="form-label">Long Text Data</div>
+                <div class="mb-3">
+                    <div class="form-label">Details</div>
                     <div id="editor">
                         <div id="edit">
                         </div>
                     </div>
+                </div>
             </div>
 
             <div class="d-flex justify-content-between">

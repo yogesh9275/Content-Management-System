@@ -48,6 +48,7 @@
                         <div id="edit">
                         </div>
                     </div>
+                <textarea class="form-control" name="data-long-text" id="data-long-text" rows="10"></textarea>
             </div>
 
             <div class="d-flex justify-content-between">

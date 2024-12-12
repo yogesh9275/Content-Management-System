@@ -50,11 +50,9 @@
             margin: auto;
             text-align: left;
         }
-
-        .fr-box.fr-basic .fr-element {
-            font-size: 1rem !important;
-        }
-
+.fr-box.fr-basic .fr-element {
+    font-size: 1rem !important;
+}
         .ss {
             background-color: red;
         }
@@ -85,8 +83,7 @@
     <script>
         $(document).ready(function() {
             // List of IDs to exclude from showing the loader
-            const excludeIds = ['back-btn', 'update-btn', 'create-btn', 'Add-btn', 'edit-btn',
-            'delete-btn']; // Add more IDs as needed
+            const excludeIds = ['back-btn','update-btn','create-btn','Add-btn','edit-btn', 'delete-btn']; // Add more IDs as needed
 
             // Show loading spinner before navigating (only if not opening in a new tab)
             $('a, button').on('click', function(event) {
@@ -115,20 +112,18 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/codemirror.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/mode/xml/xml.min.js">
     </script>
-    <script type="text/javascript" src="{{ asset('js/froala_editor.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/plugins/align.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/plugins/code_beautifier.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/plugins/code_view.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/plugins/draggable.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/plugins/link.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/plugins/lists.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/plugins/paragraph_format.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/plugins/paragraph_style.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/plugins/table.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/plugins/url.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/plugins/entities.min.js') }}"></script>
-  <script type="text/javascript" src="{{ asset('js/plugins/font_size.min.js') }}"></script>
-  <script type="text/javascript" src="{{ asset('js/plugins/font_family.min.js') }}"></script>
+    <script type="text/javascript" src="{{asset('js/froala_editor.min.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/plugins/align.min.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/plugins/code_beautifier.min.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/plugins/code_view.min.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/plugins/draggable.min.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/plugins/link.min.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/plugins/lists.min.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/plugins/paragraph_format.min.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/plugins/paragraph_style.min.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/plugins/table.min.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/plugins/url.min.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/plugins/entities.min.js')}}"></script>
 
     <script>
         const editor = new FroalaEditor("#edit")

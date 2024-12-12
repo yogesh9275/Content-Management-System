@@ -59,6 +59,8 @@
                             </div>
                         </div>
                     </div>
+                    <label for="data-long-text" class="form-label">Long Text Data</label>
+                    <textarea class="form-control" name="data-long-text" id="data-long-text" rows="10">{{ $element->data }}</textarea>
                 </div>
 
                 <div class="d-flex justify-content-between">

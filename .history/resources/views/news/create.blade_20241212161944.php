@@ -30,9 +30,17 @@
         </div>
 
         <div class="mb-3">
-            <div class="form-label">Details</div>
+            <label for="details" class="form-label">Details</label>
             <div id="editor">
                 <div id="edit">
+                    @php
+                        // Convert newline characters (\n) into <p> tags for each line
+                        $details = nl2br(e(old('details', $news->details))); // Escape HTML and convert \n to <br>
+                        // Wrap text in <p> for each line
+                        $details = preg_replace('/\n/', '</p><p>', $details);
+                        $details = '<p>' . $details . '</p>'; // Add the first <p> tag
+                    @endphp
+                    {!! $details !!}
                 </div>
             </div>
         </div>

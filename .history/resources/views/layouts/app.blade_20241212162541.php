@@ -127,8 +127,8 @@
     <script type="text/javascript" src="{{ asset('js/plugins/table.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/plugins/url.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/plugins/entities.min.js') }}"></script>
-  <script type="text/javascript" src="{{ asset('js/plugins/font_size.min.js') }}"></script>
-  <script type="text/javascript" src="{{ asset('js/plugins/font_family.min.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('js/plugins/font_size.min.js"></script>
+  <script type="text/javascript" src="{{ asset('js/plugins/font_family.min.js"></script>
 
     <script>
         const editor = new FroalaEditor("#edit")

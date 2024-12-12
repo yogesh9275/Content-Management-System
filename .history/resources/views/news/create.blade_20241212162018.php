@@ -33,10 +33,18 @@
             <div class="form-label">Details</div>
             <div id="editor">
                 <div id="edit">
+                    @php
+                        // Convert newline characters (\n) into <p> tags for each line
+                        $details = nl2br(e($news->details)); // Escape HTML and convert \n to <br>
+                        // Wrap text in <p> for each line
+                        $details = preg_replace('/\n/', '</p><p>', $details);
+                        $details = '<p>' . $details . '</p>'; // Add the first <p> tag
+                    @endphp
+                    {!! $details !!}
                 </div>
             </div>
         </div>
-
+        
         <div class="d-flex justify-content-between">
             <a id="back-btn" href="{{ route('news.index') }}" class="btn btn-secondary">Back</a>
             <button id="create-btn" type="submit" class="btn btn-primary">Create News</button>
