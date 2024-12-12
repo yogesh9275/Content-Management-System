@@ -1,4 +1,4 @@
-@section('title', 'Add About Us Element')
+>@yield('title', '')
 @extends('layouts.home')
 
 @section('page')

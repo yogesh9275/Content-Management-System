@@ -1,4 +1,4 @@
-@section('title', 'Add Image')
+@yield('title', 'Add Im')
 
 @extends('layouts.home')
 

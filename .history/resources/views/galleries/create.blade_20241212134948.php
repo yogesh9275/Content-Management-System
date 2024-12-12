@@ -1,4 +1,3 @@
-@section('title', 'Add Image')
 
 @extends('layouts.home')
 

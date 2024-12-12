@@ -1,4 +1,4 @@
-@section('title', 'Edit Image')
+@yield('title', 'Edit Image')
 @extends('layouts.home')
 
 @section('page')

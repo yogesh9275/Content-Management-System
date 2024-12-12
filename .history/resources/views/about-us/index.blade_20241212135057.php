@@ -1,4 +1,4 @@
-@section('title', 'About Us')
+@yield('title', 'Abou')
 @extends('layouts.home')
 
 @section('page')

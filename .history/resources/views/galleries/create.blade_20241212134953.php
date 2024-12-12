@@ -1,4 +1,4 @@
-@section('title', 'Add Image')
+>@yield('title', 'Gallery Management')
 
 @extends('layouts.home')
 

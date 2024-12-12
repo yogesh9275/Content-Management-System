@@ -1,6 +1,6 @@
-@section('title', 'Add Image')
-
 @extends('layouts.home')
+
+@section('title', 'Add Image')
 
 @section('page')
 <script>

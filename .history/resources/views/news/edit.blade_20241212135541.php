@@ -1,4 +1,4 @@
-@section('title', 'Edit News')
+
 @extends('layouts.home')
 
 @section('page')
