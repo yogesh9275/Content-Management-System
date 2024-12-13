@@ -47,7 +47,7 @@
                                 $dom = new DOMDocument();
                                 libxml_use_internal_errors(true); // Suppress warnings for invalid HTML
                                 $dom->loadHTML(
-                                    '<div class="ms-2">' . $data . '</div>',
+                                    '<div>' . $data . '</div>',
                                     LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD,
                                 );
                                 libxml_clear_errors();
@@ -66,7 +66,7 @@
                             @endphp
 
                             @if ($isHTML && !empty($firstParagraph))
-                            <p class="card-text text-muted">{!! $firstParagraph !!}</p>
+                                <p class="card-text text-muted mt-3">{!! $firstParagraph !!}</p>
                             @else
                                 <p class="card-text text-muted p-3">{{ $data }}</p>
                             @endif

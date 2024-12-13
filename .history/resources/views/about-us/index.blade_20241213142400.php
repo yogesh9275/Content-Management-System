@@ -66,7 +66,7 @@
                             @endphp
 
                             @if ($isHTML && !empty($firstParagraph))
-                            <p class="card-text text-muted">{!! $firstParagraph !!}</p>
+                            <p class="card-text text-muted ms-2">{!! $firstParagraph !!}</p>
                             @else
                                 <p class="card-text text-muted p-3">{{ $data }}</p>
                             @endif
