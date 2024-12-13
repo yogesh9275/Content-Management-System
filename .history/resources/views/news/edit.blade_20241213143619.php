@@ -30,9 +30,15 @@
                 <label for="image" class="form-label">Image</label>
                 <input type="file" name="image" id="image" class="form-control">
 
+                @if ($news->image_path)
+                    <img src="{{ asset($news->image_path) }}" id="currentImagePreview" alt="News Image" style="width: 100%;" class="mt-2">
+                @endif
+
+                <!-- New Image Preview -->
+                <img id="newImagePreview" src="#" alt="New Image Preview" style="display: none; max-width: 100%; height: auto;" class="mt-2">
+
                 <!-- Cancel button for new image preview -->
-                <span id="cancel-btn" class="position-absolute"
-                    style="right: 0.40rem; bottom: 0.40rem; cursor: pointer; display: none;">
+                <span id="cancel-btn" class="position-absolute" style="right: 0.40rem; bottom: 0.40rem; cursor: pointer; display: none;">
                     <x-simpleline-close class="table-icon text-danger" />
                 </span>
 
@@ -41,15 +47,15 @@
             </div>
 
             <div class="mb-3">
+                <label for="image" class="form-label">Image</label>
+                <input type="file" name="image" id="image" class="form-control">
                 @if ($news->image_path)
                     <img src="{{ asset($news->image_path) }}" id="currentImagePreview" alt="News Image" style="width: 100%;"
                         class="mt-2">
                 @endif
-
                 <!-- New Image Preview -->
                 <img id="newImagePreview" src="#" alt="New Image Preview"
                     style="display: none; max-width: 100%; height: auto;" class="mt-2">
-
             </div>
 
             <div class="mb-3">
@@ -77,53 +83,51 @@
 
     <!-- JavaScript for dynamic behavior -->
     <script>
-        const imageInput = document.getElementById("image");
-        const newImagePreview = document.getElementById("newImagePreview");
-        const currentImagePreview = document.getElementById("currentImagePreview");
-        const cancelBtn = document.getElementById("cancel-btn");
-        const fileSizeError = document.getElementById("file-size-error");
+        document.addEventListener('DOMContentLoaded', function() {
+            // Image preview for new uploads
+            const imageInput = document.getElementById('image');
+            const newImagePreview = document.getElementById('newImagePreview');
+            const currentImagePreview = document.getElementById('currentImagePreview');
 
-        imageInput.addEventListener("change", function(event) {
-            const file = event.target.files[0];
-            if (file) {
-                const fileSize = file.size / 1024 / 1024; // size in MB
-                const maxSize = 2; // 2 MB
-
-                // Check file size
-                if (fileSize > maxSize) {
-                    fileSizeError.textContent = "File size exceeds 2MB. Please upload a smaller image.";
-                    imageInput.value = ""; // clear the file input
-                    newImagePreview.style.display = "none";
-                    cancelBtn.style.display = "none";
-                    return;
+            imageInput.addEventListener('change', function(event) {
+                const file = event.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        newImagePreview.src = e.target.result;
+                        newImagePreview.style.display = 'block';
+                        if (currentImagePreview) currentImagePreview.style.display =
+                            'none'; // Hide current image
+                    };
+                    reader.readAsDataURL(file);
+                } else {
+                    newImagePreview.style.display = 'none';
+                    if (currentImagePreview) currentImagePreview.style.display =
+                        'block'; // Show current image again
                 }
+            });
 
-                fileSizeError.textContent = "";
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    newImagePreview.src = e.target.result;
-                    newImagePreview.style.display = "block";
-                    cancelBtn.style.display = "inline-block";
-                };
-                reader.readAsDataURL(file);
+            // Dynamic textarea height
+            const detailsTextarea = document.getElementById('details');
 
-                // Hide current image preview if a new one is selected
-                if (currentImagePreview) {
-                    currentImagePreview.style.display = "none";
+            // Set default to 25 rows initially
+            detailsTextarea.style.height = `${25 * parseFloat(getComputedStyle(detailsTextarea).lineHeight)}px`;
+
+            detailsTextarea.addEventListener('input', function() {
+                this.style.height = 'auto'; // Reset height to auto to calculate the actual content height
+                const scrollHeight = this.scrollHeight;
+                const minHeight = 5 * parseFloat(getComputedStyle(this).lineHeight); // Minimum 5 rows
+                const maxHeight = 25 * parseFloat(getComputedStyle(this).lineHeight); // Maximum 25 rows
+
+                if (scrollHeight < minHeight) {
+                    this.style.height = `${minHeight}px`; // Set to minimum height
+                } else if (scrollHeight > maxHeight) {
+                    this.style.height = `${maxHeight}px`; // Set to maximum height
+                } else {
+                    this.style.height = `${scrollHeight}px`; // Adjust to fit content
                 }
-            }
-        });
+            });
 
-        // Cancel the new image selection and reset preview
-        cancelBtn.addEventListener("click", function() {
-            imageInput.value = ""; // Reset file input
-            newImagePreview.style.display = "none";
-            cancelBtn.style.display = "none";
-
-            // Show the original current image preview if available
-            if (currentImagePreview) {
-                currentImagePreview.style.display = "block";
-            }
         });
     </script>
 @endsection
