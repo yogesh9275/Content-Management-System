@@ -129,7 +129,7 @@
     <script type="text/javascript" src="{{ asset('js/plugins/entities.min.js') }}"></script>
   <script type="text/javascript" src="{{ asset('js/plugins/font_size.min.js') }}"></script>
   <script type="text/javascript" src="{{ asset('js/plugins/font_family.min.js') }}"></script>
-  <script>
+<script>
     (function () {
         const editor = new FroalaEditor('#edit', {
             enter: FroalaEditor.ENTER_P,
@@ -138,15 +138,9 @@
                 initialized: function () {
                     const editor = this;
                     this.el.closest('form').addEventListener('submit', function (e) {
-                        const longText = editor.html.get(); // Get the HTML content from the editor
-
-                        // Check if the 'data-long-text' field exists, then send to 'data-long-text'
-                        if (document.getElementById('data-long-text')) {
-                            document.getElementById('data-long-text').value = longText;
-                        } else {
-                            // Otherwise send to the 'details' field
-                            document.getElementById('details').value = longText;
-                        }
+                        // Set the content of the editor to the hidden input field
+                        document.getElementById('data-long-text').value = editor.html.get();
+                        document.getElementById('details').value = editor.html.get();
                     });
                 }
             }
@@ -175,7 +169,6 @@
     // Call toggleDivs function on page load to set the initial state
     window.onload = toggleDivs;
 </script>
-
 </body>
 
 </html>

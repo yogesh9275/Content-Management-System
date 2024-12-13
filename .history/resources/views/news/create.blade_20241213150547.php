@@ -50,6 +50,7 @@
                 </div>
             </div>
 
+            
             <input type="hidden" name="details" id="details">
 
             <div class="d-flex justify-content-between">

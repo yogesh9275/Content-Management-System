@@ -22,7 +22,7 @@ class NewsController extends Controller
     public function store(Request $request)
     {
         // Log received data before validation
-        Log::info('Received data for Store:', $request->all());
+        Log::info('Received data for update:', $request->all());
 
         $validated = $request->validate([
             'title' => 'required|string|max:255',

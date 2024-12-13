@@ -1,9 +1,9 @@
-@section('title', 'Add News')
+@section('title', 'Edit News')
 @extends('layouts.home')
 
 @section('page')
     <div class="container mt-4">
-        <h1 class="mb-4">Create News</h1>
+        <h1 class="mb-4">Edit News</h1>
 
         @if ($errors->any())
             <div class="alert alert-danger">
@@ -15,18 +15,22 @@
             </div>
         @endif
 
-        <form action="{{ route('news.store') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('news.update', $news->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
+            @method('PUT')
+
             <div class="mb-3">
                 <label for="title" class="form-label">Title</label>
-                <input type="text" name="title" id="title" class="form-control" value="{{ old('title') }}" required>
+                <input type="text" name="title" id="title" class="form-control" value="{{ $news->title }}"
+                    required>
             </div>
+
 
             <div class="mb-3 position-relative">
                 <label for="image" class="form-label">Image</label>
                 <input type="file" name="image" id="image" class="form-control">
 
-                <!-- Cancel button inside the input field, hidden by default -->
+                <!-- Cancel button for new image preview -->
                 <span id="cancel-btn" class="position-absolute"
                     style="right: 0.40rem; bottom: 0.40rem; cursor: pointer; display: none;">
                     <x-simpleline-close class="table-icon text-danger" />
@@ -36,33 +40,49 @@
                 <div id="file-size-error" class="text-danger mt-2"></div>
             </div>
 
-            <!-- Image preview -->
-            <div class="mt-3" id="image-preview" style="display: none;">
-                <img id="imagePreview" src="#" alt="Image Preview" class="img-thumbnail mb-2"
-                     style="max-width: 100%; max-height: 100%;">
+            <div class="mb-3">
+                @if ($news->image_path)
+                    <img src="{{ asset($news->image_path) }}" id="currentImagePreview" alt="News Image" style="width: 100%;"
+                        class="mt-2">
+                @endif
+
+                <!-- New Image Preview -->
+                <img id="newImagePreview" src="#" alt="New Image Preview"
+                    style="display: none; max-width: 100%; height: auto;" class="mt-2">
+
             </div>
 
-            <div class="mb-3">
-                <div class="form-label">Details</div>
+            <div class="mb-4 element-div" id="Long Text" style="display:none;">
+                <div class="form-label text-dark fw-bold">Details</div>
                 <div id="editor">
                     <div id="edit">
+                        @php
+                            // Convert newline characters (\n) into <p> tags for each line
+                            $details = nl2br(e($news->details)); // Escape HTML and convert \n to <br>
+                            // Wrap text in <p> for each line
+                            $details = preg_replace('/\n/', '</p><p>', $details);
+                            $details = '<p>' . $details . '</p>'; // Add the first <p> tag
+                        @endphp
+                        {!! $details !!}
                     </div>
                 </div>
             </div>
 
-            <input type="hidden" name="details" id="details">
+
+            <input type="hidden" name="data-long-text" id="data-long-text">
 
             <div class="d-flex justify-content-between">
                 <a id="back-btn" href="{{ route('news.index') }}" class="btn btn-secondary">Back</a>
-                <button id="create-btn" type="submit" class="btn btn-primary">Create News</button>
+                <button id="update-btn" type="submit" class="btn btn-success">Update News</button>
             </div>
         </form>
     </div>
 
+    <!-- JavaScript for dynamic behavior -->
     <script>
         const imageInput = document.getElementById("image");
-        const imagePreview = document.getElementById("image-preview");
-        const previewImg = document.getElementById("imagePreview");
+        const newImagePreview = document.getElementById("newImagePreview");
+        const currentImagePreview = document.getElementById("currentImagePreview");
         const cancelBtn = document.getElementById("cancel-btn");
         const fileSizeError = document.getElementById("file-size-error");
 
@@ -76,7 +96,7 @@
                 if (fileSize > maxSize) {
                     fileSizeError.textContent = "File size exceeds 2MB. Please upload a smaller image.";
                     imageInput.value = ""; // clear the file input
-                    imagePreview.style.display = "none";
+                    newImagePreview.style.display = "none";
                     cancelBtn.style.display = "none";
                     return;
                 }
@@ -84,19 +104,29 @@
                 fileSizeError.textContent = "";
                 const reader = new FileReader();
                 reader.onload = function(e) {
-                    previewImg.src = e.target.result;
-                    imagePreview.style.display = "block";
+                    newImagePreview.src = e.target.result;
+                    newImagePreview.style.display = "block";
                     cancelBtn.style.display = "inline-block";
                 };
                 reader.readAsDataURL(file);
+
+                // Hide current image preview if a new one is selected
+                if (currentImagePreview) {
+                    currentImagePreview.style.display = "none";
+                }
             }
         });
 
-        // Cancel the image selection and hide preview
+        // Cancel the new image selection and reset preview
         cancelBtn.addEventListener("click", function() {
             imageInput.value = ""; // Reset file input
-            imagePreview.style.display = "none";
+            newImagePreview.style.display = "none";
             cancelBtn.style.display = "none";
+
+            // Show the original current image preview if available
+            if (currentImagePreview) {
+                currentImagePreview.style.display = "block";
+            }
         });
     </script>
 @endsection
