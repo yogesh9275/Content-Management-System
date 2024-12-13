@@ -32,19 +32,18 @@
             </div>
 
             <!-- Div for Image -->
-            <div class="mb-4 element-div position-relative" id="Image" style="display:none;">
+            <div class="mb-4 element-div" id="Image" style="display:none;">
                 <label for="data-image" class="form-label text-dark fw-bold">Upload Image</label>
                 <!-- File input to accept image files -->
                 <input type="file" class="form-control" name="data-image" id="data-image" accept="image/*">
-                <!-- X button inside the input field, hidden by default -->
-                <span id="cancel-btn" class="position-absolute" style="right: 0.40rem; bottom: 0.40rem; cursor: pointer; display:none;"><x-simpleline-close class="table-icon text-danger"/></span>
+                
+                <!-- Placeholder for the image preview -->
+                <div class="mt-3" id="image-preview" style="display: none;">
+                    <img id="preview-img" src="" class="img-thumbnail mb-2" alt="Image Preview" style="max-width: 100%; max-height: 20rem;">
+                    <button type="button" class="btn btn-danger btn-sm" id="cancel-preview">Cancel</button>
+                </div>
                 <!-- Error message for file size -->
                 <div id="file-size-error" class="text-danger mt-2"></div>
-            </div>
-
-            <!-- Placeholder for the image preview -->
-            <div class="mt-3" id="image-preview" style="display: none;">
-                <img id="preview-img" src="" class="img-thumbnail mb-2" alt="Image Preview" style="max-width: 100%; max-height: 20rem;">
             </div>
 
             <!-- Div for Long Text -->
@@ -64,7 +63,7 @@
     </div>
 
     <script>
-       function toggleDivs() {
+        function toggleDivs() {
             var selectedElement = document.getElementById("element").value;
             var allDivs = document.querySelectorAll(".element-div");
             allDivs.forEach(function(div) {
@@ -81,7 +80,7 @@
         const imageInput = document.getElementById("data-image");
         const imagePreview = document.getElementById("image-preview");
         const previewImg = document.getElementById("preview-img");
-        const cancelBtn = document.getElementById("cancel-btn");
+        const cancelPreview = document.getElementById("cancel-preview");
         const fileSizeError = document.getElementById("file-size-error");
 
         imageInput.addEventListener("change", function(event) {
@@ -94,7 +93,6 @@
                     fileSizeError.textContent = "File size exceeds 2MB. Please upload a smaller image.";
                     imageInput.value = "";
                     imagePreview.style.display = "none";
-                    cancelBtn.style.display = "none";
                     return;
                 }
 
@@ -103,16 +101,14 @@
                 reader.onload = function(e) {
                     previewImg.src = e.target.result;
                     imagePreview.style.display = "block";
-                    cancelBtn.style.display = "inline-block";
                 };
                 reader.readAsDataURL(file);
             }
         });
 
-        cancelBtn.addEventListener("click", function() {
+        cancelPreview.addEventListener("click", function() {
             imageInput.value = "";
             imagePreview.style.display = "none";
-            cancelBtn.style.display = "none";
         });
 
         window.onload = toggleDivs;

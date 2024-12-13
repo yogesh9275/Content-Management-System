@@ -42,11 +42,6 @@
                 <div id="file-size-error" class="text-danger mt-2"></div>
             </div>
 
-            <!-- Placeholder for the image preview -->
-            <div class="mt-3" id="image-preview" style="display: none;">
-                <img id="preview-img" src="" class="img-thumbnail mb-2" alt="Image Preview" style="max-width: 100%; max-height: 20rem;">
-            </div>
-
             <!-- Div for Long Text -->
             <div class="mb-4 element-div" id="Long Text" style="display:none;">
                 <div class="form-label text-dark fw-bold">Long Text Data</div>

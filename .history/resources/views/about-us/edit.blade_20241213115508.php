@@ -53,13 +53,6 @@
                         <div id="file-size-error" class="text-danger mt-2"></div>
                     </div>
 
-                    <!-- Image Preview -->
-                    <div class="mt-3" id="image-preview"
-                    style="display: {{ $element->element == 'Image' && $element->data ? 'block;' : 'none;' }}">
-                    <img id="preview-img"
-                        src="{{ $element->element == 'Image' && $element->data ? asset($element->data) : '' }}"
-                        class="img-thumbnail mb-2" alt="Image Preview" style="max-width: 100%; max-height: 100%;">
-                </div>
 
                     <!-- Div for Long Text -->
                     <div class="mb-4 element-div" id="Long Text" style="display:none;">
@@ -83,47 +76,44 @@
         </div>
     </div>
     <script>
-        // Save the original image path on page load (use the existing data from your server)
-        var originalImageSrc = '{{ $element->element == 'Image' && $element->data ? asset($element->data) : asset('images/default-image.png') }}';
-        var image = document.getElementById('preview-img');
-        var cancelBtn = document.getElementById('cancel-btn');
-        var fileInput = document.getElementById('data-image');
-        var fileSizeError = document.getElementById("file-size-error");
+        const imageInput = document.getElementById("data-image");
+        const imagePreview = document.getElementById("image-preview");
+        const previewImg = document.getElementById("preview-img");
+        const cancelBtn = document.getElementById("cancel-btn");
+        const fileSizeError = document.getElementById("file-size-error");
 
-        // Event listener to change the image preview when a new file is selected
-        fileInput.addEventListener('change', function(event) {
-            var file = event.target.files[0];
-            var reader = new FileReader();
-
-            reader.onload = function(e) {
-                image.src = e.target.result; // Update the image source to the new uploaded file
-                cancelBtn.style.display = 'inline-block'; // Show the cancel button
-            };
-
+        // Handle the change event for image input
+        imageInput.addEventListener("change", function(event) {
+            const file = event.target.files[0];
             if (file) {
                 const fileSize = file.size / 1024 / 1024; // Convert bytes to MB
                 const maxSize = 2; // 2MB max file size
 
                 if (fileSize > maxSize) {
                     fileSizeError.textContent = "File size exceeds 2MB. Please upload a smaller image.";
-                    fileInput.value = ''; // Clear input
-                    image.src = originalImageSrc; // Restore the original image if size exceeds
-                    cancelBtn.style.display = 'none'; // Hide cancel button
+                    imageInput.value = ""; // Clear input
+                    imagePreview.style.display = "none"; // Hide the preview
+                    cancelBtn.style.display = "none"; // Hide the cancel button
                     return;
                 }
 
-                fileSizeError.textContent = ''; // Clear file size error message
-                reader.readAsDataURL(file); // Read and load the selected file
+                fileSizeError.textContent = "";
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    previewImg.src = e.target.result;
+                    imagePreview.style.display = "block"; // Show the preview
+                    cancelBtn.style.display = "inline-block"; // Show the cancel button
+                };
+                reader.readAsDataURL(file);
             }
         });
 
-        // Event listener for the cancel button to clear the input and restore the original image
-        cancelBtn.addEventListener('click', function() {
-            fileInput.value = ''; // Clear the file input
-            image.src = originalImageSrc; // Restore the original image
-            cancelBtn.style.display = 'none'; // Hide the cancel button
+        // Cancel the image selection and hide the preview
+        cancelBtn.addEventListener("click", function() {
+            imageInput.value = ""; // Clear the file input
+            imagePreview.style.display = "none"; // Hide the preview
+            cancelBtn.style.display = "none"; // Hide the cancel button
         });
     </script>
-
 
 @endsection

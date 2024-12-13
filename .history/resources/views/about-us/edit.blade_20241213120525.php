@@ -58,7 +58,7 @@
                     style="display: {{ $element->element == 'Image' && $element->data ? 'block;' : 'none;' }}">
                     <img id="preview-img"
                         src="{{ $element->element == 'Image' && $element->data ? asset($element->data) : '' }}"
-                        class="img-thumbnail mb-2" alt="Image Preview" style="max-width: 100%; max-height: 100%;">
+                        class="img-thumbnail mb-2" alt="Image Preview" style="max-width: 100%; max-height: 20rem;">
                 </div>
 
                     <!-- Div for Long Text -->

@@ -68,7 +68,7 @@
                             @if ($isHTML && !empty($firstParagraph))
                                 <p class="card-text text-muted">{!! $firstParagraph !!}</p>
                             @else
-                                <p class="card-text text-muted mt-3">{{ $data }}</p>
+                                <p class="card-text text-muted">{{ $data }}</p>
                             @endif
                         @endif
                     </div>

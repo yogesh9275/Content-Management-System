@@ -38,13 +38,12 @@
                 <input type="file" class="form-control" name="data-image" id="data-image" accept="image/*">
                 <!-- X button inside the input field, hidden by default -->
                 <span id="cancel-btn" class="position-absolute" style="right: 0.40rem; bottom: 0.40rem; cursor: pointer; display:none;"><x-simpleline-close class="table-icon text-danger"/></span>
+                <!-- Placeholder for the image preview -->
+                <div class="mt-3" id="image-preview" style="display: none;">
+                    <img id="preview-img" src="" class="img-thumbnail mb-2" alt="Image Preview" style="max-width: 100%; max-height: 20rem;">
+                </div>
                 <!-- Error message for file size -->
                 <div id="file-size-error" class="text-danger mt-2"></div>
-            </div>
-
-            <!-- Placeholder for the image preview -->
-            <div class="mt-3" id="image-preview" style="display: none;">
-                <img id="preview-img" src="" class="img-thumbnail mb-2" alt="Image Preview" style="max-width: 100%; max-height: 20rem;">
             </div>
 
             <!-- Div for Long Text -->
