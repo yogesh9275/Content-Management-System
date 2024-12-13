@@ -19,25 +19,24 @@
                                 <img src="{{ asset($element->data) }}" alt="Image" class="img-fluid rounded shadow-sm"
                                     style="max-width: 100%; max-height: 20rem;">
                             @else
-                                @php
-                                    $data = $element->data;
+                            @php
+                            $data = $element->data;
 
-                                    // Load the HTML into a DOMDocument
-                                    $dom = new DOMDocument();
-                                    libxml_use_internal_errors(true); // Suppress warnings for invalid HTML
-                                    $dom->loadHTML(
-                                        '<div>' . $data . '</div>',
-                                        LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD,
-                                    );
-                                    libxml_clear_errors();
+                            // Load the HTML into a DOMDocument
+                            $dom = new DOMDocument();
+                            libxml_use_internal_errors(true); // Suppress warnings for invalid HTML
+                            $dom->loadHTML('<div>' . $data . '</div>', LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+                            libxml_clear_errors();
 
-                                    // Extract only the first <p> element
-                                    $firstParagraph = '';
-                                    $paragraphs = $dom->getElementsByTagName('p');
-                                    if ($paragraphs->length > 0) {
-                                        $firstParagraph = $dom->saveHTML($paragraphs->item(0));
-                                    }
-                                @endphp
+                            // Extract only the first <p> element
+                            $firstParagraph = '';
+                            $paragraphs = $dom->getElementsByTagName('p');
+                            if ($paragraphs->length > 0) {
+                                $firstParagraph = $dom->saveHTML($paragraphs->item(0));
+                            }
+                        @endphp
+
+                        {!! $firstParagraph !!}
 
                                 <p class="text-muted">{!! $firstParagraph !!}</p>
                             @endif

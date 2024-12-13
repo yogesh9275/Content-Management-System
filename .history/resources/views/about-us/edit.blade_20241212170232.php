@@ -48,11 +48,11 @@
                     <div class="form-label">Long Text Data</div>
                     <div id="editor">
                         <div id="edit">
-                            {!! $element->data !!}
+                            @endphp
+                            {($element->data)
                         </div>
                     </div>
                 </div>
-
 
                 <input type="hidden" name="data-long-text" id="data-long-text">
 
@@ -64,4 +64,48 @@
         </div>
     </div>
 </div>
+
+<!-- Froala Editor Script -->
+<script src="https://cdn.jsdelivr.net/npm/froala-editor/js/froala_editor.pkgd.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/froala-editor/css/froala_editor.pkgd.min.css">
+
+<script>
+    (function () {
+        const editorInstance = new FroalaEditor('#edit', {
+            enter: FroalaEditor.ENTER_P,
+            placeholderText: null,
+            events: {
+                initialized: function () {
+                    const editor = this;
+                    this.el.closest('form').addEventListener('submit', function (e) {
+                        // Set the content of the editor to the hidden input field
+                        document.getElementById('data-long-text').value = editor.html.get();
+                    });
+                }
+            }
+        });
+    })();
+
+    // Function to toggle divs based on selected element type
+    function toggleDivs() {
+        var selectedElement = document.getElementById("element").value;
+
+        // Hide all divs first
+        var allDivs = document.querySelectorAll(".element-div");
+        allDivs.forEach(function(div) {
+            div.style.display = "none";
+        });
+
+        // Show the div for the selected element
+        if (selectedElement) {
+            var selectedDiv = document.getElementById(selectedElement);
+            if (selectedDiv) {
+                selectedDiv.style.display = "block";
+            }
+        }
+    }
+
+    // Call toggleDivs function on page load to set the initial state
+    window.onload = toggleDivs;
+</script>
 @endsection

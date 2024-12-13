@@ -129,6 +129,11 @@
     <script type="text/javascript" src="{{ asset('js/plugins/entities.min.js') }}"></script>
   <script type="text/javascript" src="{{ asset('js/plugins/font_size.min.js') }}"></script>
   <script type="text/javascript" src="{{ asset('js/plugins/font_family.min.js') }}"></script>
+
+    <script>
+        const  = new FroalaEditor("#edit")
+    </script>
+
 <script>
     (function () {
         const editor = new FroalaEditor('#edit', {

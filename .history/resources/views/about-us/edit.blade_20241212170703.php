@@ -64,4 +64,8 @@
         </div>
     </div>
 </div>
+
+<!-- Froala Editor Script -->
+<script src="https://cdn.jsdelivr.net/npm/froala-editor/js/froala_editor.pkgd.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/froala-editor/css/froala_editor.pkgd.min.css">
 @endsection

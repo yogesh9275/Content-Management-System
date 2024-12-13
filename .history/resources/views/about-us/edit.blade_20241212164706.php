@@ -47,14 +47,20 @@
                 <div class="mb-4 element-div" id="Long Text" style="display:none;">
                     <div class="form-label">Long Text Data</div>
                     <div id="editor">
-                        <div id="edit">
-                            {!! $element->data !!}
+                        <div id="edit" contenteditable="true">
+                            @php
+                                // Convert newline characters (\n) into <p> tags for each line
+                                $details = nl2br(e($element->data)); // Escape HTML and convert \n to <br>
+                                // Wrap text in <p> for each line
+                                $details = preg_replace('/\n/', '</p><p>', $details);
+                                $details = '<p>' . $details . '</p>'; // Add the first <p> tag
+                            @endphp
+                            {!! $details !!}
                         </div>
                     </div>
+                    <!-- Hidden textarea to store the HTML content -->
+                    <textarea name="data-long-text" id="data-long-text" style="display:none;">{!! $element->data !!}</textarea>
                 </div>
-
-
-                <input type="hidden" name="data-long-text" id="data-long-text">
 
                 <div class="d-flex justify-content-between">
                     <a id="back-btn" href="{{ route('about-us.index') }}" class="btn btn-secondary">Back</a>
@@ -64,4 +70,35 @@
         </div>
     </div>
 </div>
+
+<script>
+    // Function to toggle divs based on selected element type
+    function toggleDivs() {
+        var selectedElement = document.getElementById("element").value;
+
+        // Hide all divs first
+        var allDivs = document.querySelectorAll(".element-div");
+        allDivs.forEach(function(div) {
+            div.style.display = "none";
+        });
+
+        // Show the div for the selected element
+        if (selectedElement) {
+            var selectedDiv = document.getElementById(selectedElement);
+            if (selectedDiv) {
+                selectedDiv.style.display = "block";
+            }
+        }
+    }
+
+    // Sync editable div content to the hidden textarea on form submission
+    document.querySelector('form').addEventListener('submit', function() {
+        var editorContent = document.getElementById('edit').innerHTML;
+        con
+        document.getElementById('data-long-text').value = editorContent;
+    });
+
+    // Call toggleDivs function on page load to set the initial state
+    window.onload = toggleDivs;
+</script>
 @endsection
