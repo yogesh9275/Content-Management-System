@@ -17,7 +17,7 @@
     @endif
 
     @if($news->count())
-        <div class="row my-4">
+        <div class="row">
             @foreach ($news as $item)
                 <div class="col-md-4 mb-4">
                     <div class="card d-flex flex-column h-100">

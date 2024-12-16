@@ -10,11 +10,12 @@
             </a>
         </div>
 
+
         @if (session('success'))
             <div class="alert alert-success">{{ session('success') }}</div>
         @endif
 
-        <div class="row my-4">
+        <div class="row">
             @forelse ($galleries as $gallery)
                 <div class="col-md-4 mb-4">
                     <!-- Grid Item Card -->
