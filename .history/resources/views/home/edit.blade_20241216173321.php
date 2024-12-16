@@ -123,8 +123,8 @@
                     </div>
 
                     <!-- About Image Preview -->
-                    <div class="mt-3" id="slider-image-preview" style="display: {{ $homePage->element == 'slider-image' && $homePage->data ? 'block' : 'none' }};">
-                        <img id="slider-preview-img" src="{{ $homePage->element == 'slider-Image' && $homePage->data ? asset($homePage->data) : '' }}" class="img-thumbnail mb-2" alt="Image Preview" style="max-width: 100%; max-height: 100%;">
+                    <div class="mt-3" id="slider-image-preview" style="display: {{ $homePage->element == 'vision-image' && $homePage->data ? 'block' : 'none' }};">
+                        <img id="vision-preview-img" src="{{ $homePage->element == 'vision-Image' && $homePage->data ? asset($homePage->data) : '' }}" class="img-thumbnail mb-2" alt="Image Preview" style="max-width: 100%; max-height: 100%;">
                     </div>
 
                     <div class="d-flex justify-content-between">

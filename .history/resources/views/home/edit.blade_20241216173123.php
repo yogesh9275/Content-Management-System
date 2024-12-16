@@ -83,6 +83,9 @@
                         <img id="about-preview-img" src="{{ $homePage->element == 'About-Image' && $homePage->data ? asset($homePage->data) : '' }}" class="img-thumbnail mb-2" alt="Image Preview" style="max-width: 100%; max-height: 100%;">
                     </div>
 
+                    <input type="hidden" name="data-long-text" id="data-long-text">
+
+
                     <!-- Div for Vision Title -->
                     <div class="mb-4 element-div" id="vision-title" style="display: {{ $homePage->element == 'vision-title' ? 'block' : 'none' }}">
                         <label for="data-vision-title" class="form-label text-dark fw-bold">Vision Title Data</label>
@@ -108,24 +111,11 @@
                     </div>
 
                     <!-- About Image Preview -->
-                    <div class="mt-3" id="vision-image-preview" style="display: {{ $homePage->element == 'vision-image' && $homePage->data ? 'block' : 'none' }};">
-                        <img id="vision-preview-img" src="{{ $homePage->element == 'vision-Image' && $homePage->data ? asset($homePage->data) : '' }}" class="img-thumbnail mb-2" alt="Image Preview" style="max-width: 100%; max-height: 100%;">
+                    <div class="mt-3" id="vision-image-preview" style="display: {{ $homePage->element == 'about-image' && $homePage->data ? 'block' : 'none' }};">
+                        <img id="about-preview-img" src="{{ $homePage->element == 'About-Image' && $homePage->data ? asset($homePage->data) : '' }}" class="img-thumbnail mb-2" alt="Image Preview" style="max-width: 100%; max-height: 100%;">
                     </div>
 
-                    <!-- Div for Slider Image -->
-                    <div class="mb-4 element-div position-relative" id="slider-image" style="display: {{ $homePage->element == 'slider-image' && $homePage->data ? 'block' : 'none' }};">
-                        <label for="data-slider-image" class="form-label text-dark fw-bold">Upload About Image</label>
-                        <input type="file" class="form-control" name="data-slider-image" id="data-slider-image" accept="image/*">
-                        <span id="cancel-slider-btn" class="position-absolute" style="right: 0.40rem; bottom: 0.40rem; cursor: pointer; display:none;">
-                            <x-simpleline-close class="table-icon text-danger" />
-                        </span>
-                        <div id="slider-file-size-error" class="text-danger mt-2"></div>
-                    </div>
-
-                    <!-- About Image Preview -->
-                    <div class="mt-3" id="slider-image-preview" style="display: {{ $homePage->element == 'slider-image' && $homePage->data ? 'block' : 'none' }};">
-                        <img id="slider-preview-img" src="{{ $homePage->element == 'slider-Image' && $homePage->data ? asset($homePage->data) : '' }}" class="img-thumbnail mb-2" alt="Image Preview" style="max-width: 100%; max-height: 100%;">
-                    </div>
+                    <input type="hidden" name="data-long-text" id="data-long-text">
 
                     <div class="d-flex justify-content-between">
                         <a id="back-btn" href="{{ route('homepage.index') }}" class="btn btn-secondary">Back</a>
