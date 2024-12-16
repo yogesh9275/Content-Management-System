@@ -38,6 +38,6 @@ use App\Http\Controllers\HomePageController;
 
 Route::resource('homepage', HomePageController::class);
 
-use App\Http\Controllers\SettingController;
+use App\Http\Controllers\HomePageController;
 
-Route::resource('settings', SettingController::class);
+Route::resource('homepage', HomePageController::class);

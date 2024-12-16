@@ -6,7 +6,7 @@
                 <div class="sidebar-link {{ request()->routeIs('home') ? 'active' : '' }}">
                     <a class="collapsed submenu" href="{{ route('home') }}" style="justify-content: flex-start">
                         <span class="icon">
-                            <x-simpleline-grid class="icon-size" />
+                            <x-simpleline-home class="icon-size" />
                         </span>
                         <span class="d-none d-md-inline">
                             Dashboard
@@ -67,16 +67,57 @@
 
             <!-- Sidebar link for Purchase Management with collapsible submenu for CRUD operations -->
             <li class="nav-item">
-
-                <div class="sidebar-link {{ request()->is('homepage*') ? 'active' : '' }}">
-                    <a class="collapsed submenu" href="{{ route('homepage.index') }}">
+                <div class="sidebar-link {{ request()->is('purchase*') ? 'active' : '' }}">
+                    <a class="collapsed submenu" href="#">
                         <span class="icon">
-                            <x-simpleline-home class="icon-size" />
+                            <x-bi-cart class="icon-size" />
                         </span>
                         <span class="d-none d-md-inline">
-                            Home page
+                            Purchase
                         </span>
                     </a>
+                    <span class="icon toggle-arrow d-none d-md-inline" data-bs-toggle="collapse"
+                        data-bs-target="#purchaseSubmenu" aria-expanded="false" aria-controls="purchaseSubmenu">
+                        @if (request()->has('purchaseSubmenu') && request('purchaseSubmenu') == 'expanded')
+                            <x-simpleline-arrow-up class="arrow-size" />
+                        @else
+                            <x-simpleline-arrow-down class="arrow-size" />
+                        @endif
+                    </span>
+                </div>
+
+                <div id="purchaseSubmenu" class="collapse">
+                    <ul class="nav flex-column">
+                        <!-- Check for 'Full control' role or permission for 'create purchase' -->
+                        <li class="nav-item">
+                            <a class="nav-link submenu-link {{ request()->routeIs('purchase.create') ? 'active' : '' }}"
+                                href="#">
+                                <span>Add Purchase</span>
+                            </a>
+                        </li>
+
+                        <!-- Check for 'Full control' role or permission for 'view purchase' -->
+                            <li class="nav-item">
+                                <a class="nav-link submenu-link {{ request()->routeIs('purchase') ? 'active' : '' }}"
+                                    href="#">
+                                    <span>View Purchases</span>
+                                </a>
+                            </li>
+
+                        <!-- Check for 'Full control' role or permission for 'edit purchase' -->
+                            <li class="nav-item">
+                                <a class="nav-link submenu-link" href="#">
+                                    <span>Edit Purchase</span>
+                                </a>
+                            </li>
+
+                        <!-- Check for 'Full control' role or permission for 'delete purchase' -->
+                            <li class="nav-item">
+                                <a class="nav-link submenu-link" href="#">
+                                    <span>Delete Purchase</span>
+                                </a>
+                            </li>
+                    </ul>
                 </div>
             </li>
 
@@ -251,9 +292,9 @@
 
                 <!-- Settings -->
                 <li class="nav-item">
-                    <div class="sidebar-link {{ request()->is('settings*') ? 'active' : '' }}"
+                    <div class="sidebar-link {{ request()->routeIs('settings.index') ? 'settings-active' : '' }}"
                         style="margin-bottom: 10px;">
-                        <a class="collapsed submenu" href="{{ route('settings.index') }}" style="justify-content: flex-start">
+                        <a class="collapsed submenu" href="#" style="justify-content: flex-start">
                             <span class="icon">
                                 <x-bi-gear-fill class="icon-size" />
                             </span>

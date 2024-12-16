@@ -251,6 +251,7 @@
 
                 <!-- Settings -->
                 <li class="nav-item">
+
                     <div class="sidebar-link {{ request()->is('settings*') ? 'active' : '' }}"
                         style="margin-bottom: 10px;">
                         <a class="collapsed submenu" href="{{ route('settings.index') }}" style="justify-content: flex-start">

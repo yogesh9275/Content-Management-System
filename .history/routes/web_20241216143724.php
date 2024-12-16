@@ -40,4 +40,4 @@ Route::resource('homepage', HomePageController::class);
 
 use App\Http\Controllers\SettingController;
 
-Route::resource('settings', SettingController::class);
+Route::resource('homepage', HomePageController::class);

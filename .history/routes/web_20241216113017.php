@@ -36,8 +36,4 @@ Route::get('/api/news', [NewsController::class, 'response']);
 
 use App\Http\Controllers\HomePageController;
 
-Route::resource('homepage', HomePageController::class);
-
-use App\Http\Controllers\SettingController;
-
-Route::resource('settings', SettingController::class);
+Route::resource('omePage', HomePageController::class);

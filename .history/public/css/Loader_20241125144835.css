@@ -137,8 +137,3 @@
     border-color: #fff;
     /* White border for the loader */
 }
-
-
-#data-description {
-    resize: none !important; /* Disable resizing */
-}

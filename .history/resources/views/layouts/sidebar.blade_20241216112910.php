@@ -6,7 +6,7 @@
                 <div class="sidebar-link {{ request()->routeIs('home') ? 'active' : '' }}">
                     <a class="collapsed submenu" href="{{ route('home') }}" style="justify-content: flex-start">
                         <span class="icon">
-                            <x-simpleline-grid class="icon-size" />
+                            <x-simpleline-home class="icon-size" />
                         </span>
                         <span class="d-none d-md-inline">
                             Dashboard
@@ -68,13 +68,13 @@
             <!-- Sidebar link for Purchase Management with collapsible submenu for CRUD operations -->
             <li class="nav-item">
 
-                <div class="sidebar-link {{ request()->is('homepage*') ? 'active' : '' }}">
-                    <a class="collapsed submenu" href="{{ route('homepage.index') }}">
+                <div class="sidebar-link {{ request()->is('home*') ? 'active' : '' }}">
+                    <a class="collapsed submenu" href="{{ route('news.index') }}">
                         <span class="icon">
-                            <x-simpleline-home class="icon-size" />
+                            <x-bi-newspaper class="icon-size" />
                         </span>
                         <span class="d-none d-md-inline">
-                            Home page
+                            News
                         </span>
                     </a>
                 </div>
@@ -251,9 +251,9 @@
 
                 <!-- Settings -->
                 <li class="nav-item">
-                    <div class="sidebar-link {{ request()->is('settings*') ? 'active' : '' }}"
+                    <div class="sidebar-link {{ request()->routeIs('settings.index') ? 'settings-active' : '' }}"
                         style="margin-bottom: 10px;">
-                        <a class="collapsed submenu" href="{{ route('settings.index') }}" style="justify-content: flex-start">
+                        <a class="collapsed submenu" href="#" style="justify-content: flex-start">
                             <span class="icon">
                                 <x-bi-gear-fill class="icon-size" />
                             </span>
