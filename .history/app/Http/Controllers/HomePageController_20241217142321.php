@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Log;
 use App\Models\HomePage;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 
 class HomePageController extends Controller
 {
@@ -261,11 +260,10 @@ class HomePageController extends Controller
         } elseif ($request->hasFile('data-vision-image') && $request->input('element') === 'vision-image') {
             Log::info('Vision Image file uploaded.');
             $filePath = $this->handleFileUpload($request, 'data-vision-image');
-        } elseif ($request->hasFile('data-slider-image') && preg_match('/^slider-image-\d+$/', $request->input('element'))) {
+        } elseif ($request->hasFile('data-slider-image') && $request->input('element') === 'slider-image') {
             Log::info('Slider Image file uploaded.');
             $filePath = $this->handleFileUpload($request, 'data-slider-image');
         }
-
 
         // Log the element type and associated data
         $elementType = $request->input('element');
@@ -291,7 +289,7 @@ class HomePageController extends Controller
             $redirectTo = '/homepage/vision';
         } elseif (in_array($elementType, ['about-title', 'about-description', 'about-image'])) {
             $redirectTo = '/homepage/about';
-        } elseif (Str::startsWith($elementType, 'slider-image-')) {
+        } elseif ($elementType === 'slider-image') {
             $redirectTo = '/homepage/slider';
         }
 

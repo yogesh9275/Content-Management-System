@@ -261,46 +261,56 @@
             @endif
 
             {{-- Slider Group (Image) in Cards --}}
-            <div class="row mb-4">
-                @foreach ($homePages->filter(function ($homePage) {
-            return str_starts_with($homePage->element, 'slider-image-');
-        }) as $homePage)
-                    <!-- Filter for slider-image-* values -->
-                    <div class="col-12">
-                        <div class="card mb-4">
-                            <div class="card-body">
-                                <div class="d-flex justify-content-between align-items-center border p-3 rounded">
-                                    <h5 class="card-title text-dark fw-bold" style="margin-bottom: 0">Slider Image</h5>
-                                    <div class="d-flex justify-content-end gap-2">
-                                        <form action="{{ route('homepage.edit', $homePage->id) }}" method="GET"
-                                            class="d-inline">
-                                            <button id="edit-btn" type="submit"
-                                                class="btn btn-warning btn-sm d-flex align-items-center">
-                                                <x-simpleline-pencil class="icon-size" />
-                                            </button>
-                                        </form>
-                                        <form action="{{ route('homepage.destroy', $homePage->id) }}" method="POST"
-                                            class="d-inline">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button id="delete-btn" type="submit"
-                                                class="btn btn-danger btn-sm d-flex align-items-center">
-                                                <x-simpleline-trash class="icon-size" />
-                                            </button>
-                                        </form>
+            @if ($homePages->whereIn('element', 'slider-image')->isNotEmpty())
+                <div class="mt-5">
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="border-top flex-grow-1"></div>
+                        <span class="mx-3 text-muted fw-bold fs-4">Slider Images</span>
+                        <div class="border-top flex-grow-1"></div>
+                    </div>
+
+                    <div class="row mb-4">
+                        @foreach ($homePages as $homePage)
+                            <div class="col-12">
+                                <div class="card mb-4">
+                                    <div class="card-body">
+                                        <div class="d-flex justify-content-between align-items-center border p-3 rounded">
+                                            <h5 class="card-title text-dark fw-bold" style="margin-bottom: 0">Slider Image
+                                            </h5>
+                                            <div class="d-flex justify-content-end gap-2">
+                                                <form action="{{ route('homepage.edit', $homePage->id) }}" method="GET"
+                                                    class="d-inline">
+                                                    <button id="edit-btn" type="submit"
+                                                        class="btn btn-warning btn-sm d-flex align-items-center">
+                                                        <x-simpleline-pencil class="icon-size" />
+                                                    </button>
+                                                </form>
+                                                <form action="{{ route('homepage.destroy', $homePage->id) }}"
+                                                    method="POST" class="d-inline">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button id="delete-btn" type="submit"
+                                                        class="btn btn-danger btn-sm d-flex align-items-center">
+                                                        <x-simpleline-trash class="icon-size" />
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        </div>
+
+                                        @if (Str::startsWith($homePage->element, 'slider-'))
+                                            <img src="{{ asset($homePage->data) }}" alt="Slider Image"
+                                                class="img-fluid rounded shadow-sm mt-3"
+                                                style="max-width: 50%; max-height: 50%;">
+                                        @endif
                                     </div>
                                 </div>
-
-                                <!-- Display slider images based on "slider-image-" element type -->
-                                <img src="{{ asset($homePage->data) }}" alt="Slider Image"
-                                    class="img-fluid rounded shadow-sm mt-3" style="max-width: 50%; max-height: 50%;">
                             </div>
-                        </div>
+                        @endforeach
                     </div>
-                @endforeach
-            </div>
+
+                </div>
+            @endif
+
         </div>
-
-
     </div>
 @endsection

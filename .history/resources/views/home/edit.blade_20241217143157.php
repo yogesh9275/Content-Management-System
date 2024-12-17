@@ -31,9 +31,10 @@
                             </option>
                             <option value="vision-image" {{ $homePage->element == 'vision-image' ? 'selected' : '' }}>
                                 Vision-Image</option>
-                                <option value="{{ $homePage->element }}" {{ Str::startsWith($homePage->element, 'slider-image-') ? 'selected' : '' }}>
+                                <option value="slider-image" {{ Str::startsWith($homePage->element, 'slider-image-') ? 'selected' : '' }}>
                                     Slider-Image
                                 </option>
+
                         </select>
                     </div>
 
@@ -125,7 +126,7 @@
                     </div>
 
                     <!-- Div for Slider Image -->
-                    <div class="mb-4 element-div position-relative" id="{{ $homePage->element }}" style="display:none;">
+                    <div class="mb-4 element-div position-relative" id="slider-image" style="display:none;">
                         <label for="data-slider-image" class="form-label text-dark fw-bold">Upload Slider Image</label>
                         <input type="file" class="form-control" name="data-slider-image" id="data-slider-image"
                             accept="image/*">

@@ -2,7 +2,7 @@
 @extends('layouts.home')
 
 @section('page')
-    <div class="container mt-5">
+<div class="container mt-5">
         <div class="shadow-sm p-4 rounded bg-white">
             <div class="d-flex justify-content-between align-items-center border-bottom pb-3">
                 <h3 class="mb-0 text-primary">Home - Manage Elements</h3>
@@ -303,4 +303,5 @@
 
 
     </div>
+</div>
 @endsection

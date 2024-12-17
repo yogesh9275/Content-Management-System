@@ -262,9 +262,9 @@
 
             {{-- Slider Group (Image) in Cards --}}
             <div class="row mb-4">
-                @foreach ($homePages->filter(function ($homePage) {
-            return str_starts_with($homePage->element, 'slider-image-');
-        }) as $homePage)
+                @foreach ($homePages->filter(function($homePage) {
+                    return str_starts_with($homePage->element, 'slider-image-');
+                }) as $homePage)
                     <!-- Filter for slider-image-* values -->
                     <div class="col-12">
                         <div class="card mb-4">
@@ -272,19 +272,15 @@
                                 <div class="d-flex justify-content-between align-items-center border p-3 rounded">
                                     <h5 class="card-title text-dark fw-bold" style="margin-bottom: 0">Slider Image</h5>
                                     <div class="d-flex justify-content-end gap-2">
-                                        <form action="{{ route('homepage.edit', $homePage->id) }}" method="GET"
-                                            class="d-inline">
-                                            <button id="edit-btn" type="submit"
-                                                class="btn btn-warning btn-sm d-flex align-items-center">
+                                        <form action="{{ route('homepage.edit', $homePage->id) }}" method="GET" class="d-inline">
+                                            <button id="edit-btn" type="submit" class="btn btn-warning btn-sm d-flex align-items-center">
                                                 <x-simpleline-pencil class="icon-size" />
                                             </button>
                                         </form>
-                                        <form action="{{ route('homepage.destroy', $homePage->id) }}" method="POST"
-                                            class="d-inline">
+                                        <form action="{{ route('homepage.destroy', $homePage->id) }}" method="POST" class="d-inline">
                                             @csrf
                                             @method('DELETE')
-                                            <button id="delete-btn" type="submit"
-                                                class="btn btn-danger btn-sm d-flex align-items-center">
+                                            <button id="delete-btn" type="submit" class="btn btn-danger btn-sm d-flex align-items-center">
                                                 <x-simpleline-trash class="icon-size" />
                                             </button>
                                         </form>
@@ -293,14 +289,19 @@
 
                                 <!-- Display slider images based on "slider-image-" element type -->
                                 <img src="{{ asset($homePage->data) }}" alt="Slider Image"
-                                    class="img-fluid rounded shadow-sm mt-3" style="max-width: 50%; max-height: 50%;">
+                                    class="img-fluid rounded shadow-sm mt-3"
+                                    style="max-width: 50%; max-height: 50%;">
                             </div>
                         </div>
                     </div>
                 @endforeach
             </div>
+
+
+
+                </div>
+        
+
         </div>
-
-
     </div>
 @endsection

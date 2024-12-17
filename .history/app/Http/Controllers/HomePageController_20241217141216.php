@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Log;
 use App\Models\HomePage;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 
 class HomePageController extends Controller
 {
@@ -109,21 +108,8 @@ class HomePageController extends Controller
         $elementType = $request->input('element');
         $data = $filePath ?? $request->input('data-' . strtolower(str_replace(' ', '-', $elementType)));
 
-        // If element type is 'slider-image', generate a new slider-image id
-        if ($elementType === 'slider-image') {
-            // Get the last slider-image record based on the element type
-            $lastSliderImage = HomePage::where('element', 'like', 'slider-image-%')->orderBy('id', 'desc')->first();
-
-            // Generate the new slider-image element ID
-            $nextId = $lastSliderImage ? intval(substr($lastSliderImage->element, strrpos($lastSliderImage->element, '-') + 1)) + 1 : 1;
-            $newElementType = 'slider-image-' . $nextId;
-
-            // Update the element type with the new slider-image id
-            $elementType = $newElementType;
-
-            Log::info('Updated Element type: ' . $elementType);
-            Log::info('Data (text or file path): ' . $data);
-        }
+        Log::info('Element type: ' . $elementType);
+        Log::info('Data (text or file path): ' . $data);
 
         // Create a new HomePage record with the element and its corresponding data
         HomePage::create([
@@ -261,11 +247,10 @@ class HomePageController extends Controller
         } elseif ($request->hasFile('data-vision-image') && $request->input('element') === 'vision-image') {
             Log::info('Vision Image file uploaded.');
             $filePath = $this->handleFileUpload($request, 'data-vision-image');
-        } elseif ($request->hasFile('data-slider-image') && preg_match('/^slider-image-\d+$/', $request->input('element'))) {
+        } elseif ($request->hasFile('data-slider-image') && $request->input('element') === 'slider-image') {
             Log::info('Slider Image file uploaded.');
             $filePath = $this->handleFileUpload($request, 'data-slider-image');
         }
-
 
         // Log the element type and associated data
         $elementType = $request->input('element');
@@ -291,7 +276,7 @@ class HomePageController extends Controller
             $redirectTo = '/homepage/vision';
         } elseif (in_array($elementType, ['about-title', 'about-description', 'about-image'])) {
             $redirectTo = '/homepage/about';
-        } elseif (Str::startsWith($elementType, 'slider-image-')) {
+        } elseif ($elementType === 'slider-image') {
             $redirectTo = '/homepage/slider';
         }
 
