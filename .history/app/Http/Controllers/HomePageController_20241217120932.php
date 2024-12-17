@@ -92,7 +92,7 @@ class HomePageController extends Controller
         } elseif ($request->hasFile('data-vision-image') && $request->input('element') === 'vision-image') {
             Log::info('Vision Image file uploaded.');
             $filePath = $this->handleFileUpload($request, 'data-vision-image');
-        } elseif ($request->hasFile('data-slider-image') && $request->input('element') === 'slider-image') {
+        }elseif ($request->hasFile('data-slider-image') && $request->input('element') === 'slider-image') {
             Log::info('Slider Image file uploaded.');
             $filePath = $this->handleFileUpload($request, 'data-slider-image');
         }
@@ -113,22 +113,22 @@ class HomePageController extends Controller
         Log::info('HomePage element created successfully.');
 
         // Redirect based on the element type to different routes
-        $redirectTo = '/homepage'; // Default redirect
+    $redirectTo = '/homepage'; // Default redirect
 
-        if (in_array($elementType, ['title', 'description', 'image'])) {
-            $redirectTo = '/homepage';
-        } elseif (in_array($elementType, ['vision-title', 'vision-description', 'vision-image'])) {
-            $redirectTo = '/homepage/vision';
-        } elseif (in_array($elementType, ['about-title', 'about-description', 'about-image'])) {
-            $redirectTo = '/homepage/about';
-        } elseif ($elementType === 'slider-image') {
-            $redirectTo = '/homepage/slider';
-        }
+    if (in_array($elementType, ['title', 'description', 'image'])) {
+        $redirectTo = '/homepage';
+    } elseif (in_array($elementType, ['vision-title', 'vision-description', 'vision-image'])) {
+        $redirectTo = '/homepage/vision';
+    } elseif (in_array($elementType, ['about-title', 'about-description', 'about-image'])) {
+        $redirectTo = '/homepage/about';
+    } elseif ($elementType === 'slider-image') {
+        $redirectTo = '/homepage/slider';
+    }
 
-        Log::info('Redirecting to ' . $redirectTo . ' with success message.');
+    Log::info('Redirecting to ' . $redirectTo . ' with success message.');
 
-        // Redirect to the appropriate page based on the element type
-        return redirect($redirectTo)->with('success', 'HomePage element added successfully!');
+    // Redirect to the appropriate page based on the element type
+    return redirect($redirectTo)->with('success', 'HomePage element added successfully!');
     }
 
     protected function validateRequest(Request $request)
@@ -240,7 +240,7 @@ class HomePageController extends Controller
         } elseif ($request->hasFile('data-vision-image') && $request->input('element') === 'vision-image') {
             Log::info('Vision Image file uploaded.');
             $filePath = $this->handleFileUpload($request, 'data-vision-image');
-        } elseif ($request->hasFile('data-slider-image') && $request->input('element') === 'slider-image') {
+        }elseif ($request->hasFile('data-slider-image') && $request->input('element') === 'slider-image') {
             Log::info('Slider Image file uploaded.');
             $filePath = $this->handleFileUpload($request, 'data-slider-image');
         }
@@ -260,23 +260,9 @@ class HomePageController extends Controller
 
         Log::info('HomePage element updated successfully.');
 
-        // Redirect based on the element type to different routes
-        $redirectTo = '/homepage'; // Default redirect
-
-        if (in_array($elementType, ['title', 'description', 'image'])) {
-            $redirectTo = '/homepage';
-        } elseif (in_array($elementType, ['vision-title', 'vision-description', 'vision-image'])) {
-            $redirectTo = '/homepage/vision';
-        } elseif (in_array($elementType, ['about-title', 'about-description', 'about-image'])) {
-            $redirectTo = '/homepage/about';
-        } elseif ($elementType === 'slider-image') {
-            $redirectTo = '/homepage/slider';
-        }
-
-        Log::info('Redirecting to ' . $redirectTo . ' with success message.');
-
-        // Redirect to the appropriate page based on the element type
-        return redirect($redirectTo)->with('success', 'HomePage element added successfully!');
+        // Redirect to the Home page with a success message
+        Log::info('Redirecting to /homepage with success message.');
+        return redirect('/homepage')->with('success', 'HomePage element updated successfully!');
     }
 
     /**
@@ -285,31 +271,10 @@ class HomePageController extends Controller
     public function destroy($id)
     {
         $homePage = HomePage::findOrFail($id);
-
-        // Get the element type before deletion to determine the redirection
-        $elementType = $homePage->element;
-
-        // Delete the HomePage element
         $homePage->delete();
 
         Log::info('HomePage element deleted successfully.');
 
-        // Redirect based on the element type to different routes
-        $redirectTo = '/homepage'; // Default redirect
-
-        if (in_array($elementType, ['title', 'description', 'image'])) {
-            $redirectTo = '/homepage';
-        } elseif (in_array($elementType, ['vision-title', 'vision-description', 'vision-image'])) {
-            $redirectTo = '/homepage/vision';
-        } elseif (in_array($elementType, ['about-title', 'about-description', 'about-image'])) {
-            $redirectTo = '/homepage/about';
-        } elseif ($elementType === 'slider-image') {
-            $redirectTo = '/homepage/slider';
-        }
-
-        Log::info('Redirecting to ' . $redirectTo . ' with success message.');
-
-        // Redirect to the appropriate page after deletion
-        return redirect($redirectTo)->with('success', 'HomePage element deleted successfully!');
+        return redirect('/home')->with('success', 'HomePage element deleted successfully!');
     }
 }

@@ -259,7 +259,6 @@ class HomePageController extends Controller
         ]);
 
         Log::info('HomePage element updated successfully.');
-
         // Redirect based on the element type to different routes
         $redirectTo = '/homepage'; // Default redirect
 
@@ -285,31 +284,10 @@ class HomePageController extends Controller
     public function destroy($id)
     {
         $homePage = HomePage::findOrFail($id);
-
-        // Get the element type before deletion to determine the redirection
-        $elementType = $homePage->element;
-
-        // Delete the HomePage element
         $homePage->delete();
 
         Log::info('HomePage element deleted successfully.');
 
-        // Redirect based on the element type to different routes
-        $redirectTo = '/homepage'; // Default redirect
-
-        if (in_array($elementType, ['title', 'description', 'image'])) {
-            $redirectTo = '/homepage';
-        } elseif (in_array($elementType, ['vision-title', 'vision-description', 'vision-image'])) {
-            $redirectTo = '/homepage/vision';
-        } elseif (in_array($elementType, ['about-title', 'about-description', 'about-image'])) {
-            $redirectTo = '/homepage/about';
-        } elseif ($elementType === 'slider-image') {
-            $redirectTo = '/homepage/slider';
-        }
-
-        Log::info('Redirecting to ' . $redirectTo . ' with success message.');
-
-        // Redirect to the appropriate page after deletion
-        return redirect($redirectTo)->with('success', 'HomePage element deleted successfully!');
+        return redirect('/home')->with('success', 'HomePage element deleted successfully!');
     }
 }
