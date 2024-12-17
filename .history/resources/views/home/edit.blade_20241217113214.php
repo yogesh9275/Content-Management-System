@@ -31,22 +31,19 @@
                             </option>
                             <option value="vision-image" {{ $homePage->element == 'vision-image' ? 'selected' : '' }}>
                                 Vision-Image</option>
-                                <option value="slider-image" {{ $homePage->element == 'slider-image' ? 'selected' : '' }}>
-                                    Slider-Image</option>
                         </select>
                     </div>
 
                     <!-- Div for Title -->
                     <div class="mb-4 element-div" id="title" style="display:none;">
                         <label for="data-title" class="form-label text-dark fw-bold">Title</label>
-                        <input type="text" class="form-control" name="data-title" id="data-title"
-                            value="{{ $homePage->data }}">
+                        <input type="text" class="form-control" name="data-title" id="data-title" >
                     </div>
 
                     <!-- Div for Description -->
                     <div class="mb-4 element-div" id="description" style="display:none;">
                         <label for="data-description" class="form-label text-dark fw-bold">Description</label>
-                        <textarea class="form-control" name="data-description" id="data-description" rows="10">{{ $homePage->data }}</textarea>
+                        <textarea class="form-control" name="data-description" id="data-description" rows="10"></textarea>
                         <div id="word-count-error" class="text-danger" style="display: none;">Description exceeds the word
                             limit.
                             Please shorten it.</div>
@@ -67,14 +64,13 @@
                     <!-- Div for About Title -->
                     <div class="mb-4 element-div" id="about-title" style="display:none;">
                         <label for="data-about-title" class="form-label text-dark fw-bold">About Title</label>
-                        <input type="text" class="form-control" name="data-about-title" id="data-about-title"
-                            value="{{ $homePage->data }}">
+                        <input type="text" class="form-control" name="data-about-title" id="data-about-title">
                     </div>
 
                     <!-- Div for About Description -->
                     <div class="mb-4 element-div" id="about-description" style="display:none;">
                         <label for="data-about-description" class="form-label text-dark fw-bold">About Description</label>
-                        <textarea class="form-control" name="data-about-description" id="data-about-description" rows="10">{{ $homePage->data }}</textarea>
+                        <textarea class="form-control" name="data-about-description" id="data-about-description" rows="10"></textarea>
                         <div id="about-word-count-error" class="text-danger" style="display: none;">Description exceeds the
                             word
                             limit. Please shorten it.</div>
@@ -96,15 +92,14 @@
                     <!-- Div for Vision Title -->
                     <div class="mb-4 element-div" id="vision-title" style="display:none;">
                         <label for="data-vision-title" class="form-label text-dark fw-bold">Vision Title</label>
-                        <input type="text" class="form-control" name="data-vision-title" id="data-vision-title"
-                            value="{{ $homePage->data }}">
+                        <input type="text" class="form-control" name="data-vision-title" id="data-vision-title">
                     </div>
 
                     <!-- Div for Vision Description -->
                     <div class="mb-4 element-div" id="vision-description" style="display:none;">
                         <label for="data-vision-description" class="form-label text-dark fw-bold">Vision
                             Description</label>
-                        <textarea class="form-control" name="data-vision-description" id="data-vision-description" rows="10">{{ $homePage->data }}</textarea>
+                        <textarea class="form-control" name="data-vision-description" id="data-vision-description" rows="10"></textarea>
                         <div id="vision-word-count-error" class="text-danger" style="display: none;">Description exceeds
                             the word
                             limit. Please shorten it.</div>
@@ -137,20 +132,14 @@
 
 
                     <!-- Image Preview -->
-                    @if (
-                        $homePage->element == 'image' ||
-                            $homePage->element == 'vision-image' ||
-                            $homePage->element == 'about-image' ||
-                            $homePage->element == 'slider-image')
-                        <div class="mt-3" id="image-preview">
-                            <img id="preview-img" src="{{ asset($homePage->data) }}" class="img-thumbnail mb-2"
-                                alt="Image Preview" style="max-width: 100%; max-height: 20rem;">
-                        </div>
-                    @endif
+                    <div class="mt-3" id="image-preview" style="display: none;">
+                        <img id="preview-img" src="" class="img-thumbnail mb-2" alt="Image Preview"
+                            style="max-width: 100%; max-height: 20rem;">
+                    </div>
 
                     <div class="d-flex justify-content-between">
                         <a id="back-btn" href="{{ route('homepage.index') }}" class="btn btn-secondary">Back</a>
-                        <button id="update-btn" type="submit" class="btn btn-primary">Update</button>
+                        <button id="update-btn" type="submit" class="btn btn-primary" disabled>Update</button>
                     </div>
                 </form>
             </div>
@@ -158,83 +147,80 @@
     </div>
 
     <script>
-        // Function to handle image upload and preview
-        function handleImageUpload(fileInputId, cancelBtnID, previewImgId, errorId, originalImageSrc) {
-            var fileInput = document.getElementById(fileInputId);
-            var cancelBtn = document.getElementById(cancelBtnID);
-            var previewImg = document.getElementById(previewImgId);
-            var fileSizeError = document.getElementById(errorId);
+        // Handle file upload and preview for both about image and regular image
+        var originalImageSrc =
+            '{{ $homePage->element == 'Image' && $homePage->data ? asset($homePage->data) : asset('images/default-image.png') }}';
+        var aboutOriginalImageSrc =
+            '{{ $homePage->element == 'About-Image' && $homePage->data ? asset($homePage->data) : asset('images/default-image.png') }}';
+        var image = document.getElementById('preview-img');
+        var aboutImage = document.getElementById('about-preview-img');
+        var cancelBtn = document.getElementById('cancel-btn');
+        var cancelAboutBtn = document.getElementById('cancel-about-btn');
+        var fileInput = document.getElementById('data-image');
+        var aboutFileInput = document.getElementById('data-about-image');
+        var fileSizeError = document.getElementById("file-size-error");
+        var aboutFileSizeError = document.getElementById("about-file-size-error");
 
-            // Store the original image source
-            const originalImage = originalImageSrc;
+        // Handle file upload for regular image
+        fileInput.addEventListener('change', function(event) {
+            var file = event.target.files[0];
+            var reader = new FileReader();
 
-            // When a file is selected, show preview
-            fileInput.addEventListener('change', function(event) {
-                var file = event.target.files[0];
-                var reader = new FileReader();
+            reader.onload = function(e) {
+                image.src = e.target.result;
+                cancelBtn.style.display = 'inline-block';
+            };
 
-                reader.onload = function(e) {
-                    if (file && file.size <= 2 * 1024 * 1024) { // Check if file size is within 2MB
-                        previewImg.src = e.target.result; // Set image source to the selected file
-                        cancelBtn.style.display = 'inline-block'; // Show cancel button
-                        document.getElementById('image-preview').style.display =
-                            'block'; // Show image preview container
-                        fileSizeError.textContent = ''; // Clear any file size error
-                    }
-                };
-
-                if (file) {
-                    const fileSize = file.size / 1024 / 1024; // Convert bytes to MB
-                    const maxSize = 2; // Max 2MB
-                    if (fileSize > maxSize) {
-                        fileSizeError.textContent =
-                            "File size exceeds 2MB. Please upload a smaller image."; // Display error
-                        fileInput.value = ''; // Clear input
-                        previewImg.src = ''; // Clear image source
-                        cancelBtn.style.display = 'none'; // Hide cancel button
-                        document.getElementById('image-preview').style.display = 'none'; // Hide preview container
-                        return;
-                    }
-                    fileSizeError.textContent = ''; // Clear file size error
-                    reader.readAsDataURL(file); // Preview image
+            if (file) {
+                const fileSize = file.size / 1024 / 1024; // Convert bytes to MB
+                const maxSize = 2; // Max 2MB
+                if (fileSize > maxSize) {
+                    fileSizeError.textContent = "File size exceeds 2MB. Please upload a smaller image.";
+                    fileInput.value = ''; // Clear input
+                    image.src = originalImageSrc; // Restore original image if size exceeds
+                    cancelBtn.style.display = 'none';
+                    return;
                 }
-            });
+                fileSizeError.textContent = '';
+                reader.readAsDataURL(file);
+            }
+        });
 
-            // Logic for cancel button to clear file input and hide preview
-            cancelBtn.addEventListener('click', function() {
-                fileInput.value = ''; // Clear file input
-                previewImg.src = originalImage; // Clear image source
-                cancelBtn.style.display = 'none'; // Hide cancel button
-            });
-        }
+        cancelBtn.addEventListener('click', function() {
+            fileInput.value = ''; // Clear file input
+            image.src = originalImageSrc; // Restore original image
+            cancelBtn.style.display = 'none'; // Hide cancel button
+        });
 
-        // Initialize event listeners for both About Image and Regular Image inputs
-        document.addEventListener('DOMContentLoaded', function() {
-            // Pass the original image URL into handleImageUpload
-            const originalImageSrc = document.getElementById('preview-img').src;
-            // Handle both About Image and Regular Image
-            handleImageUpload('data-about-image', 'about-cancel-btn', 'preview-img',
-                'about-file-size-error', originalImageSrc); // Handle About Image
-            handleImageUpload('data-vision-image', 'vision-cancel-btn', 'preview-img',
-                'vision-file-size-error', originalImageSrc); // Handle Vision Image
-            handleImageUpload('data-slider-image', 'slider-cancel-btn', 'preview-img',
-                'slider-file-size-error', originalImageSrc); // Handle Slider Image
-            handleImageUpload('data-image', 'cancel-btn', 'preview-img',
-                'about-file-size-error', originalImageSrc); // Handle Regular Image
+        // Handle file upload for About Image
+        aboutFileInput.addEventListener('change', function(event) {
+            var file = event.target.files[0];
+            var reader = new FileReader();
 
-            // Toggle visibility and set up other element-specific logic
-            toggleDivs();
+            reader.onload = function(e) {
+                aboutImage.src = e.target.result;
+                cancelAboutBtn.style.display = 'inline-block';
+            };
 
-            // Regular description
-            updateWordCount('data-description', 'word-count-display', 'word-count-error', 250);
+            if (file) {
+                const fileSize = file.size / 1024 / 1024; // Convert bytes to MB
+                const maxSize = 2; // Max 2MB
+                if (fileSize > maxSize) {
+                    aboutFileSizeError.textContent = "File size exceeds 2MB. Please upload a smaller image.";
+                    aboutFileInput.value = ''; // Clear input
+                    aboutImage.src = aboutOriginalImageSrc; // Restore original image if size exceeds
+                    cancelAboutBtn.style.display = 'none';
+                    return;
+                }
+                aboutFileSizeError.textContent = '';
+                reader.readAsDataURL(file);
+            }
+        });
 
-            // Update word count and handle error for About Description
-            updateWordCount('data-about-description', 'about-word-count-display', 'about-word-count-error', 250);
-
-            // Update word count and handle error for Vision Description
-            updateWordCount('data-vision-description', 'vision-word-count-display', 'vision-word-count-error', 250);
-
-
+        cancelAboutBtn.addEventListener('click', function() {
+            aboutFileInput.value = ''; // Clear file input
+            aboutImage.src = aboutOriginalImageSrc; // Restore original image
+            cancelAboutBtn.style.display = 'none'; // Hide cancel button
         });
 
         // Toggle visibility of element-specific sections
@@ -246,38 +232,42 @@
             });
         }
 
-        // Word count function
+        // Set initial state based on the selected element
+        document.addEventListener('DOMContentLoaded', function() {
+            toggleDivs();
+            updateWordCount();
+        });
+
+        // Function to count words, including initial content in the textarea
         function countWords(text) {
-            return text.split(/\s+/).filter(Boolean).length;
+            return text.split(/\s+/).filter(Boolean).length; // Count words
         }
 
-        // Update word count and button state
-        function updateWordCount(textareaId, displayId, errorId, maxWords) {
-            const textarea = document.getElementById(textareaId);
-            const wordCountDisplay = document.getElementById(displayId);
-            const wordCountError = document.getElementById(errorId);
-            const submitButton = document.getElementById('create-btn');
+        // Word count check for the description textarea
+        document.getElementById('data-description').addEventListener('input', function() {
+            updateWordCount(); // Update word count on input
+        });
 
-            // Function to update the word count
-            function handleWordCount() {
-                var wordCount = countWords(textarea.value);
-                wordCountDisplay.textContent = `Words: ${wordCount}/${maxWords}`;
+        // Function to update word count and button state
+        function updateWordCount() {
+            var descriptionTextarea = document.getElementById('data-description');
+            var wordCount = countWords(descriptionTextarea.value); // Count words in current text
+            var maxWords = 200; // Maximum words allowed
 
-                // Disable submit button if word count exceeds max
-                if (wordCount > maxWords) {
-                    submitButton.disabled = true;
-                    wordCountError.style.display = 'block';
-                } else {
-                    submitButton.disabled = false;
-                    wordCountError.style.display = 'none';
-                }
+            // Display the word count inside the textarea area
+            document.getElementById('word-count-display').textContent = `Words: ${wordCount}/${maxWords}`;
+
+            var updateButton = document.getElementById('update-btn');
+            var wordCountError = document.getElementById('word-count-error');
+
+            // Disable the update button if word count exceeds the limit
+            if (wordCount > maxWords) {
+                updateButton.disabled = true;
+                wordCountError.style.display = 'block';
+            } else {
+                updateButton.disabled = false;
+                wordCountError.style.display = 'none';
             }
-
-            // Initialize word count display when page loads
-            handleWordCount();
-
-            // Listen for input events to update the word count and button status dynamically
-            textarea.addEventListener('input', handleWordCount);
         }
     </script>
 @endsection

@@ -31,22 +31,19 @@
                             </option>
                             <option value="vision-image" {{ $homePage->element == 'vision-image' ? 'selected' : '' }}>
                                 Vision-Image</option>
-                                <option value="slider-image" {{ $homePage->element == 'slider-image' ? 'selected' : '' }}>
-                                    Slider-Image</option>
                         </select>
                     </div>
 
                     <!-- Div for Title -->
                     <div class="mb-4 element-div" id="title" style="display:none;">
                         <label for="data-title" class="form-label text-dark fw-bold">Title</label>
-                        <input type="text" class="form-control" name="data-title" id="data-title"
-                            value="{{ $homePage->data }}">
+                        <input type="text" class="form-control" name="data-title" id="data-title"  value="{{ $element->data }}">
                     </div>
 
                     <!-- Div for Description -->
                     <div class="mb-4 element-div" id="description" style="display:none;">
                         <label for="data-description" class="form-label text-dark fw-bold">Description</label>
-                        <textarea class="form-control" name="data-description" id="data-description" rows="10">{{ $homePage->data }}</textarea>
+                        <textarea class="form-control" name="data-description" id="data-description" rows="10">{{ $element->data }}</textarea>
                         <div id="word-count-error" class="text-danger" style="display: none;">Description exceeds the word
                             limit.
                             Please shorten it.</div>
@@ -67,14 +64,13 @@
                     <!-- Div for About Title -->
                     <div class="mb-4 element-div" id="about-title" style="display:none;">
                         <label for="data-about-title" class="form-label text-dark fw-bold">About Title</label>
-                        <input type="text" class="form-control" name="data-about-title" id="data-about-title"
-                            value="{{ $homePage->data }}">
+                        <input type="text" class="form-control" name="data-about-title" id="data-about-title" value="{{ $element->data }}">
                     </div>
 
                     <!-- Div for About Description -->
                     <div class="mb-4 element-div" id="about-description" style="display:none;">
                         <label for="data-about-description" class="form-label text-dark fw-bold">About Description</label>
-                        <textarea class="form-control" name="data-about-description" id="data-about-description" rows="10">{{ $homePage->data }}</textarea>
+                        <textarea class="form-control" name="data-about-description" id="data-about-description" rows="10">{{ $element->data }}</textarea>
                         <div id="about-word-count-error" class="text-danger" style="display: none;">Description exceeds the
                             word
                             limit. Please shorten it.</div>
@@ -96,15 +92,14 @@
                     <!-- Div for Vision Title -->
                     <div class="mb-4 element-div" id="vision-title" style="display:none;">
                         <label for="data-vision-title" class="form-label text-dark fw-bold">Vision Title</label>
-                        <input type="text" class="form-control" name="data-vision-title" id="data-vision-title"
-                            value="{{ $homePage->data }}">
+                        <input type="text" class="form-control" name="data-vision-title" id="data-vision-title" value="{{ $element->data }}">
                     </div>
 
                     <!-- Div for Vision Description -->
                     <div class="mb-4 element-div" id="vision-description" style="display:none;">
                         <label for="data-vision-description" class="form-label text-dark fw-bold">Vision
                             Description</label>
-                        <textarea class="form-control" name="data-vision-description" id="data-vision-description" rows="10">{{ $homePage->data }}</textarea>
+                        <textarea class="form-control" name="data-vision-description" id="data-vision-description" rows="10">{{ $element->data }}</textarea>
                         <div id="vision-word-count-error" class="text-danger" style="display: none;">Description exceeds
                             the word
                             limit. Please shorten it.</div>
@@ -137,20 +132,14 @@
 
 
                     <!-- Image Preview -->
-                    @if (
-                        $homePage->element == 'image' ||
-                            $homePage->element == 'vision-image' ||
-                            $homePage->element == 'about-image' ||
-                            $homePage->element == 'slider-image')
-                        <div class="mt-3" id="image-preview">
-                            <img id="preview-img" src="{{ asset($homePage->data) }}" class="img-thumbnail mb-2"
-                                alt="Image Preview" style="max-width: 100%; max-height: 20rem;">
-                        </div>
-                    @endif
+                    <div class="mt-3" id="image-preview" style="display: none;">
+                        <img id="preview-img" src="" class="img-thumbnail mb-2" alt="Image Preview"
+                            style="max-width: 100%; max-height: 20rem;">
+                    </div>
 
                     <div class="d-flex justify-content-between">
                         <a id="back-btn" href="{{ route('homepage.index') }}" class="btn btn-secondary">Back</a>
-                        <button id="update-btn" type="submit" class="btn btn-primary">Update</button>
+                        <button id="update-btn" type="submit" class="btn btn-primary" disabled>Update</button>
                     </div>
                 </form>
             </div>
@@ -159,14 +148,11 @@
 
     <script>
         // Function to handle image upload and preview
-        function handleImageUpload(fileInputId, cancelBtnID, previewImgId, errorId, originalImageSrc) {
+        function handleImageUpload(fileInputId, cancelBtnID, previewImgId, errorId) {
             var fileInput = document.getElementById(fileInputId);
             var cancelBtn = document.getElementById(cancelBtnID);
             var previewImg = document.getElementById(previewImgId);
             var fileSizeError = document.getElementById(errorId);
-
-            // Store the original image source
-            const originalImage = originalImageSrc;
 
             // When a file is selected, show preview
             fileInput.addEventListener('change', function(event) {
@@ -178,7 +164,7 @@
                         previewImg.src = e.target.result; // Set image source to the selected file
                         cancelBtn.style.display = 'inline-block'; // Show cancel button
                         document.getElementById('image-preview').style.display =
-                            'block'; // Show image preview container
+                        'block'; // Show image preview container
                         fileSizeError.textContent = ''; // Clear any file size error
                     }
                 };
@@ -188,7 +174,7 @@
                     const maxSize = 2; // Max 2MB
                     if (fileSize > maxSize) {
                         fileSizeError.textContent =
-                            "File size exceeds 2MB. Please upload a smaller image."; // Display error
+                        "File size exceeds 2MB. Please upload a smaller image."; // Display error
                         fileInput.value = ''; // Clear input
                         previewImg.src = ''; // Clear image source
                         cancelBtn.style.display = 'none'; // Hide cancel button
@@ -203,24 +189,23 @@
             // Logic for cancel button to clear file input and hide preview
             cancelBtn.addEventListener('click', function() {
                 fileInput.value = ''; // Clear file input
-                previewImg.src = originalImage; // Clear image source
+                previewImg.src = ''; // Clear image source
                 cancelBtn.style.display = 'none'; // Hide cancel button
+                document.getElementById('image-preview').style.display = 'none'; // Hide image preview container
             });
         }
 
         // Initialize event listeners for both About Image and Regular Image inputs
         document.addEventListener('DOMContentLoaded', function() {
-            // Pass the original image URL into handleImageUpload
-            const originalImageSrc = document.getElementById('preview-img').src;
             // Handle both About Image and Regular Image
             handleImageUpload('data-about-image', 'about-cancel-btn', 'preview-img',
-                'about-file-size-error', originalImageSrc); // Handle About Image
+            'about-file-size-error'); // Handle About Image
             handleImageUpload('data-vision-image', 'vision-cancel-btn', 'preview-img',
-                'vision-file-size-error', originalImageSrc); // Handle Vision Image
+            'vision-file-size-error'); // Handle Vision Image
             handleImageUpload('data-slider-image', 'slider-cancel-btn', 'preview-img',
-                'slider-file-size-error', originalImageSrc); // Handle Slider Image
+            'slider-file-size-error'); // Handle Slider Image
             handleImageUpload('data-image', 'cancel-btn', 'preview-img',
-                'about-file-size-error', originalImageSrc); // Handle Regular Image
+            'about-file-size-error'); // Handle Regular Image
 
             // Toggle visibility and set up other element-specific logic
             toggleDivs();

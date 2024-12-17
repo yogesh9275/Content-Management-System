@@ -31,8 +31,6 @@
                             </option>
                             <option value="vision-image" {{ $homePage->element == 'vision-image' ? 'selected' : '' }}>
                                 Vision-Image</option>
-                                <option value="slider-image" {{ $homePage->element == 'slider-image' ? 'selected' : '' }}>
-                                    Slider-Image</option>
                         </select>
                     </div>
 
@@ -142,7 +140,7 @@
                             $homePage->element == 'vision-image' ||
                             $homePage->element == 'about-image' ||
                             $homePage->element == 'slider-image')
-                        <div class="mt-3" id="image-preview">
+                        <div class="mt-3" id="image-preview" style="display: none;">
                             <img id="preview-img" src="{{ asset($homePage->data) }}" class="img-thumbnail mb-2"
                                 alt="Image Preview" style="max-width: 100%; max-height: 20rem;">
                         </div>
@@ -150,7 +148,7 @@
 
                     <div class="d-flex justify-content-between">
                         <a id="back-btn" href="{{ route('homepage.index') }}" class="btn btn-secondary">Back</a>
-                        <button id="update-btn" type="submit" class="btn btn-primary">Update</button>
+                        <button id="update-btn" type="submit" class="btn btn-primary" disabled>Update</button>
                     </div>
                 </form>
             </div>

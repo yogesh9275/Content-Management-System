@@ -31,8 +31,6 @@
                             </option>
                             <option value="vision-image" {{ $homePage->element == 'vision-image' ? 'selected' : '' }}>
                                 Vision-Image</option>
-                                <option value="slider-image" {{ $homePage->element == 'slider-image' ? 'selected' : '' }}>
-                                    Slider-Image</option>
                         </select>
                     </div>
 
@@ -150,7 +148,7 @@
 
                     <div class="d-flex justify-content-between">
                         <a id="back-btn" href="{{ route('homepage.index') }}" class="btn btn-secondary">Back</a>
-                        <button id="update-btn" type="submit" class="btn btn-primary">Update</button>
+                        <button id="update-btn" type="submit" class="btn btn-primary" disabled>Update</button>
                     </div>
                 </form>
             </div>
@@ -177,8 +175,7 @@
                     if (file && file.size <= 2 * 1024 * 1024) { // Check if file size is within 2MB
                         previewImg.src = e.target.result; // Set image source to the selected file
                         cancelBtn.style.display = 'inline-block'; // Show cancel button
-                        document.getElementById('image-preview').style.display =
-                            'block'; // Show image preview container
+                        document.getElementById('image-preview').style.display = 'block'; // Show image preview container
                         fileSizeError.textContent = ''; // Clear any file size error
                     }
                 };
@@ -187,8 +184,7 @@
                     const fileSize = file.size / 1024 / 1024; // Convert bytes to MB
                     const maxSize = 2; // Max 2MB
                     if (fileSize > maxSize) {
-                        fileSizeError.textContent =
-                            "File size exceeds 2MB. Please upload a smaller image."; // Display error
+                        fileSizeError.textContent = "File size exceeds 2MB. Please upload a smaller image."; // Display error
                         fileInput.value = ''; // Clear input
                         previewImg.src = ''; // Clear image source
                         cancelBtn.style.display = 'none'; // Hide cancel button
@@ -208,43 +204,65 @@
             });
         }
 
-        // Initialize event listeners for both About Image and Regular Image inputs
-        document.addEventListener('DOMContentLoaded', function() {
-            // Pass the original image URL into handleImageUpload
-            const originalImageSrc = document.getElementById('preview-img').src;
-            // Handle both About Image and Regular Image
-            handleImageUpload('data-about-image', 'about-cancel-btn', 'preview-img',
-                'about-file-size-error', originalImageSrc); // Handle About Image
-            handleImageUpload('data-vision-image', 'vision-cancel-btn', 'preview-img',
-                'vision-file-size-error', originalImageSrc); // Handle Vision Image
-            handleImageUpload('data-slider-image', 'slider-cancel-btn', 'preview-img',
-                'slider-file-size-error', originalImageSrc); // Handle Slider Image
-            handleImageUpload('data-image', 'cancel-btn', 'preview-img',
-                'about-file-size-error', originalImageSrc); // Handle Regular Image
+        // Initialize event listeners for image uploads and word counts dynamically
+        document.addEventListener('DOMContentLoaded', function () {
+            const originalImageSrc = document.getElementById('preview-img').src || '';
 
-            // Toggle visibility and set up other element-specific logic
-            toggleDivs();
+            // Toggle visibility and setup functions on page load
+            toggleDivs(); // Call the toggle function to show correct section
 
-            // Regular description
+            // Call specific functions when certain section is visible
+            document.getElementById('element').addEventListener('change', toggleDivs); // Event listener for dropdown changes
+
+            // Update word count for description fields
             updateWordCount('data-description', 'word-count-display', 'word-count-error', 250);
-
-            // Update word count and handle error for About Description
             updateWordCount('data-about-description', 'about-word-count-display', 'about-word-count-error', 250);
-
-            // Update word count and handle error for Vision Description
             updateWordCount('data-vision-description', 'vision-word-count-display', 'vision-word-count-error', 250);
 
+            // Function to toggle visibility of element-specific sections
+            function toggleDivs() {
+                const selectedElement = document.getElementById('element').value; // Selected element
+                const elementDivs = document.querySelectorAll('.element-div');
 
+                elementDivs.forEach(function (div) {
+                    if (div.id === selectedElement) {
+                        div.style.display = 'block';
+                        initializeSectionFunctions(selectedElement); // Initialize functions for visible section
+                    } else {
+                        div.style.display = 'none';
+                    }
+                });
+            }
+
+            // Function to initialize specific section based on the selected element
+            function initializeSectionFunctions(selectedElement) {
+                switch (selectedElement) {
+                    case 'data-about-image':
+                        handleImageUpload('data-about-image', 'about-cancel-btn', 'preview-img', 'about-file-size-error', originalImageSrc);
+                        break;
+                    case 'data-vision-image':
+                        handleImageUpload('data-vision-image', 'vision-cancel-btn', 'preview-img', 'vision-file-size-error', originalImageSrc);
+                        break;
+                    case 'data-slider-image':
+                        handleImageUpload('data-slider-image', 'slider-cancel-btn', 'preview-img', 'slider-file-size-error', originalImageSrc);
+                        break;
+                    case 'data-image':
+                        handleImageUpload('data-image', 'cancel-btn', 'preview-img', 'about-file-size-error', originalImageSrc);
+                        break;
+                    case 'data-description':
+                        updateWordCount('data-description', 'word-count-display', 'word-count-error', 250);
+                        break;
+                    case 'data-about-description':
+                        updateWordCount('data-about-description', 'about-word-count-display', 'about-word-count-error', 250);
+                        break;
+                    case 'data-vision-description':
+                        updateWordCount('data-vision-description', 'vision-word-count-display', 'vision-word-count-error', 250);
+                        break;
+                    default:
+                        console.warn(`No handler defined for: ${selectedElement}`);
+                }
+            }
         });
-
-        // Toggle visibility of element-specific sections
-        function toggleDivs() {
-            const selectedElement = document.getElementById('element').value;
-            const elementDivs = document.querySelectorAll('.element-div');
-            elementDivs.forEach(function(div) {
-                div.style.display = div.id === selectedElement ? 'block' : 'none';
-            });
-        }
 
         // Word count function
         function countWords(text) {
@@ -280,4 +298,5 @@
             textarea.addEventListener('input', handleWordCount);
         }
     </script>
+
 @endsection

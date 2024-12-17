@@ -31,8 +31,8 @@
                             </option>
                             <option value="vision-image" {{ $homePage->element == 'vision-image' ? 'selected' : '' }}>
                                 Vision-Image</option>
-                                <option value="slider-image" {{ $homePage->element == 'slider-image' ? 'selected' : '' }}>
-                                    Slider-Image</option>
+                                <option value="slider--image" {{ $homePage->element == 'slider-image' ? 'selected' : '' }}>
+                                    Vision-Image</option>
                         </select>
                     </div>
 

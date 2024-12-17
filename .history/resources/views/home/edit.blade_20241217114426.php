@@ -31,8 +31,6 @@
                             </option>
                             <option value="vision-image" {{ $homePage->element == 'vision-image' ? 'selected' : '' }}>
                                 Vision-Image</option>
-                                <option value="slider-image" {{ $homePage->element == 'slider-image' ? 'selected' : '' }}>
-                                    Slider-Image</option>
                         </select>
                     </div>
 
@@ -57,6 +55,12 @@
                     <div class="mb-4 element-div position-relative" id="image" style="display:none;">
                         <label for="data-image" class="form-label text-dark fw-bold">Upload Image</label>
                         <input type="file" class="form-control" name="data-image" id="data-image" accept="image/*">
+                        @if ($element->content && $element->type == 'image')
+                            <div class="mt-3">
+                                <img src="{{ asset($element->content) }}" class="img-thumbnail mb-2" alt="Current Image"
+                                    style="max-height: 150px;">
+                            </div>
+                        @endif
                         <span id="cancel-btn" class="position-absolute"
                             style="right: 0.40rem; bottom: 0.40rem; cursor: pointer; display:none;">
                             <x-simpleline-close class="table-icon text-danger" />
@@ -142,7 +146,7 @@
                             $homePage->element == 'vision-image' ||
                             $homePage->element == 'about-image' ||
                             $homePage->element == 'slider-image')
-                        <div class="mt-3" id="image-preview">
+                        <div class="mt-3" id="image-preview" style="display: none;">
                             <img id="preview-img" src="{{ asset($homePage->data) }}" class="img-thumbnail mb-2"
                                 alt="Image Preview" style="max-width: 100%; max-height: 20rem;">
                         </div>
@@ -150,7 +154,7 @@
 
                     <div class="d-flex justify-content-between">
                         <a id="back-btn" href="{{ route('homepage.index') }}" class="btn btn-secondary">Back</a>
-                        <button id="update-btn" type="submit" class="btn btn-primary">Update</button>
+                        <button id="update-btn" type="submit" class="btn btn-primary" disabled>Update</button>
                     </div>
                 </form>
             </div>
@@ -214,13 +218,13 @@
             const originalImageSrc = document.getElementById('preview-img').src;
             // Handle both About Image and Regular Image
             handleImageUpload('data-about-image', 'about-cancel-btn', 'preview-img',
-                'about-file-size-error', originalImageSrc); // Handle About Image
+                'about-file-size-error', originalImageSrc'); // Handle About Image
             handleImageUpload('data-vision-image', 'vision-cancel-btn', 'preview-img',
-                'vision-file-size-error', originalImageSrc); // Handle Vision Image
+                'vision-file-size-error'); // Handle Vision Image
             handleImageUpload('data-slider-image', 'slider-cancel-btn', 'preview-img',
-                'slider-file-size-error', originalImageSrc); // Handle Slider Image
+                'slider-file-size-error'); // Handle Slider Image
             handleImageUpload('data-image', 'cancel-btn', 'preview-img',
-                'about-file-size-error', originalImageSrc); // Handle Regular Image
+                'about-file-size-error'); // Handle Regular Image
 
             // Toggle visibility and set up other element-specific logic
             toggleDivs();
