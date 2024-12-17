@@ -55,7 +55,7 @@ function handleImageUpload(
     });
 }
 
-// Initialize event listeners for both About Image and Regular Image inputs
+// Initialize event listeners for all relevant image inputs
 document.addEventListener("DOMContentLoaded", function () {
     // Get the back button element
     const backBtn = document.getElementById('back-btn');
@@ -71,20 +71,25 @@ document.addEventListener("DOMContentLoaded", function () {
         backBtn.href = '/homepage'; // This can be adjusted to any fallback URL.
     }
 
-    // Ensure the rest of your script functionality remains intact
+    // Handle the image uploads and previews
+    handleImageUpload(
+        "data-about-image", "about-cancel-btn", "preview-img", "about-file-size-error", document.getElementById("preview-img").src
+    );
+    handleImageUpload(
+        "data-vision-image", "vision-cancel-btn", "vision-preview-img", "vision-file-size-error", document.getElementById("vision-preview-img").src
+    );
+    handleImageUpload(
+        "data-slider-image", "slider-cancel-btn", "slider-preview-img", "slider-file-size-error", document.getElementById("slider-preview-img").src
+    );
     handleImageUpload(
         "data-image", "cancel-btn", "preview-img", "file-size-error", document.getElementById("preview-img").src
     );
 
     // Perform other necessary setup (word count and visibility toggling)
     toggleDivs();
-    updateWordCount("data-paragraph", "word-count-display-Paragraph", "word-count-error-Paragraph", 250);
-    updateWordCount("data-paragraph-2004", "word-count-display-2004", "word-count-error-2004", 250);
-    updateWordCount("data-paragraph-2014", "word-count-display-2014", "word-count-error-2014", 250);
-    updateWordCount("data-paragraph-2016", "word-count-display-2016", "word-count-error-2016", 250);
-    updateWordCount("data-paragraph-2018", "word-count-display-2018", "word-count-error-2018", 250);
-    updateWordCount("data-paragraph-2021", "word-count-display-2021", "word-count-error-2021", 250);
-    updateWordCount("data-paragraph-2024", "word-count-display-2024", "word-count-error-2024", 250);
+    updateWordCount("data-description", "word-count-display", "word-count-error", 250);
+    updateWordCount("data-about-description", "about-word-count-display", "about-word-count-error", 250);
+    updateWordCount("data-vision-description", "vision-word-count-display", "vision-word-count-error", 250);
 });
 
 // Toggle visibility of element-specific sections
@@ -106,7 +111,7 @@ function updateWordCount(textareaId, displayId, errorId, maxWords) {
     const textarea = document.getElementById(textareaId);
     const wordCountDisplay = document.getElementById(displayId);
     const wordCountError = document.getElementById(errorId);
-    const submitButton = document.getElementById("update-btn");
+    const submitButton = document.getElementById("create-btn");
 
     // Function to update the word count
     function handleWordCount() {

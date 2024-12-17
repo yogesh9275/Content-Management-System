@@ -19,12 +19,12 @@
                             <option value="Image" {{ $element->element == 'Image' ? 'selected' : '' }}>Image</option>
                             <option value="Long Text" {{ $element->element == 'Long Text' ? 'selected' : '' }}>Long Text
                             </option>
-                            <option value="2004" {{ $element->element == '2004' ? 'selected' : '' }}>2004</option>
-                            <option value="2014" {{ $element->element == '2014' ? 'selected' : '' }}>2014</option>
-                            <option value="2016" {{ $element->element == '2016' ? 'selected' : '' }}>2016</option>
-                            <option value="2018" {{ $element->element == '2018' ? 'selected' : '' }}>2018</option>
-                            <option value="2021" {{ $element->element == '2021' ? 'selected' : '' }}>2021</option>
-                            <option value="2024" {{ $element->element == '2024' ? 'selected' : '' }}>2024</option>
+                            <option value="2004" {{ $element->element == '2004' ? 'selected' : '' }}>Image</option>
+                            <option value="2014" {{ $element->element == '2014' ? 'selected' : '' }}>Image</option>
+                            <option value="2016" {{ $element->element == '2016' ? 'selected' : '' }}>Image</option>
+                            <option value="2018" {{ $element->element == '2018' ? 'selected' : '' }}>Image</option>
+                            <option value="2021" {{ $element->element == '2021' ? 'selected' : '' }}>Image</option>
+                            <option value="2024" {{ $element->element == '2024' ? 'selected' : '' }}>Image</option>
                         </select>
                     </div>
 
@@ -38,7 +38,7 @@
                     <!-- Div for Paragraph -->
                     <div class="mb-4 element-div" id="Paragraph" style="display:none;">
                         <label for="data-paragraph" class="form-label text-dark fw-bold">Paragraph Data</label>
-                        <textarea class="form-control" name="data-paragraph" id="data-paragraph" rows="10">{{ $element->data }}</textarea>
+                        <textarea class="form-control" name="data-paragraph" id="data-paragraph" rows="5">{{ $element->data }}</textarea>
                         <div id="word-count-error-Paragraph" class="text-danger" style="display: none;">Description exceeds the word
                             limit. Please shorten it.</div>
                         <div id="word-count-display-Paragraph" class="mt-2 text-muted">Words: 0/250</div>
@@ -47,7 +47,7 @@
                      <!-- Special Year Divs -->
             <div class="mb-4 element-div" id="2004" style="display:none;">
                 <label for="data-paragraph-2004" class="form-label text-dark fw-bold">Paragraph for 2004</label>
-                <textarea class="form-control" name="data-paragraph-2004" id="data-paragraph-2004" rows="10">{{ $element->data }}</textarea>
+                <textarea class="form-control" name="data-paragraph-2004" id="data-paragraph-2004" rows="5">{{ $element->data }}</textarea>
                 <div id="word-count-error-2004" class="text-danger" style="display: none;">Description exceeds the word
                     limit. Please shorten it.</div>
                 <div id="word-count-display-2004" class="mt-2 text-muted">Words: 0/250</div>
@@ -55,7 +55,7 @@
 
             <div class="mb-4 element-div" id="2014" style="display:none;">
                 <label for="data-paragraph-2014" class="form-label text-dark fw-bold">Paragraph for 2014</label>
-                <textarea class="form-control" name="data-paragraph-2014" id="data-paragraph-2014" rows="10">{{ $element->data }}</textarea>
+                <textarea class="form-control" name="data-paragraph-2014" id="data-paragraph-2014" rows="5">{{ $element->data }}</textarea>
                 <div id="word-count-error-2014" class="text-danger" style="display: none;">Description exceeds the word
                     limit. Please shorten it.</div>
                 <div id="word-count-display-2014" class="mt-2 text-muted">Words: 0/250</div>
@@ -63,7 +63,7 @@
 
             <div class="mb-4 element-div" id="2016" style="display:none;">
                 <label for="data-paragraph-2016" class="form-label text-dark fw-bold">Paragraph for 2016</label>
-                <textarea class="form-control" name="data-paragraph-2016" id="data-paragraph-2016" rows="10">{{ $element->data }}</textarea>
+                <textarea class="form-control" name="data-paragraph-2016" id="data-paragraph-2016" rows="5">{{ $element->data }}</textarea>
                 <div id="word-count-error-2016" class="text-danger" style="display: none;">Description exceeds the word
                     limit. Please shorten it.</div>
                 <div id="word-count-display-2016" class="mt-2 text-muted">Words: 0/250</div>
@@ -71,7 +71,7 @@
 
             <div class="mb-4 element-div" id="2018" style="display:none;">
                 <label for="data-paragraph-2018" class="form-label text-dark fw-bold">Paragraph for 2018</label>
-                <textarea class="form-control" name="data-paragraph-2018" id="data-paragraph-2018" rows="10">{{ $element->data }}</textarea>
+                <textarea class="form-control" name="data-paragraph-2018" id="data-paragraph-2018" rows="5">{{ $element->data }}</textarea>
                 <div id="word-count-error-2018" class="text-danger" style="display: none;">Description exceeds the word
                     limit. Please shorten it.</div>
                 <div id="word-count-display-2018" class="mt-2 text-muted">Words: 0/250</div>
@@ -79,7 +79,7 @@
 
             <div class="mb-4 element-div" id="2021" style="display:none;">
                 <label for="data-paragraph-2021" class="form-label text-dark fw-bold">Paragraph for 2021</label>
-                <textarea class="form-control" name="data-paragraph-2021" id="data-paragraph-2021" rows="10">{{ $element->data }}</textarea>
+                <textarea class="form-control" name="data-paragraph-2021" id="data-paragraph-2021" rows="5">{{ $element->data }}</textarea>
                 <div id="word-count-error-2021" class="text-danger" style="display: none;">Description exceeds the word
                     limit. Please shorten it.</div>
                 <div id="word-count-display-2021" class="mt-2 text-muted">Words: 0/250</div>
@@ -87,7 +87,7 @@
 
             <div class="mb-4 element-div" id="2024" style="display:none;">
                 <label for="data-paragraph-2024" class="form-label text-dark fw-bold">Paragraph for 2024</label>
-                <textarea class="form-control" name="data-paragraph-2024" id="data-paragraph-2024" rows="10">{{ $element->data }}</textarea>
+                <textarea class="form-control" name="data-paragraph-2024" id="data-paragraph-2024" rows="5">{{ $element->data }}</textarea>
                 <div id="word-count-error-2024" class="text-danger" style="display: none;">Description exceeds the word
                     limit. Please shorten it.</div>
                 <div id="word-count-display-2024" class="mt-2 text-muted">Words: 0/250</div>

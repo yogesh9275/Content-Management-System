@@ -246,67 +246,68 @@ class AboutUsElementController extends Controller
      * Update the specified resource in storage.
      */
     public function update(Request $request, $id)
-    {
-        // Log the start of the request
-        Log::info('Update method called. Request data:', $request->all());
+{
+    // Log the start of the request
+    Log::info('Update method called. Request data:', $request->all());
 
-        // Validate the incoming request based on the selected element
-        $this->validateElement($request);
+    // Validate the incoming request based on the selected element
+    $this->validateElement($request);
 
-        // Find the existing element to be updated
-        $element = AboutUsElement::findOrFail($id);
+    // Find the existing element to be updated
+    $element = AboutUsElement::findOrFail($id);
 
-        // Initialize variable for file path (if needed)
-        $filePath = null;
+    // Initialize variable for file path (if needed)
+    $filePath = null;
 
-        // Retrieve the element type and format it to lowercase with hyphens
-        $elementType = strtolower(str_replace(' ', '-', $request->input('element')));
+    // Retrieve the element type and format it to lowercase with hyphens
+    $elementType = strtolower(str_replace(' ', '-', $request->input('element')));
 
-        // Check if the element corresponds to a special year-based paragraph field
-        if (in_array($elementType, ['2004', '2014', '2016', '2018', '2021', '2024'])) {
-            // Construct the data key for the specific year (e.g., data-paragraph-2004)
-            $dataKey = 'data-paragraph-' . $elementType;
-            $data = $filePath ?? $request->input($dataKey);
+    // Check if the element corresponds to a special year-based paragraph field
+    if (in_array($elementType, ['2004', '2014', '2016', '2018', '2021', '2024'])) {
+        // Construct the data key for the specific year (e.g., data-paragraph-2004)
+        $dataKey = 'data-paragraph-' . $elementType;
+        $data = $filePath ?? $request->input($dataKey);
 
-            // Log the element type and the associated data
-            Log::info('Element type: ' . $request->input('element'));
-            if ($data) {
-                Log::info('Data (text): ' . $data);
-            } else {
-                Log::info('No data provided for ' . $elementType . ' paragraph.');
-            }
+        // Log the element type and the associated data
+        Log::info('Element type: ' . $request->input('element'));
+        if ($data) {
+            Log::info('Data (text): ' . $data);
         } else {
-            // Handle other element types like Header, Paragraph, Long Text, etc.
-            $dataKey = 'data-' . $elementType; // Generic field like 'data-header', 'data-paragraph', etc.
-            $data = $filePath ?? $request->input($dataKey);
-
-            // Log the element type and the associated data
-            Log::info('Element type: ' . $request->input('element'));
-            if ($data) {
-                Log::info('Data (text or file path): ' . $data);
-            } else {
-                Log::info('No data provided for ' . $elementType . ' element.');
-            }
+            Log::info('No data provided for ' . $elementType . ' paragraph.');
         }
+    } else {
+        // Handle other element types like Header, Paragraph, Long Text, etc.
+        $dataKey = 'data-' . $elementType; // Generic field like 'data-header', 'data-paragraph', etc.
+        $data = $filePath ?? $request->input($dataKey);
 
-        // Handle the file upload based on the selected element type
-        if ($request->hasFile('data-image') && $request->input('element') === 'Image') {
-            Log::info('Image file uploaded.');
-            $filePath = $this->handleFileUpload($request, 'data-image');
+        // Log the element type and the associated data
+        Log::info('Element type: ' . $request->input('element'));
+        if ($data) {
+            Log::info('Data (text or file path): ' . $data);
+        } else {
+            Log::info('No data provided for ' . $elementType . ' element.');
         }
-
-        // Update the AboutUsElement record with the new data (image or text)
-        $element->update([
-            'element' => $request->input('element'),
-            'data' => $data, // Store the processed data (image path or text)
-        ]);
-
-        Log::info('AboutUsElement updated successfully.');
-
-        // Redirect to the About Us page with a success message
-        Log::info('Redirecting to /about-us with success message.');
-        return redirect('/about-us')->with('success', 'Element updated successfully!');
     }
+
+    // Handle the file upload based on the selected element type
+    if ($request->hasFile('data-image') && $request->input('element') === 'Image') {
+        Log::info('Image file uploaded.');
+        $filePath = $this->handleFileUpload($request, 'data-image');
+    }
+
+    // Update the AboutUsElement record with the new data (image or text)
+    $element->update([
+        'element' => $request->input('element'),
+        'data' => $data, // Store the processed data (image path or text)
+    ]);
+
+    Log::info('AboutUsElement updated successfully.');
+
+    // Redirect to the About Us page with a success message
+    Log::info('Redirecting to /about-us with success message.');
+    return redirect('/about-us')->with('success', 'Element updated successfully!');
+}
+
 
     /**
      * Remove the specified resource from storage.
