@@ -22,8 +22,8 @@
                             <option value="2004" {{ $element->element == '2004' ? 'selected' : '' }}>Image</option>
                             <option value="2016" {{ $element->element == '2016' ? 'selected' : '' }}>Image</option>
                             <option value="2018" {{ $element->element == '2018' ? 'selected' : '' }}>Image</option>
-                            <option value="2021" {{ $element->element == '2021' ? 'selected' : '' }}>Image</option>
-                            <option value="2024" {{ $element->element == '2024' ? 'selected' : '' }}>Image</option>
+                            <option value="{{$element->element}}" {{ $element->element == '2021' ? 'selected' : '' }}>Image</option>
+                            <option value="{{$element->element}}" {{ $element->element == '2024' ? 'selected' : '' }}>Image</option>
                         </select>
                     </div>
 

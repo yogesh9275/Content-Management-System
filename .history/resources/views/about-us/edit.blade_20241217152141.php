@@ -89,5 +89,9 @@
     </div>
 
     <!-- Include the external JavaScript file -->
+    @section('scripts')
+    <script src="{{ asset('js/pages/about_edit.js') }}"></script>
+@endsection
+
     <script src="{{ asset('js/pages/about_edit.js') }}"></script>
 @endsection

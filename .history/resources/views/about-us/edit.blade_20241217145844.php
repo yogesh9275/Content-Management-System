@@ -13,17 +13,17 @@
                     <div class="mb-4">
                         <label for="element" class="form-label text-dark fw-bold">Element Type</label>
                         <select class="form-select" name="element" id="element" onchange="toggleDivs()" required>
-                            <option value="{{$element->element}}" {{ $element->element == 'Header' ? 'selected' : '' }}>Header</option>
-                            <option value="{{$element->element}}" {{ $element->element == 'Paragraph' ? 'selected' : '' }}>Paragraph
+                            <option value="Header" {{ $element->element == 'Header' ? 'selected' : '' }}>Header</option>
+                            <option value="Paragraph" {{ $element->element == 'Paragraph' ? 'selected' : '' }}>Paragraph
                             </option>
-                            <option value="{{$element->element}}" {{ $element->element == 'Image' ? 'selected' : '' }}>Image</option>
-                            <option value="{{$element->element}}" {{ $element->element == 'Long Text' ? 'selected' : '' }}>Long Text
+                            <option value="Image" {{ $element->element == 'Image' ? 'selected' : '' }}>Image</option>
+                            <option value="Long Text" {{ $element->element == 'Long Text' ? 'selected' : '' }}>Long Text
                             </option>
-                            <option value="2004" {{ $element->element == '2004' ? 'selected' : '' }}>Image</option>
-                            <option value="2016" {{ $element->element == '2016' ? 'selected' : '' }}>Image</option>
-                            <option value="2018" {{ $element->element == '2018' ? 'selected' : '' }}>Image</option>
-                            <option value="2021" {{ $element->element == '2021' ? 'selected' : '' }}>Image</option>
-                            <option value="2024" {{ $element->element == '2024' ? 'selected' : '' }}>Image</option>
+                            <option value="Image" {{ $element->element == '2004' ? 'selected' : '' }}>Image</option>
+                            <option value="Image" {{ $element->element == '200' ? 'selected' : '' }}>Image</option>
+                            <option value="Image" {{ $element->element == 'Image' ? 'selected' : '' }}>Image</option>
+                            <option value="Image" {{ $element->element == 'Image' ? 'selected' : '' }}>Image</option>
+                            <option value="Image" {{ $element->element == 'Image' ? 'selected' : '' }}>Image</option>
                         </select>
                     </div>
 

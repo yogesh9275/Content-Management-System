@@ -46,34 +46,35 @@ class AboutUsElementController extends Controller
         }
 
         // Retrieve the element type and format it to lowercase with hyphens
-        $element = strtolower(str_replace(' ', '-', $request->input('element')));
+$element = strtolower(str_replace(' ', '-', $request->input('element')));
 
-        // Check if the element corresponds to a special year-based paragraph field
-        if ($element == '2004' || $element == '2014' || $element == '2016' || $element == '2018' || $element == '2021' || $element == '2024') {
-            // Construct the data key for the specific year (e.g., data-paragraph-2004)
-            $dataKey = 'data-paragraph-' . $element;
-            $data = $filePath ?? $request->input($dataKey);
+// Check if the element corresponds to a special year-based paragraph field
+if ($element == '2004' || $element == '2014' || $element == '2016' || $element == '2018' || $element == '2021' || $element == '2024') {
+    // Construct the data key for the specific year (e.g., data-paragraph-2004)
+    $dataKey = 'data-paragraph-' . $element;
+    $data = $filePath ?? $request->input($dataKey);
 
-            // Log the element type and the associated data
-            Log::info('Element type: ' . $request->input('element'));
-            if ($data) {
-                Log::info('Data (text): ' . $data);
-            } else {
-                Log::info('No data provided for ' . $element . ' paragraph.');
-            }
-        } else {
-            // Handle other element types like Header, Paragraph, Long Text, etc.
-            $dataKey = 'data-' . $element; // Generic field like 'data-header', 'data-paragraph', etc.
-            $data = $filePath ?? $request->input($dataKey);
+    // Log the element type and the associated data
+    Log::info('Element type: ' . $request->input('element'));
+    if ($data) {
+        Log::info('Data (text): ' . $data);
+    } else {
+        Log::info('No data provided for ' . $element . ' paragraph.');
+    }
+} else {
+    // Handle other element types like Header, Paragraph, Long Text, etc.
+    $dataKey = 'data-' . $element; // Generic field like 'data-header', 'data-paragraph', etc.
+    $data = $filePath ?? $request->input($dataKey);
 
-            // Log the element type and the associated data
-            Log::info('Element type: ' . $request->input('element'));
-            if ($data) {
-                Log::info('Data (text or file path): ' . $data);
-            } else {
-                Log::info('No data provided for ' . $element . ' element.');
-            }
-        }
+    // Log the element type and the associated data
+    Log::info('Element type: ' . $request->input('element'));
+    if ($data) {
+        Log::info('Data (text or file path): ' . $data);
+    } else {
+        Log::info('No data provided for ' . $element . ' element.');
+    }
+}
+
 
         // Create a new AboutUsElement record with the appropriate data
         AboutUsElement::create([

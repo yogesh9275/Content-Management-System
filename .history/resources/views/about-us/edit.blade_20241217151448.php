@@ -13,11 +13,15 @@
                     <div class="mb-4">
                         <label for="element" class="form-label text-dark fw-bold">Element Type</label>
                         <select class="form-select" name="element" id="element" onchange="toggleDivs()" required>
-                            <option value="{{$element->element}}" {{ $element->element == 'Header' ? 'selected' : '' }}>Header</option>
-                            <option value="{{$element->element}}" {{ $element->element == 'Paragraph' ? 'selected' : '' }}>Paragraph
+                            <option value="{{ $element->element }}" {{ $element->element == 'Header' ? 'selected' : '' }}>
+                                Header</option>
+                            <option value="{{ $element->element }}"
+                                {{ $element->element == 'Paragraph' ? 'selected' : '' }}>Paragraph
                             </option>
-                            <option value="{{$element->element}}" {{ $element->element == 'Image' ? 'selected' : '' }}>Image</option>
-                            <option value="{{$element->element}}" {{ $element->element == 'Long Text' ? 'selected' : '' }}>Long Text
+                            <option value="{{ $element->element }}" {{ $element->element == 'Image' ? 'selected' : '' }}>
+                                Image</option>
+                            <option value="{{ $element->element }}"
+                                {{ $element->element == 'Long Text' ? 'selected' : '' }}>Long Text
                             </option>
                             <option value="2004" {{ $element->element == '2004' ? 'selected' : '' }}>Image</option>
                             <option value="2016" {{ $element->element == '2016' ? 'selected' : '' }}>Image</option>
@@ -61,9 +65,8 @@
                     <!-- Image Preview -->
                     <div class="mt-3" id="image-preview"
                         style="display: {{ $element->element == 'Image' && $element->data ? 'block;' : 'none;' }}">
-                        <img id="preview-img"
-                            src="{{ asset($element->data) }}"
-                            class="img-thumbnail mb-2" alt="Image Preview" style="max-width: 100%; max-height: 100%;">
+                        <img id="preview-img" src="{{ asset($element->data) }}" class="img-thumbnail mb-2"
+                            alt="Image Preview" style="max-width: 100%; max-height: 100%;">
                     </div>
 
                     <!-- Div for Long Text -->
@@ -89,5 +92,8 @@
     </div>
 
     <!-- Include the external JavaScript file -->
+@section('scripts')
     <script src="{{ asset('js/pages/about_edit.js') }}"></script>
+@endsection
+
 @endsection

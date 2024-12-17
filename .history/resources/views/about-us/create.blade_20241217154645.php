@@ -33,63 +33,28 @@
 
             <!-- Div for Paragraph -->
             <div class="mb-4 element-div" id="Paragraph" style="display:none;">
-                <label for="data-paragraph-Paragraph" class="form-label text-dark fw-bold">Paragraph Data</label>
-                <textarea class="form-control" name="data-paragraph" id="data-paragraph-Paragraph" rows="5"></textarea>
-                <div id="word-count-error-Paragraph" class="text-danger" style="display: none;">Description exceeds the word
-                    limit. Please shorten it.</div>
-                <div id="word-count-display-Paragraph" class="mt-2 text-muted">Words: 0/250</div>
+                <label for="data-paragraph" class="form-label text-dark fw-bold">Paragraph Data</label>
+                <textarea class="form-control" name="data-paragraph" id="data-paragraph" rows="5"></textarea>
             </div>
 
             <!-- Special Year Divs -->
             <div class="mb-4 element-div" id="2004" style="display:none;">
-                <label for="data-paragraph-2004" class="form-label text-dark fw-bold">Paragraph for 2004</label>
-                <textarea class="form-control" name="data-paragraph-2004" id="data-paragraph-2004" rows="5"></textarea>
-                <div id="word-count-error-2004" class="text-danger" style="display: none;">Description exceeds the word
-                    limit. Please shorten it.</div>
-                <div id="word-count-display-2004" class="mt-2 text-muted">Words: 0/250</div>
+                <label for="data-paragraph" class="form-label text-dark fw-bold">Paragraph for 2004</label>
+                <textarea class="form-control" name="data-paragraph" id="data-paragraph" rows="5"></textarea>
             </div>
-
             <div class="mb-4 element-div" id="2014" style="display:none;">
-                <label for="data-paragraph-2014" class="form-label text-dark fw-bold">Paragraph for 2014</label>
-                <textarea class="form-control" name="data-paragraph-2014" id="data-paragraph-2014" rows="5"></textarea>
-                <div id="word-count-error-2014" class="text-danger" style="display: none;">Description exceeds the word
-                    limit. Please shorten it.</div>
-                <div id="word-count-display-2014" class="mt-2 text-muted">Words: 0/250</div>
+                <label for="data-paragraph" class="form-label text-dark fw-bold">Paragraph for 2014</label>
+                <textarea class="form-control" name="data-paragraph" id="data-paragraph" rows="5"></textarea>
             </div>
-
-            <div class="mb-4 element-div" id="2016" style="display:none;">
-                <label for="data-paragraph-2016" class="form-label text-dark fw-bold">Paragraph for 2016</label>
-                <textarea class="form-control" name="data-paragraph-2016" id="data-paragraph-2016" rows="5"></textarea>
-                <div id="word-count-error-2016" class="text-danger" style="display: none;">Description exceeds the word
-                    limit. Please shorten it.</div>
-                <div id="word-count-display-2016" class="mt-2 text-muted">Words: 0/250</div>
+            <div class="mb-4 element-div" id="2014" style="display:none;">
+                <label for="data-paragraph" class="form-label text-dark fw-bold">Paragraph for 2014</label>
+                <textarea class="form-control" name="data-paragraph" id="data-paragraph" rows="5"></textarea>
             </div>
-
-            <div class="mb-4 element-div" id="2018" style="display:none;">
-                <label for="data-paragraph-2018" class="form-label text-dark fw-bold">Paragraph for 2018</label>
-                <textarea class="form-control" name="data-paragraph-2018" id="data-paragraph-2018" rows="5"></textarea>
-                <div id="word-count-error-2018" class="text-danger" style="display: none;">Description exceeds the word
-                    limit. Please shorten it.</div>
-                <div id="word-count-display-2018" class="mt-2 text-muted">Words: 0/250</div>
+            <div class="mb-4 element-div" id="2014" style="display:none;">
+                <label for="data-paragraph" class="form-label text-dark fw-bold">Paragraph for 2014</label>
+                <textarea class="form-control" name="data-paragraph" id="data-paragraph" rows="5"></textarea>
             </div>
-
-            <div class="mb-4 element-div" id="2021" style="display:none;">
-                <label for="data-paragraph-2021" class="form-label text-dark fw-bold">Paragraph for 2021</label>
-                <textarea class="form-control" name="data-paragraph-2021" id="data-paragraph-2021" rows="5"></textarea>
-                <div id="word-count-error-2021" class="text-danger" style="display: none;">Description exceeds the word
-                    limit. Please shorten it.</div>
-                <div id="word-count-display-2021" class="mt-2 text-muted">Words: 0/250</div>
-            </div>
-
-            <div class="mb-4 element-div" id="2024" style="display:none;">
-                <label for="data-paragraph-2024" class="form-label text-dark fw-bold">Paragraph for 2024</label>
-                <textarea class="form-control" name="data-paragraph-2024" id="data-paragraph-2024" rows="5"></textarea>
-                <div id="word-count-error-2024" class="text-danger" style="display: none;">Description exceeds the word
-                    limit. Please shorten it.</div>
-                <div id="word-count-display-2024" class="mt-2 text-muted">Words: 0/250</div>
-            </div>
-
-
+            <!-- Repeat for other years like 2016, 2018, etc. -->
 
 
             <!-- Div for Image -->

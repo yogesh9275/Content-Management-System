@@ -45,35 +45,10 @@ class AboutUsElementController extends Controller
             $filePath = $this->handleFileUpload($request, 'data-image');
         }
 
-        // Retrieve the element type and format it to lowercase with hyphens
-        $element = strtolower(str_replace(' ', '-', $request->input('element')));
-
-        // Check if the element corresponds to a special year-based paragraph field
-        if ($element == '2004' || $element == '2014' || $element == '2016' || $element == '2018' || $element == '2021' || $element == '2024') {
-            // Construct the data key for the specific year (e.g., data-paragraph-2004)
-            $dataKey = 'data-paragraph-' . $element;
-            $data = $filePath ?? $request->input($dataKey);
-
-            // Log the element type and the associated data
-            Log::info('Element type: ' . $request->input('element'));
-            if ($data) {
-                Log::info('Data (text): ' . $data);
-            } else {
-                Log::info('No data provided for ' . $element . ' paragraph.');
-            }
-        } else {
-            // Handle other element types like Header, Paragraph, Long Text, etc.
-            $dataKey = 'data-' . $element; // Generic field like 'data-header', 'data-paragraph', etc.
-            $data = $filePath ?? $request->input($dataKey);
-
-            // Log the element type and the associated data
-            Log::info('Element type: ' . $request->input('element'));
-            if ($data) {
-                Log::info('Data (text or file path): ' . $data);
-            } else {
-                Log::info('No data provided for ' . $element . ' element.');
-            }
-        }
+        // Log the element type and associated data
+        $data = $filePath ?? $request->input('data-' . strtolower(str_replace(' ', '-', $request->input('element'))));
+        Log::info('Element type: ' . $request->input('element'));
+        Log::info('Data (text or file path): ' . $data);
 
         // Create a new AboutUsElement record with the appropriate data
         AboutUsElement::create([
@@ -102,15 +77,6 @@ class AboutUsElementController extends Controller
                 break;
             case 'Long Text':
                 $this->validateLongText($request);
-                break;
-            case '2004':
-            case '2014':
-            case '2016':
-            case '2018':
-            case '2021':
-            case '2024':
-                // Ensure paragraph data for specific years is provided and word count <= 250
-                $this->validateYearParagraph($request);
                 break;
             default:
                 Log::info('No valid element selected.');
@@ -141,12 +107,12 @@ class AboutUsElementController extends Controller
     {
         // Dynamic rule generation for years 2004, 2014, etc.
         $yearField = 'data-paragraph-' . $request->input('element');
+        $this->validateWordCount($request->input($yearField), 250);
 
         // Ensure the year-specific paragraph is provided
         $request->validate([
             $yearField => 'required|string|max:65000', // Paragraph for specific year is required and max length of 65,000 characters
         ]);
-        Log::info('Validation passed for Paragraph');
     }
 
     protected function validateImage(Request $request)

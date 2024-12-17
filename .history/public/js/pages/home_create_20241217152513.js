@@ -46,25 +46,29 @@ function handleImageUpload(fileInputId, cancelBtnID, previewImgId, errorId) {
     });
 }
 
-// Initialize event listeners for image uploads
+// Initialize event listeners for both About Image and Regular Image inputs
 document.addEventListener('DOMContentLoaded', function() {
-    // Handle About Image
-    handleImageUpload('data-image', 'cancel-btn', 'preview-img', 'file-size-error');
+    // Handle both About Image and Regular Image
+    handleImageUpload('data-about-image', 'about-cancel-btn', 'preview-img',
+        'about-file-size-error'); // Handle About Image
+    handleImageUpload('data-vision-image', 'vision-cancel-btn', 'preview-img',
+        'vision-file-size-error'); // Handle Vision Image
+    handleImageUpload('data-slider-image', 'slider-cancel-btn', 'preview-img',
+        'slider-file-size-error'); // Handle Slider Image
+    handleImageUpload('data-image', 'cancel-btn', 'preview-img',
+        'about-file-size-error'); // Handle Regular Image
 
     // Toggle visibility and set up other element-specific logic
     toggleDivs();
 
-    // Word count for Paragraphs and Year-specific inputs
-    updateWordCount('data-paragraph-Paragraph', 'word-count-display-Paragraph', 'word-count-error-Paragraph', 250);
-    updateWordCount('data-paragraph-2004', 'word-count-display-2004', 'word-count-error-2004', 250);
-    updateWordCount('data-paragraph-2014', 'word-count-display-2014', 'word-count-error-2014', 250);
-    updateWordCount('data-paragraph-2016', 'word-count-display-2016', 'word-count-error-2016', 250);
-    updateWordCount('data-paragraph-2018', 'word-count-display-2018', 'word-count-error-2018', 250);
-    updateWordCount('data-paragraph-2021', 'word-count-display-2021', 'word-count-error-2021', 250);
-    updateWordCount('data-paragraph-2024', 'word-count-display-2024', 'word-count-error-2024', 250);
+    // Regular description
+    updateWordCount('data-description', 'word-count-display', 'word-count-error', 250);
 
-    // Handle Long Text
-    setupLongTextEditor();
+    // Update word count and handle error for About Description
+    updateWordCount('data-about-description', 'about-word-count-display', 'about-word-count-error', 250);
+
+    // Update word count and handle error for Vision Description
+    updateWordCount('data-vision-description', 'vision-word-count-display', 'vision-word-count-error', 250);
 
     // Set the back button behavior to navigate to the previous page
     const backBtn = document.getElementById('back-btn');
@@ -75,6 +79,7 @@ document.addEventListener('DOMContentLoaded', function() {
     } else {
         backBtn.href = '/homepage'; // Fallback redirect if no referrer (in case of direct access)
     }
+
 });
 
 // Toggle visibility of element-specific sections
@@ -118,12 +123,4 @@ function updateWordCount(textareaId, displayId, errorId, maxWords) {
 
     // Listen for input events to update the word count and button status dynamically
     textarea.addEventListener('input', handleWordCount);
-}
-
-// Setup Long Text editor (this could be a rich text editor, if needed)
-function setupLongTextEditor() {
-    var editorElement = document.getElementById('edit');
-    if (editorElement) {
-        // Initialize rich text editor here if needed
-    }
 }
