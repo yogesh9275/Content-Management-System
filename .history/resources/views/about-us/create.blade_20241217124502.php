@@ -65,6 +65,7 @@
         </form>
     </div>
 
-    <!-- Include the external JavaScript file -->
-    <script src="{{ asset('js/pages/about_create.js') }}"></script>
+    <script>
+       
+    </script>
 @endsection

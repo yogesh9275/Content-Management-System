@@ -57,7 +57,7 @@
                     <div class="mt-3" id="image-preview"
                         style="display: {{ $element->element == 'Image' && $element->data ? 'block;' : 'none;' }}">
                         <img id="preview-img"
-                            src="{{ asset($element->data) }}"
+                            src="{{ $element->element == 'Image' && $element->data ? asset($element->data) : '' }}"
                             class="img-thumbnail mb-2" alt="Image Preview" style="max-width: 100%; max-height: 100%;">
                     </div>
 
@@ -82,7 +82,9 @@
             </div>
         </div>
     </div>
+    <script>
+    
+    </script>
 
-    <!-- Include the external JavaScript file -->
-    <script src="{{ asset('js/pages/about_edit.js') }}"></script>
+
 @endsection

@@ -57,7 +57,7 @@
                     <div class="mt-3" id="image-preview"
                         style="display: {{ $element->element == 'Image' && $element->data ? 'block;' : 'none;' }}">
                         <img id="preview-img"
-                            src="{{ asset($element->data) }}"
+                            src="{{ asset($homePage->data) }}"
                             class="img-thumbnail mb-2" alt="Image Preview" style="max-width: 100%; max-height: 100%;">
                     </div>
 

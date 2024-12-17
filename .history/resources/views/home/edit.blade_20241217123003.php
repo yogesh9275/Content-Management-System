@@ -149,7 +149,7 @@
                     @endif
 
                     <div class="d-flex justify-content-between">
-                        <a id="back-btn" href="#" class="btn btn-secondary">Back</a>
+                        <a id="back-btn" href="{{ route('homepage.index') }}" class="btn btn-secondary">Back</a>
                         <button id="update-btn" type="submit" class="btn btn-primary">Update</button>
                     </div>
                 </form>
@@ -158,5 +158,5 @@
     </div>
 
     <!-- Include the external JavaScript file -->
-    <script src="{{ asset('js/pages/home_edit.js') }}"></script>
+    <script src="{{ asset('js/pages/home_create.js') }}"></script>
 @endsection

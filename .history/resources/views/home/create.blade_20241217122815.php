@@ -130,5 +130,5 @@
     </div>
 
     <!-- Include the external JavaScript file -->
-    <script src="{{ asset('js/pages/home_create.js') }}"></script>
+<script src="{{ asset('js/pages/home_create.js') }}"></script>
 @endsection
