@@ -123,7 +123,7 @@
                         <a class="collapsed submenu" href="#" style="justify-content: flex-start">
                             <span class="d-lg-none"> <!-- Visible only on small screens -->
                                 <!-- Logout Link -->
-                                <form method="POST" action="{{ route('logout') }}">
+                                <form method="POST" action="#">
                                     @csrf
                                     <button type="submit" class="dropdown-item text-danger">
                                         <x-simpleline-power class="icon-size" />
@@ -138,18 +138,19 @@
                 <!-- Collapsible menu with arrow toggle -->
                 <li class="nav-item position-relative">
                     <div class="sidebar-link profile">
-                        <a id="user-info" class="submenu d-flex align-items-center" id="profileLink" data-bs-toggle="collapse"
+                        <!-- Updated to have only one id for profileLink -->
+                        <a id="profileLink" class="submenu d-flex align-items-center" data-bs-toggle="collapse"
                             href="#profilesubmenu" role="button" aria-expanded="false"
                             aria-controls="profilesubmenu" style="cursor: pointer;">
                             <!-- Person Circle Icon for Mobile -->
                             <span class=" d-block" id="mobileToggle">
                                 <img id="userAvatar" class="user-avatar"
-                                    src="https://ui-avatars.com/api/?&background=222831&color=ffffff&length=1&name={{ urlencode(auth()->user()->username) }}"
-                                    alt="{{ auth()->user()->username }}" />
+                                    src="https://ui-avatars.com/api/?&background=222831&color=ffffff&length=1&name=Yogesh"
+                                    alt="Yogesh" />
                             </span>
                             <span class="d-none d-md-inline ms-2">
-                                {{ \Illuminate\Support\Str::limit(ucfirst(auth()->user()->username), 15, '...') }}<br>
-                                <small>{{ \Illuminate\Support\Str::limit(auth()->user()->email, 15, '...') }}</small>
+                                Yogesh<br>
+                                <small>Yogerudra@gmail.com</small>
                             </span>
                         </a>
                     </div>
@@ -157,15 +158,15 @@
                     <div id="profilesubmenu" class="collapse dropup-menu">
                         <ul class="nav flex-column p-2">
                             <li class="nav-item">
-                                <strong>{{ auth()->user()->username }}</strong><br>
-                                <small class="text-muted">{{ auth()->user()->email }}</small>
+                                <strong>Yogesh</strong><br>
+                                <small class="text-muted">Yogesh@gmail.com</small>
                             </li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
                             <li class="nav-item">
                                 <!-- Logout Link -->
-                                <form method="POST" action="{{ route('logout') }}">
+                                <form method="POST" action="">
                                     @csrf
                                     <button type="submit" class="dropdown-item text-danger">
                                         <x-bi-box-arrow-right class="icon-size me-2" /> Logout

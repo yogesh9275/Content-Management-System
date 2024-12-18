@@ -123,7 +123,7 @@
                         <a class="collapsed submenu" href="#" style="justify-content: flex-start">
                             <span class="d-lg-none"> <!-- Visible only on small screens -->
                                 <!-- Logout Link -->
-                                <form method="POST" action="{{ route('logout') }}">
+                                <form method="POST" action="#">
                                     @csrf
                                     <button type="submit" class="dropdown-item text-danger">
                                         <x-simpleline-power class="icon-size" />

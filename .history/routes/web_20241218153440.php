@@ -9,16 +9,11 @@ use App\Http\Controllers\NewsController;
 use App\Http\Controllers\HomePageController;
 use App\Http\Controllers\SettingController;
 
-// Default home route
+// Default welcome route
 Route::get('/', function () {
-    if (Auth::check()) {
-        // Redirect to /news if the user is logged in
-        return redirect()->route('news.index');
-    }
-
-    // If not logged in, show the login page
-    return redirect()->route('login');
+    return view('welcome');
 });
+
 // Authentication routes (login, register, reset, etc.)
 Auth::routes();
 
@@ -57,10 +52,6 @@ Route::middleware(['auth'])->group(function () {
     // Settings
     Route::resource('settings', SettingController::class);
 });
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Auth::routes();
 

@@ -23,7 +23,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-   // Redirect to the 'news.index' route instead of returning a view
-   return redirect()->route('news.index');
+        return view('layouts.news');
     }
 }

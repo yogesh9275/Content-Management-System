@@ -152,6 +152,8 @@
             }
         });
     })();
+    // Call toggleDivs function on page load to set the initial state
+    window.onload = toggleDivs;
 </script>
 
 </body>
