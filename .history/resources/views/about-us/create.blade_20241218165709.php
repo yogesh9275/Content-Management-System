@@ -39,7 +39,7 @@
             </div>
 
             <!-- Div for Paragraph -->
-            <div class="mb-4 element-div" id="about-paragraph" style="display:none;">
+            <div class="mb-4 element-div" id="paragraph" style="display:none;">
                 <label for="data-paragraph-Paragraph" class="form-label text-dark fw-bold">Paragraph Data</label>
                 <textarea class="form-control" name="data-paragraph" id="data-paragraph-Paragraph" rows="5"></textarea>
                 <div id="word-count-error-Paragraph" class="text-danger" style="display: none;">Description exceeds the word

@@ -62,7 +62,7 @@ class AboutUsElementController extends Controller
             // Handle the case where 'about-header' corresponds to 'about-data-header'
             $data = $request->input('about-data-header');
         } elseif ($element === 'about-paragraph') {
-            // Handle "about-paragraph" element
+            // Handle the case where 'about-header' corresponds to 'about-data-header'
             $data = $request->input('data-paragraph');
         } else {
             // Handle general cases like Header, Paragraph, etc.

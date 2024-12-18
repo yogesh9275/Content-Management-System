@@ -62,7 +62,7 @@ class AboutUsElementController extends Controller
             // Handle the case where 'about-header' corresponds to 'about-data-header'
             $data = $request->input('about-data-header');
         } elseif ($element === 'about-paragraph') {
-            // Handle "about-paragraph" element
+            // Handle the case where 'about-header' corresponds to 'about-data-header'
             $data = $request->input('data-paragraph');
         } else {
             // Handle general cases like Header, Paragraph, etc.
@@ -292,7 +292,7 @@ class AboutUsElementController extends Controller
             Log::info('Year-specific paragraph element: ' . $elementType . ', Data: ' . $data);
         } elseif ($elementType === 'about-paragraph') {
             // Handle "about-paragraph" element
-            $data = $request->input('data-paragraph');
+            $data = $request->input('about-data-paragraph');
             Log::info('Element type: about-paragraph, Data: ' . $data);
         } else {
             // Handle other element types like Header, Paragraph, Long Text, etc.

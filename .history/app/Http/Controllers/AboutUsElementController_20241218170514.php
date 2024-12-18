@@ -62,7 +62,7 @@ class AboutUsElementController extends Controller
             // Handle the case where 'about-header' corresponds to 'about-data-header'
             $data = $request->input('about-data-header');
         } elseif ($element === 'about-paragraph') {
-            // Handle "about-paragraph" element
+            // Handle the case where 'about-header' corresponds to 'about-data-header'
             $data = $request->input('data-paragraph');
         } else {
             // Handle general cases like Header, Paragraph, etc.
@@ -279,27 +279,28 @@ class AboutUsElementController extends Controller
         $data = null;
 
         // Handle file uploads and specific paragraph elements
-        if ($elementType === 'image' && $request->hasFile('data-image')) {
-            Log::info('Image file uploaded for element: image.');
-            $data = $this->handleFileUpload($request, 'data-image'); // Upload file and get the path
-        } elseif ($elementType === 'about-image' && $request->hasFile('about-data-image')) {
-            Log::info('Image file uploaded for element: about-image.');
-            $data = $this->handleFileUpload($request, 'about-data-image'); // Upload file and get the path
-        } elseif (in_array($elementType, ['2004', '2014', '2016', '2018', '2021', '2024'])) {
-            // Handle year-specific paragraph data
-            $dataKey = 'data-paragraph-' . $elementType;
-            $data = $request->input($dataKey);
-            Log::info('Year-specific paragraph element: ' . $elementType . ', Data: ' . $data);
-        } elseif ($elementType === 'about-paragraph') {
-            // Handle "about-paragraph" element
-            $data = $request->input('data-paragraph');
-            Log::info('Element type: about-paragraph, Data: ' . $data);
-        } else {
-            // Handle other element types like Header, Paragraph, Long Text, etc.
-            $dataKey = 'data-' . $elementType;
-            $data = $request->input($dataKey);
-            Log::info('Element type: ' . $elementType . ', Data: ' . $data);
-        }
+if ($elementType === 'image' && $request->hasFile('data-image')) {
+    Log::info('Image file uploaded for element: image.');
+    $data = $this->handleFileUpload($request, 'data-image'); // Upload file and get the path
+} elseif ($elementType === 'about-image' && $request->hasFile('about-data-image')) {
+    Log::info('Image file uploaded for element: about-image.');
+    $data = $this->handleFileUpload($request, 'about-data-image'); // Upload file and get the path
+} elseif (in_array($elementType, ['2004', '2014', '2016', '2018', '2021', '2024'])) {
+    // Handle year-specific paragraph data
+    $dataKey = 'data-paragraph-' . $elementType;
+    $data = $request->input($dataKey);
+    Log::info('Year-specific paragraph element: ' . $elementType . ', Data: ' . $data);
+} elseif ($elementType === 'about-paragraph') {
+    // Handle "about-paragraph" element
+    $data = $request->input('about-data-paragraph');
+    Log::info('Element type: about-paragraph, Data: ' . $data);
+} else {
+    // Handle other element types like Header, Paragraph, Long Text, etc.
+    $dataKey = 'data-' . $elementType;
+    $data = $request->input($dataKey);
+    Log::info('Element type: ' . $elementType . ', Data: ' . $data);
+}
+
 
         // Update the AboutUsElement record with the new data
         $element->update([

@@ -14,7 +14,7 @@
                         <label for="element" class="form-label text-dark fw-bold">Element Type</label>
                         <select class="form-select" name="element" id="element" onchange="toggleDivs()" required>
                             <option value="header" {{ $element->element == 'header' ? 'selected' : '' }}>Header</option>
-                            <option value="about-paragraph" {{ $element->element == 'about-paragraph' ? 'selected' : '' }}>Paragraph
+                            <option value="paragraph" {{ $element->element == 'paragraph' ? 'selected' : '' }}>Paragraph
                             </option>
                             <option value="image" {{ $element->element == 'Image' ? 'selected' : '' }}>Image</option>
                             <option value="about-header" {{ $element->element == 'about-header' ? 'selected' : '' }}>About
