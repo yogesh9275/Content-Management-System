@@ -125,7 +125,7 @@
                 <div class="sidebar-link {{ request()->is('service*') ? 'active' : '' }}">
                     <a class="collapsed submenu" href="#">
                         <span class="icon">
-                            <x-bi-tools class="icon-size" />
+                            <x-simpleline-wallet class="icon-size" />
                         </span>
                         <span class="d-none d-md-inline">
                             Service

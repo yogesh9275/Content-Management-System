@@ -125,7 +125,7 @@
                 <div class="sidebar-link {{ request()->is('service*') ? 'active' : '' }}">
                     <a class="collapsed submenu" href="#">
                         <span class="icon">
-                            <x-bi-tools class="icon-size" />
+                            <x-simpleline-wallet class="icon-size" />
                         </span>
                         <span class="d-none d-md-inline">
                             Service
@@ -169,7 +169,7 @@
                         <!-- Check for 'Full control' role or permission for 'delete expense' -->
                         <li class="nav-item">
                             <a class="nav-link submenu-link" href="#">
-                                <span>Delete Service</span>
+                                <span>Delete Expense</span>
                             </a>
                         </li>
                     </ul>

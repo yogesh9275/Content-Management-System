@@ -125,10 +125,10 @@
                 <div class="sidebar-link {{ request()->is('service*') ? 'active' : '' }}">
                     <a class="collapsed submenu" href="#">
                         <span class="icon">
-                            <x-bi-tools class="icon-size" />
+                            <x-simpleline-wallet class="icon-size" />
                         </span>
                         <span class="d-none d-md-inline">
-                            Service
+                            Expense
                         </span>
                     </a>
                     <span class="icon toggle-arrow d-none d-md-inline" data-bs-toggle="collapse"
@@ -145,31 +145,137 @@
                     <ul class="nav flex-column">
                         <!-- Check for 'Full control' role or permission for 'create expense' -->
                         <li class="nav-item">
-                            <a class="nav-link submenu-link {{ request()->routeIs('service.create') ? 'active' : '' }}"
+                            <a class="nav-link submenu-link {{ request()->routeIs('expense.create') ? 'active' : '' }}"
                                 href="#">
-                                <span>Create Service</span>
+                                <span>Create Expense</span>
                             </a>
                         </li>
 
                         <!-- Check for 'Full control' role or permission for 'view expense' -->
                         <li class="nav-item">
-                            <a class="nav-link submenu-link {{ request()->routeIs('service') ? 'active' : '' }}"
+                            <a class="nav-link submenu-link {{ request()->routeIs('expense') ? 'active' : '' }}"
                                 href="#">
-                                <span>View Service</span>
+                                <span>View Expenses</span>
                             </a>
                         </li>
 
                         <!-- Check for 'Full control' role or permission for 'edit expense' -->
                         <li class="nav-item">
                             <a class="nav-link submenu-link" href="#">
-                                <span>Edit Service</span>
+                                <span>Edit Expense</span>
                             </a>
                         </li>
 
                         <!-- Check for 'Full control' role or permission for 'delete expense' -->
                         <li class="nav-item">
                             <a class="nav-link submenu-link" href="#">
-                                <span>Delete Service</span>
+                                <span>Delete Expense</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+
+
+            <!-- Sidebar link for Users Management with collapsible submenu for CRUD operations -->
+            <li class="nav-item">
+
+                <div class="sidebar-link {{ request()->is('user*') ? 'active' : '' }}">
+                    <a class="collapsed submenu" href="#">
+                        <span class="icon">
+                            <x-simpleline-user class="icon-size" />
+                        </span>
+                        <span class="d-none d-md-inline">
+                            Users
+                        </span>
+                    </a>
+                    <span class="icon toggle-arrow d-none d-md-inline" data-bs-toggle="collapse"
+                        data-bs-target="#usersSubmenu" aria-expanded="false" aria-controls="usersSubmenu">
+                        @if (request()->has('usersSubmenu') && request('usersSubmenu') == 'expanded')
+                            <x-simpleline-arrow-up class="arrow-size" />
+                        @else
+                            <x-simpleline-arrow-down class="arrow-size" />
+                        @endif
+                    </span>
+                </div>
+
+                <div id="usersSubmenu" class="collapse">
+                    <ul class="nav flex-column">
+                        <!-- Check for 'Full control' role or permission for 'add user' -->
+                        <li class="nav-item">
+                            <a class="nav-link submenu-link {{ request()->routeIs('user.create') ? 'active' : '' }}"
+                                href="#">
+                                <span>Add User</span>
+                            </a>
+                        </li>
+
+                        <!-- Check for 'Full control' role or permission for 'view users' -->
+                        <li class="nav-item">
+                            <a class="nav-link submenu-link {{ request()->routeIs('user') ? 'active' : '' }}"
+                                href="#">
+                                <span>View Users</span>
+                            </a>
+                        </li>
+
+                        <!-- Check for 'Full control' role or permission for 'edit user' -->
+                        <li class="nav-item">
+                            <a class="nav-link submenu-link {{ request()->routeIs('user.edit') ? 'active' : '' }}"
+                                href="#">
+                                <span>Edit Users</span>
+                            </a>
+                        </li>
+
+                        <!-- Check for 'Full control' role or permission for 'delete user' -->
+                        <li class="nav-item">
+                            <a class="nav-link submenu-link {{ request()->routeIs('user.destroy') ? 'active' : '' }}"
+                                href="#">
+                                <span>Delete Users</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+
+
+            <!-- Collapsible menu with arrow toggle -->
+            <li class="nav-item">
+                <div
+                    class="sidebar-link {{ request()->is('roles*') || request()->is('permissions*') ? 'active' : '' }}">
+                    <a class="collapsed submenu" href="#">
+                        <span class="icon">
+                            <x-bi-person-plus class="icon-size" />
+                        </span>
+                        <div class="d-none d-md-inline text-truncate" style="max-width: 7.60rem;">
+                            Roles & Permission
+                        </div>
+                    </a>
+                    <span class="icon toggle-arrow d-none d-md-inline" data-bs-toggle="collapse"
+                        data-bs-target="#rolessubmenu"
+                        aria-expanded="{{ request()->is('roles*') ? 'true' : 'false' }}"
+                        aria-controls="rolessubmenu">
+                        @if (request()->is('roles*'))
+                            <x-simpleline-arrow-up class="arrow-size" />
+                        @else
+                            <x-simpleline-arrow-down class="arrow-size" />
+                        @endif
+                    </span>
+                </div>
+
+                <div id="rolessubmenu" class="collapse">
+                    <ul class="nav flex-column">
+                        <!-- Check for 'Full control' role or permission for 'view roles' -->
+                        <li class="nav-item">
+                            <a class="nav-link submenu-link {{ request()->routeIs('roles.index') ? 'active' : '' }}"
+                                href="#">
+                                <span>Roles</span>
+                            </a>
+                        </li>
+
+                        <!-- Check for 'Full control' role or permission for 'view permissions' -->
+                        <li class="nav-item">
+                            <a class="nav-link submenu-link {{ request()->routeIs('permissions.index') ? 'active' : '' }}"
+                                href="#">
+                                <span>Permissions</span>
                             </a>
                         </li>
                     </ul>
