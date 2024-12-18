@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Handle About Image
     handleImageUpload(
         "about-data-image",
-        "about-cancel-btn",
+        "cancel-btn",
         "preview-img",
         "about-file-size-error"
     );

@@ -179,4 +179,24 @@
 
     <!-- Include the external JavaScript file -->
     <script src="{{ asset('js/pages/about_edit.js') }}"></script>
+    <script>
+        document.getElementById('edit-form').addEventListener('submit', function(event) {
+            const selectedElement = document.getElementById('element').value;
+            const form = event.target;
+
+            // Gather all form fields
+            const allFields = form.querySelectorAll('.element-div, [name]');
+
+            allFields.forEach(field => {
+                // Get the field's name and associated element id
+                const fieldName = field.name || field.id;
+
+                // Check if the field belongs to the selected element
+                if (!fieldName.includes(selectedElement) && fieldName !== 'element') {
+                    // Remove unrelated fields from the form
+                    field.disabled = true;
+                }
+            });
+        });
+    </script>
 @endsection

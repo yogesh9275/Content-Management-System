@@ -1,9 +1,18 @@
 // Function to handle image upload and preview
-function handleImageUpload(fileInputId, cancelBtnID, previewImgId, errorId) {
+function handleImageUpload(
+    fileInputId,
+    cancelBtnID,
+    previewImgId,
+    errorId,
+    originalImageSrc
+) {
     var fileInput = document.getElementById(fileInputId);
     var cancelBtn = document.getElementById(cancelBtnID);
     var previewImg = document.getElementById(previewImgId);
     var fileSizeError = document.getElementById(errorId);
+
+    // Store the original image source
+    const originalImage = originalImageSrc;
 
     // When a file is selected, show preview
     fileInput.addEventListener("change", function (event) {
@@ -41,89 +50,46 @@ function handleImageUpload(fileInputId, cancelBtnID, previewImgId, errorId) {
     // Logic for cancel button to clear file input and hide preview
     cancelBtn.addEventListener("click", function () {
         fileInput.value = ""; // Clear file input
-        previewImg.src = ""; // Clear image source
+        previewImg.src = originalImage; // Clear image source
         cancelBtn.style.display = "none"; // Hide cancel button
-        document.getElementById("image-preview").style.display = "none"; // Hide image preview container
     });
 }
 
-// Initialize event listeners for image uploads
+// Initialize event listeners for both About Image and Regular Image inputs
 document.addEventListener("DOMContentLoaded", function () {
-    // Handle Image
-    handleImageUpload(
-        "data-image",
-        "cancel-btn",
-        "preview-img",
-        "file-size-error"
-    );
+    // Get the back button element
+    const backBtn = document.getElementById('back-btn');
 
-    // Handle About Image
-    handleImageUpload(
-        "about-data-image",
-        "about-cancel-btn",
-        "preview-img",
-        "about-file-size-error"
-    );
-
-    // Toggle visibility and set up other element-specific logic
-    toggleDivs();
-
-    // Word count for Paragraphs and Year-specific inputs
-    updateWordCount(
-        "data-paragraph-Paragraph",
-        "word-count-display-Paragraph",
-        "word-count-error-Paragraph",
-        250
-    );
-    updateWordCount(
-        "data-paragraph-2004",
-        "word-count-display-2004",
-        "word-count-error-2004",
-        250
-    );
-    updateWordCount(
-        "data-paragraph-2014",
-        "word-count-display-2014",
-        "word-count-error-2014",
-        250
-    );
-    updateWordCount(
-        "data-paragraph-2016",
-        "word-count-display-2016",
-        "word-count-error-2016",
-        250
-    );
-    updateWordCount(
-        "data-paragraph-2018",
-        "word-count-display-2018",
-        "word-count-error-2018",
-        250
-    );
-    updateWordCount(
-        "data-paragraph-2021",
-        "word-count-display-2021",
-        "word-count-error-2021",
-        250
-    );
-    updateWordCount(
-        "data-paragraph-2024",
-        "word-count-display-2024",
-        "word-count-error-2024",
-        250
-    );
-
-    // Handle Long Text
-    setupLongTextEditor();
-
-    // Set the back button behavior to navigate to the previous page
-    const backBtn = document.getElementById("back-btn");
-    const prevPage = document.referrer; // Gets the referring page URL
+    // Try to get the referrer (previous page URL)
+    const prevPage = document.referrer;
 
     if (prevPage) {
-        backBtn.href = prevPage; // Set the back button to the previous page's URL
+        // Set href of the back button to the previous page's URL
+        backBtn.href = prevPage;
     } else {
-        backBtn.href = "/homepage"; // Fallback redirect if no referrer (in case of direct access)
+        // Fallback: if no referrer, go to the homepage
+        backBtn.href = '/homepage'; // This can be adjusted to any fallback URL.
     }
+
+    // Ensure the rest of your script functionality remains intact
+    handleImageUpload(
+        "data-image", "cancel-btn", "preview-img", "file-size-error", document.getElementById("preview-img").src
+    );
+
+        // Ensure the rest of your script functionality remains intact for about section
+        handleImageUpload(
+            "about-data-image", "about-cancel-btn", "preview-img", "file-size-error", document.getElementById("preview-img").src
+        );
+
+    // Perform other necessary setup (word count and visibility toggling)
+    toggleDivs();
+    updateWordCount("data-paragraph", "word-count-display-Paragraph", "word-count-error-Paragraph", 250);
+    updateWordCount("data-paragraph-2004", "word-count-display-2004", "word-count-error-2004", 250);
+    updateWordCount("data-paragraph-2014", "word-count-display-2014", "word-count-error-2014", 250);
+    updateWordCount("data-paragraph-2016", "word-count-display-2016", "word-count-error-2016", 250);
+    updateWordCount("data-paragraph-2018", "word-count-display-2018", "word-count-error-2018", 250);
+    updateWordCount("data-paragraph-2021", "word-count-display-2021", "word-count-error-2021", 250);
+    updateWordCount("data-paragraph-2024", "word-count-display-2024", "word-count-error-2024", 250);
 });
 
 // Toggle visibility of element-specific sections
@@ -145,7 +111,7 @@ function updateWordCount(textareaId, displayId, errorId, maxWords) {
     const textarea = document.getElementById(textareaId);
     const wordCountDisplay = document.getElementById(displayId);
     const wordCountError = document.getElementById(errorId);
-    const submitButton = document.getElementById("create-btn");
+    const submitButton = document.getElementById("update-btn");
 
     // Function to update the word count
     function handleWordCount() {
@@ -167,12 +133,4 @@ function updateWordCount(textareaId, displayId, errorId, maxWords) {
 
     // Listen for input events to update the word count and button status dynamically
     textarea.addEventListener("input", handleWordCount);
-}
-
-// Setup Long Text editor (this could be a rich text editor, if needed)
-function setupLongTextEditor() {
-    var editorElement = document.getElementById("edit");
-    if (editorElement) {
-        // Initialize rich text editor here if needed
-    }
 }

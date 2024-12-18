@@ -135,8 +135,7 @@
                         <label for="about-data-image" class="form-label text-dark fw-bold">Upload Image</label>
 
                         <!-- File input to accept image files -->
-                        <input type="file" class="form-control" name="about-data-image" id="about-data-image"
-                            accept="image/*">
+                        <input type="file" class="form-control" name="about-data-image" id="about-data-image" accept="image/*">
 
                         <!-- X button inside the input field, hidden by default -->
                         <span id="about-cancel-btn" class="position-absolute"
@@ -150,7 +149,7 @@
 
                     <!-- Image Preview -->
                     <div class="mt-3" id="image-preview"
-                        style="display: {{ ($element->element == 'image' || $element->element == 'about-image') && $element->data ? 'block;' : 'none;' }}">
+                        style="display: {{ ($element->element == 'image' ||  $element->element == 'about-image') && $element->data ? 'block;' : 'none;' }}">
                         <img id="preview-img" src="{{ asset($element->data) }}" class="img-thumbnail mb-2"
                             alt="Image Preview" style="max-width: 50%; max-height: 50%;">
                     </div>
@@ -179,4 +178,24 @@
 
     <!-- Include the external JavaScript file -->
     <script src="{{ asset('js/pages/about_edit.js') }}"></script>
+    <script>
+        document.getElementById('edit-form').addEventListener('submit', function (event) {
+            const selectedElement = document.getElementById('element').value;
+            const form = event.target;
+
+            // Gather all form fields
+            const allFields = form.querySelectorAll('.element-div, [name]');
+
+            allFields.forEach(field => {
+                // Get the field's name and associated element id
+                const fieldName = field.name || field.id;
+
+                // Check if the field belongs to the selected element
+                if (!fieldName.includes(selectedElement) && fieldName !== 'element') {
+                    // Remove unrelated fields from the form
+                    field.disabled = true;
+                }
+            });
+        });
+    </script>
 @endsection

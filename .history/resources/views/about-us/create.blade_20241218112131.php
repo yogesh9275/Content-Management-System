@@ -15,8 +15,8 @@
                     <option value="header">Header</option>
                     <option value="paragraph">Paragraph</option>
                     <option value="Image">Image</option>
-                    <option value="about-header">About Header</option>
-                    <option value="about-image">About Image</option>
+                    <option value="about-header">about-Header</option>
+                    <option value="about-image">about-Image</option>
                     <option value="2004">2004</option>
                     <option value="2014">2014</option>
                     <option value="2016">2016</option>
@@ -114,16 +114,16 @@
 
             <!-- Div for Image -->
             <div class="mb-4 element-div position-relative" id="about-image" style="display:none;">
-                <label for="a" class="form-label text-dark fw-bold">Upload About Image</label>
+                <label for="about-data-image" class="form-label text-dark fw-bold">Upload About Image</label>
                 <!-- File input to accept image files -->
                 <input type="file" class="form-control" name="about-data-image" id="about-data-image"
                     accept="image/*">
                 <!-- X button inside the input field, hidden by default -->
-                <span id="about-cancel-btn" class="position-absolute"
+                <span id="cancel-btn" class="position-absolute"
                     style="right: 0.40rem; bottom: 0.40rem; cursor: pointer; display:none;"><x-simpleline-close
                         class="table-icon text-danger" /></span>
                 <!-- Error message for file size -->
-                <div id="about-file-size-error" class="text-danger mt-2"></div>
+                <div id="file-size-error" class="text-danger mt-2"></div>
             </div>
 
             <!-- Placeholder for the image preview -->

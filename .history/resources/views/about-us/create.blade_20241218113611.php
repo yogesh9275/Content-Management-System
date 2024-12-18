@@ -119,11 +119,11 @@
                 <input type="file" class="form-control" name="about-data-image" id="about-data-image"
                     accept="image/*">
                 <!-- X button inside the input field, hidden by default -->
-                <span id="about-cancel-btn" class="position-absolute"
+                <span id="cancel-btn" class="position-absolute"
                     style="right: 0.40rem; bottom: 0.40rem; cursor: pointer; display:none;"><x-simpleline-close
                         class="table-icon text-danger" /></span>
                 <!-- Error message for file size -->
-                <div id="about-file-size-error" class="text-danger mt-2"></div>
+                <div id="file-size-error" class="text-danger mt-2"></div>
             </div>
 
             <!-- Placeholder for the image preview -->

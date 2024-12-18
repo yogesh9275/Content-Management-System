@@ -15,8 +15,8 @@
                     <option value="header">Header</option>
                     <option value="paragraph">Paragraph</option>
                     <option value="Image">Image</option>
-                    <option value="about-header">About Header</option>
-                    <option value="about-image">About Image</option>
+                    <option value="header">about-Header</option>
+                    <option value="image">about-Image</option>
                     <option value="2004">2004</option>
                     <option value="2014">2014</option>
                     <option value="2016">2016</option>
@@ -27,19 +27,13 @@
             </div>
 
             <!-- Div for Header -->
-            <div class="mb-4 element-div" id="header" style="display:none;">
+            <div class="mb-4 element-div" id="Header" style="display:none;">
                 <label for="data-header" class="form-label text-dark fw-bold">Header Data</label>
                 <input type="text" class="form-control" name="data-header" id="data-header">
             </div>
 
-            <!-- Div for  About Header -->
-            <div class="mb-4 element-div" id="about-header" style="display:none;">
-                <label for="about-data-header" class="form-label text-dark fw-bold">Header Data</label>
-                <input type="text" class="form-control" name="about-data-header" id="about-data-header">
-            </div>
-
             <!-- Div for Paragraph -->
-            <div class="mb-4 element-div" id="paragraph" style="display:none;">
+            <div class="mb-4 element-div" id="Paragraph" style="display:none;">
                 <label for="data-paragraph-Paragraph" class="form-label text-dark fw-bold">Paragraph Data</label>
                 <textarea class="form-control" name="data-paragraph" id="data-paragraph-Paragraph" rows="5"></textarea>
                 <div id="word-count-error-Paragraph" class="text-danger" style="display: none;">Description exceeds the word
@@ -100,7 +94,7 @@
 
 
             <!-- Div for Image -->
-            <div class="mb-4 element-div position-relative" id="image" style="display:none;">
+            <div class="mb-4 element-div position-relative" id="Image" style="display:none;">
                 <label for="data-image" class="form-label text-dark fw-bold">Upload Image</label>
                 <!-- File input to accept image files -->
                 <input type="file" class="form-control" name="data-image" id="data-image" accept="image/*">
@@ -110,20 +104,6 @@
                         class="table-icon text-danger" /></span>
                 <!-- Error message for file size -->
                 <div id="file-size-error" class="text-danger mt-2"></div>
-            </div>
-
-            <!-- Div for Image -->
-            <div class="mb-4 element-div position-relative" id="about-image" style="display:none;">
-                <label for="a" class="form-label text-dark fw-bold">Upload About Image</label>
-                <!-- File input to accept image files -->
-                <input type="file" class="form-control" name="about-data-image" id="about-data-image"
-                    accept="image/*">
-                <!-- X button inside the input field, hidden by default -->
-                <span id="about-cancel-btn" class="position-absolute"
-                    style="right: 0.40rem; bottom: 0.40rem; cursor: pointer; display:none;"><x-simpleline-close
-                        class="table-icon text-danger" /></span>
-                <!-- Error message for file size -->
-                <div id="about-file-size-error" class="text-danger mt-2"></div>
             </div>
 
             <!-- Placeholder for the image preview -->

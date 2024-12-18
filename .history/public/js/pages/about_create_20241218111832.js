@@ -59,10 +59,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Handle About Image
     handleImageUpload(
-        "about-data-image",
-        "about-cancel-btn",
+        "data-image",
+        "cancel-btn",
         "preview-img",
-        "about-file-size-error"
+        "file-size-error"
     );
 
     // Toggle visibility and set up other element-specific logic

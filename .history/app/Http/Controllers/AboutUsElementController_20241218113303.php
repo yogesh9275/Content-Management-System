@@ -29,70 +29,66 @@ class AboutUsElementController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
-        // Log the start of the request
-        Log::info('Store method called. Request data:', $request->all());
+{
+    // Log the start of the request
+    Log::info('Store method called. Request data:', $request->all());
 
-        // Validate the incoming request based on the selected element
-        $this->validateElement($request);
+    // Validate the incoming request based on the selected element
+    $this->validateElement($request);
 
-        // Handle file uploads based on the selected element type
-        $filePath = null;
+    // Handle file uploads based on the selected element type
+    $filePath = null;
 
-        // Check and handle file upload for Image elements
-        if ($request->hasFile('data-image') && $request->input('element') === 'image') {
-            Log::info('Image file uploaded for element: Image.');
-            $filePath = $this->handleFileUpload($request, 'data-image');
-        } elseif ($request->hasFile('about-data-image') && $request->input('element') === 'about-image') {
-            Log::info('Image file uploaded for element: about-image.');
-            $filePath = $this->handleFileUpload($request, 'about-data-image');
-        }
-
-        // Retrieve the element type and format it to lowercase with hyphens
-        $element = strtolower(str_replace(' ', '-', $request->input('element')));
-
-        $data = null; // Initialize $data to avoid null value errors
-
-        // Special handling for year-based paragraph fields
-        if (in_array($element, ['2004', '2014', '2016', '2018', '2021', '2024'])) {
-            // Construct the data key for the specific year
-            $dataKey = 'data-paragraph-' . $element;
-            $data = $filePath ?? $request->input($dataKey);
-        } elseif ($element === 'about-header') {
-            // Handle the case where 'about-header' corresponds to 'about-data-header'
-            $data = $request->input('about-data-header');
-        } else {
-            // Handle general cases like Header, Paragraph, etc.
-            $dataKey = 'data-' . $element;
-            $data = $filePath ?? $request->input($dataKey);
-        }
-
-        // Log the resolved data
-        Log::info('Resolved Element Type: ' . $request->input('element'));
-        if ($data) {
-            Log::info('Resolved Data: ' . $data);
-        } else {
-            Log::warning('No data provided for ' . $element . ' element.');
-        }
-
-        // Ensure data is not null before creating the record
-        if ($data === null) {
-            return back()
-                ->withErrors(['data' => 'No valid data provided for the selected element.'])
-                ->withInput();
-        }
-
-        // Create a new AboutUsElement record
-        AboutUsElement::create([
-            'element' => $request->input('element'),
-            'data' => $data,
-        ]);
-
-        Log::info('AboutUsElement created successfully.');
-
-        // Redirect to the About Us page with a success message
-        return redirect('/about-us')->with('success', 'Element added successfully!');
+    // Check and handle file upload for Image elements
+    if ($request->hasFile('data-image') && $request->input('element') === 'Image') {
+        Log::info('Image file uploaded.');
+        $filePath = $this->handleFileUpload($request, 'data-image');
     }
+
+    // Retrieve the element type and format it to lowercase with hyphens
+    $element = strtolower(str_replace(' ', '-', $request->input('element')));
+
+    $data = null; // Initialize $data to avoid null value errors
+
+    // Special handling for year-based paragraph fields
+    if (in_array($element, ['2004', '2014', '2016', '2018', '2021', '2024'])) {
+        // Construct the data key for the specific year
+        $dataKey = 'data-paragraph-' . $element;
+        $data = $filePath ?? $request->input($dataKey);
+    } elseif ($element === 'about-header') {
+        // Handle the case where 'about-header' corresponds to 'about-data-header'
+        $data = $request->input('about-data-header');
+    } else {
+        // Handle general cases like Header, Paragraph, etc.
+        $dataKey = 'data-' . $element;
+        $data = $filePath ?? $request->input($dataKey);
+    }
+
+    // Log the resolved data
+    Log::info('Resolved Element Type: ' . $request->input('element'));
+    if ($data) {
+        Log::info('Resolved Data: ' . $data);
+    } else {
+        Log::warning('No data provided for ' . $element . ' element.');
+    }
+
+    // Ensure data is not null before creating the record
+    if ($data === null) {
+        return back()->withErrors(['data' => 'No valid data provided for the selected element.'])->withInput();
+    }
+
+    // Create a new AboutUsElement record
+    AboutUsElement::create([
+        'element' => $request->input('element'),
+        'data' => $data,
+    ]);
+
+    Log::info('AboutUsElement created successfully.');
+
+    // Redirect to the About Us page with a success message
+    return redirect('/about-us')->with('success', 'Element added successfully!');
+}
+
 
     protected function validateElement(Request $request)
     {
@@ -269,40 +265,55 @@ class AboutUsElementController extends Controller
         // Find the existing element to be updated
         $element = AboutUsElement::findOrFail($id);
 
+        // Initialize variable for file path (if needed)
+        $filePath = null;
+
         // Retrieve the element type and format it to lowercase with hyphens
         $elementType = strtolower(str_replace(' ', '-', $request->input('element')));
 
-        // Initialize the data variable
-        $data = null;
-
-        // Handle the file upload for "image" and "about-image" elements
-        if ($elementType === 'image' && $request->hasFile('data-image')) {
-            Log::info('Image file uploaded for element: image.');
-            $data = $this->handleFileUpload($request, 'data-image'); // Upload file and get the path
-        } elseif ($elementType === 'about-image' && $request->hasFile('about-data-image')) {
-            Log::info('Image file uploaded for element: about-image.');
-            $data = $this->handleFileUpload($request, 'about-data-image'); // Upload file and get the path
-        } elseif (in_array($elementType, ['2004', '2014', '2016', '2018', '2021', '2024'])) {
-            // Handle year-specific paragraph data
+        // Check if the element corresponds to a special year-based paragraph field
+        if (in_array($elementType, ['2004', '2014', '2016', '2018', '2021', '2024'])) {
+            // Construct the data key for the specific year (e.g., data-paragraph-2004)
             $dataKey = 'data-paragraph-' . $elementType;
-            $data = $request->input($dataKey);
-            Log::info('Year-specific paragraph element: ' . $elementType . ', Data: ' . $data);
+            $data = $filePath ?? $request->input($dataKey);
+
+            // Log the element type and the associated data
+            Log::info('Element type: ' . $request->input('element'));
+            if ($data) {
+                Log::info('Data (text): ' . $data);
+            } else {
+                Log::info('No data provided for ' . $elementType . ' paragraph.');
+            }
         } else {
             // Handle other element types like Header, Paragraph, Long Text, etc.
-            $dataKey = 'data-' . $elementType;
-            $data = $request->input($dataKey);
-            Log::info('Element type: ' . $elementType . ', Data: ' . $data);
+            $dataKey = 'data-' . $elementType; // Generic field like 'data-header', 'data-paragraph', etc.
+            $data = $filePath ?? $request->input($dataKey);
+
+            // Log the element type and the associated data
+            Log::info('Element type: ' . $request->input('element'));
+            if ($data) {
+                Log::info('Data (text or file path): ' . $data);
+            } else {
+                Log::info('No data provided for ' . $elementType . ' element.');
+            }
         }
 
-        // Update the AboutUsElement record with the new data
+        // Handle the file upload based on the selected element type
+        if ($request->hasFile('data-image') && $request->input('element') === 'Image') {
+            Log::info('Image file uploaded.');
+            $filePath = $this->handleFileUpload($request, 'data-image');
+        }
+
+        // Update the AboutUsElement record with the new data (image or text)
         $element->update([
             'element' => $request->input('element'),
-            'data' => $data,
+            'data' => $data, // Store the processed data (image path or text)
         ]);
 
         Log::info('AboutUsElement updated successfully.');
 
         // Redirect to the About Us page with a success message
+        Log::info('Redirecting to /about-us with success message.');
         return redirect('/about-us')->with('success', 'Element updated successfully!');
     }
 

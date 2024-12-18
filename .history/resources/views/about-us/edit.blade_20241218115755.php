@@ -8,7 +8,7 @@
                 <h3 class="mb-4 text-primary">Edit About Us Element</h3>
                 <form action="{{ route('about-us.update', $element->id) }}" method="POST" enctype="multipart/form-data">
                     @csrf
-                    @method('PUT')
+                    @method('POST')
 
                     <div class="mb-4">
                         <label for="element" class="form-label text-dark fw-bold">Element Type</label>
@@ -135,8 +135,7 @@
                         <label for="about-data-image" class="form-label text-dark fw-bold">Upload Image</label>
 
                         <!-- File input to accept image files -->
-                        <input type="file" class="form-control" name="about-data-image" id="about-data-image"
-                            accept="image/*">
+                        <input type="file" class="form-control" name="about-data-image" id="about-data-image" accept="image/*">
 
                         <!-- X button inside the input field, hidden by default -->
                         <span id="about-cancel-btn" class="position-absolute"
@@ -150,7 +149,7 @@
 
                     <!-- Image Preview -->
                     <div class="mt-3" id="image-preview"
-                        style="display: {{ ($element->element == 'image' || $element->element == 'about-image') && $element->data ? 'block;' : 'none;' }}">
+                        style="display: {{ ($element->element == 'image' ||  $element->element == 'about-image') && $element->data ? 'block;' : 'none;' }}">
                         <img id="preview-img" src="{{ asset($element->data) }}" class="img-thumbnail mb-2"
                             alt="Image Preview" style="max-width: 50%; max-height: 50%;">
                     </div>

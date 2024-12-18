@@ -46,7 +46,7 @@
                     </div>
 
                     <!-- Div for Paragraph -->
-                    <div class="mb-4 element-div" id="paragraph" style="display:none;">
+                    <div class="mb-4 element-div" id="Paragraph" style="display:none;">
                         <label for="data-paragraph" class="form-label text-dark fw-bold">Paragraph Data</label>
                         <textarea class="form-control" name="data-paragraph" id="data-paragraph" rows="10">{{ $element->data }}</textarea>
                         <div id="word-count-error-Paragraph" class="text-danger" style="display: none;">Description exceeds
@@ -112,8 +112,8 @@
 
 
                     <!-- Div for Image -->
-                    <div class="mb-4 element-div position-relative" id="image"
-                        style="{{ $element->element == 'image' ? 'display:block;' : 'display:none;' }}">
+                    <div class="mb-4 element-div position-relative" id="Image"
+                        style="{{ $element->element == 'Image' ? 'display:block;' : 'display:none;' }}">
                         <label for="data-image" class="form-label text-dark fw-bold">Upload Image</label>
 
                         <!-- File input to accept image files -->
@@ -130,29 +130,28 @@
                     </div>
 
                     <!-- Div for Image -->
-                    <div class="mb-4 element-div position-relative" id="about-image"
-                        style="{{ $element->element == 'about-image' ? 'display:block;' : 'display:none;' }}">
-                        <label for="about-data-image" class="form-label text-dark fw-bold">Upload Image</label>
+                    <div class="mb-4 element-div position-relative" id="Image"
+                        style="{{ $element->element == 'Image' ? 'display:block;' : 'display:none;' }}">
+                        <label for="data-image" class="form-label text-dark fw-bold">Upload Image</label>
 
                         <!-- File input to accept image files -->
-                        <input type="file" class="form-control" name="about-data-image" id="about-data-image"
-                            accept="image/*">
+                        <input type="file" class="form-control" name="data-image" id="data-image" accept="image/*">
 
                         <!-- X button inside the input field, hidden by default -->
-                        <span id="about-cancel-btn" class="position-absolute"
+                        <span id="cancel-btn" class="position-absolute"
                             style="right: 0.40rem; bottom: 0.40rem; cursor: pointer; display:none;">
                             <x-simpleline-close class="table-icon text-danger" />
                         </span>
 
                         <!-- Error message for file size -->
-                        <div id="about-file-size-error" class="text-danger mt-2"></div>
+                        <div id="file-size-error" class="text-danger mt-2"></div>
                     </div>
 
                     <!-- Image Preview -->
                     <div class="mt-3" id="image-preview"
-                        style="display: {{ ($element->element == 'image' || $element->element == 'about-image') && $element->data ? 'block;' : 'none;' }}">
+                        style="display: {{ $element->element == 'Image' && $element->data ? 'block;' : 'none;' }}">
                         <img id="preview-img" src="{{ asset($element->data) }}" class="img-thumbnail mb-2"
-                            alt="Image Preview" style="max-width: 50%; max-height: 50%;">
+                            alt="Image Preview" style="max-width: 100%; max-height: 100%;">
                     </div>
 
                     <!-- Div for Long Text -->

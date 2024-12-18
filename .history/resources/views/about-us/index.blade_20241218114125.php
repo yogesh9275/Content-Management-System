@@ -14,8 +14,7 @@
                 <div class="card my-4" style="width: 100%;">
                     <div class="card-body">
                         <div class="d-flex justify-content-between align-items-center border p-3 rounded">
-                            <h5 class="card-title text-dark fw-bold" style="margin-bottom: 0">
-                                {{ ucwords(str_replace('-', ' ', $element->element)) }}</h5>
+                            <h5 class="card-title text-dark fw-bold" style="margin-bottom: 0">{{ $element->element }}</h5>
                             <div class="d-flex justify-content-end gap-2">
                                 <form action="{{ route('about-us.edit', $element->id) }}" method="GET" class="d-inline">
                                     <button id="edit-btn" type="submit"
@@ -36,9 +35,9 @@
                         </div>
 
 
-                        @if ($element->element == 'image' || $element->element == 'about-image')
+                        @if ($element->element == 'image' || $element->element == 'image')
                             <img src="{{ asset($element->data) }}" alt="Image" class="img-fluid rounded shadow-sm mt-3"
-                                style="max-width: 50%; max-height: 50%;">
+                                style="max-width: 100%; max-height: 100%;">
                         @else
                             @php
                                 $data = $element->data;
