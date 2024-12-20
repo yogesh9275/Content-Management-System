@@ -326,7 +326,7 @@ small {
 .dropup-menu {
     position: absolute;
     bottom: 100%; /* Positions above the parent link */
-    right: -12px; /* Aligns to the right */
+    right: 0; /* Aligns to the right */
     z-index: 1050; /* Ensures it appears above other elements */
     min-width: 215px; /* Adjust to your needs */
     background-color: #fff; /* Background for the menu */
