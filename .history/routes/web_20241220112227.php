@@ -57,9 +57,6 @@ Route::middleware(['auth'])->group(function () {
 
     // Settings
     Route::resource('settings', SettingController::class);
-
-    //Contacts
-    Route::resource('contacts', ContactController::class);
 });
 
 Auth::routes();
@@ -69,4 +66,3 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-

@@ -58,8 +58,7 @@ Route::middleware(['auth'])->group(function () {
     // Settings
     Route::resource('settings', SettingController::class);
 
-    //Contacts
-    Route::resource('contacts', ContactController::class);
+    //C
 });
 
 Auth::routes();

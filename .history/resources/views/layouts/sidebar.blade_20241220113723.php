@@ -101,13 +101,13 @@
 
             <!-- Inventory Management with unique ID and target -->
             <li class="nav-item">
-                <div class="sidebar-link {{ request()->is('contacts*') ? 'active' : '' }}">
-                    <a class="collapsed submenu" href="{{ route('contacts.index') }}">
+                <div class="sidebar-link {{ request()->is('contact*') ? 'active' : '' }}">
+                    <a class="collapsed submenu" href="{{ route('about-us.index') }}">
                         <span class="icon">
-                            <x-simpleline-envolope class="icon-size" />
+                            <x-simpleline-user class="icon-size" />
                         </span>
                         <span class="d-none d-md-inline">
-                            Contacts
+                            About Us
                         </span>
                     </a>
                 </div>

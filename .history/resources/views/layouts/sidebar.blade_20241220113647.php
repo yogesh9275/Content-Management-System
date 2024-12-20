@@ -95,24 +95,11 @@
                                 <span>Vision</span>
                             </a>
                         </li>
+
+                        
                     </ul>
                 </div>
             </li>
-
-            <!-- Inventory Management with unique ID and target -->
-            <li class="nav-item">
-                <div class="sidebar-link {{ request()->is('contacts*') ? 'active' : '' }}">
-                    <a class="collapsed submenu" href="{{ route('contacts.index') }}">
-                        <span class="icon">
-                            <x-simpleline-envolope class="icon-size" />
-                        </span>
-                        <span class="d-none d-md-inline">
-                            Contacts
-                        </span>
-                    </a>
-                </div>
-            </li>
-
         </ul>
         <div id="loginUser" class="position-absolute">
             <ul class="nav flex-column">
@@ -153,8 +140,8 @@
                 <!-- Collapsible menu with arrow toggle -->
                 <li class="nav-item position-relative">
                     <div class="sidebar-link profile">
-                        <a id="user-info" class="submenu d-flex align-items-center" id="profileLink"
-                            data-bs-toggle="collapse" href="#profilesubmenu" role="button" aria-expanded="false"
+                        <a id="user-info" class="submenu d-flex align-items-center" id="profileLink" data-bs-toggle="collapse"
+                            href="#profilesubmenu" role="button" aria-expanded="false"
                             aria-controls="profilesubmenu" style="cursor: pointer;">
                             <!-- Person Circle Icon for Mobile -->
                             <span class=" d-block" id="mobileToggle">

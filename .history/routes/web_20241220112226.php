@@ -10,6 +10,8 @@ use App\Http\Controllers\HomePageController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\ContactController;
 
+Route::resource('contacts', ContactController::class);
+
 // Default home route
 Route::get('/', function () {
     if (Auth::check()) {
@@ -57,9 +59,6 @@ Route::middleware(['auth'])->group(function () {
 
     // Settings
     Route::resource('settings', SettingController::class);
-
-    //Contacts
-    Route::resource('contacts', ContactController::class);
 });
 
 Auth::routes();
@@ -69,4 +68,3 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-

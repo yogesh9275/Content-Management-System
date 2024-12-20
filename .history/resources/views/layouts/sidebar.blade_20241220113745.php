@@ -104,7 +104,7 @@
                 <div class="sidebar-link {{ request()->is('contacts*') ? 'active' : '' }}">
                     <a class="collapsed submenu" href="{{ route('contacts.index') }}">
                         <span class="icon">
-                            <x-simpleline-envolope class="icon-size" />
+                            <x-simpleline-user class="icon-size" />
                         </span>
                         <span class="d-none d-md-inline">
                             Contacts
