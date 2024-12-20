@@ -50,7 +50,7 @@
                                         </div>
 
                                         @if ($homePage->element == 'image')
-                                            <img src="{{ url( $homePage->data) }}" alt="Image"
+                                            <img src="{{ url(\. $homePage->data) }}" alt="Image"
                                                 class="img-fluid rounded shadow-sm mt-3"
                                                 style="max-width: 50%; max-height: 50%;">
                                         @else
@@ -133,7 +133,7 @@
                                         </div>
 
                                         @if ($homePage->element == 'about-image')
-                                            <img src="{{ url($homePage->data) }}" alt="Image"
+                                            <img src="{{ url('admin/' . $homePage->data) }}" alt="Image"
                                                 class="img-fluid rounded shadow-sm mt-3"
                                                 style="max-width: 50%; max-height: 50%;">
                                         @else
@@ -216,7 +216,7 @@
                                         </div>
 
                                         @if ($homePage->element == 'vision-image')
-                                            <img src="{{ url( $homePage->data) }}" alt="Image"
+                                            <img src="{{ url('admin/' . $homePage->data) }}" alt="Image"
                                                 class="img-fluid rounded shadow-sm mt-3"
                                                 style="max-width: 50%; max-height: 50%;">
                                         @else
@@ -292,7 +292,7 @@
                                 </div>
 
                                 <!-- Display slider images based on "slider-image-" element type -->
-                                <img src="{{ url( $homePage->data) }}" alt="Slider Image"
+                                <img src="{{ url('admin/' . $homePage->data) }}" alt="Slider Image"
                                     class="img-fluid rounded shadow-sm mt-3" style="max-width: 50%; max-height: 50%;">
                             </div>
                         </div>

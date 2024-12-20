@@ -292,7 +292,7 @@
                                 </div>
 
                                 <!-- Display slider images based on "slider-image-" element type -->
-                                <img src="{{ url( $homePage->data) }}" alt="Slider Image"
+                                <img src="{{ url('admin/' . $homePage->data) }}" alt="Slider Image"
                                     class="img-fluid rounded shadow-sm mt-3" style="max-width: 50%; max-height: 50%;">
                             </div>
                         </div>

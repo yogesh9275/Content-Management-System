@@ -88,7 +88,7 @@ Route::get('/uploads/gallery/{filename}', function ($filename) {
 });
 
 
-Route::get('/uploads/news/{filename}', function ($filename) {
+Route::get('/admin/uploads/news/{filename}', function ($filename) {
     $path = base_path('uploads/news/' . $filename);
 
     if (!File::exists($path)) {
@@ -101,7 +101,7 @@ Route::get('/uploads/news/{filename}', function ($filename) {
     return response($file, 200)->header('Content-Type', $type);
 });
 
-Route::get('/uploads/{filename}', function ($filename) {
+Route::get('/admin/uploads/{filename}', function ($filename) {
     $path = base_path('uploads/' . $filename);
 
     if (!File::exists($path)) {
