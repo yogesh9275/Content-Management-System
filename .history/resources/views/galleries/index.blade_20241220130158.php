@@ -24,7 +24,7 @@
                             style="object-fit: cover; height: 250px;">
                         <div class="card-body d-flex flex-column"
                             style="position: absolute; top: 50%; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.5); opacity: 0; transition: opacity 0.3s ease;">
-                            <h5 class="card-title text-white">{{ ucwords(str_replace('-', ' ', $gallery->category)) }}</h5>
+                            <h5 class="card-title text-white">{{ ucwords(str_replace('-', ' ', $gallery->category)) }}{{  }}</h5>
 
                             <!-- Action Buttons (Edit & Delete) -->
                             <div class="actions d-flex align-items-center gap-2 mt-auto">

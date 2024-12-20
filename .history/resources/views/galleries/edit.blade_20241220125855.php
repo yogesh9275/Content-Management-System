@@ -13,9 +13,10 @@
             <div class="mb-3">
                 <label for="category" class="form-label">Category</label>
                 <select name="category" id="category" class="form-select" required>
-                    <option value="awareness" {{ $gallery->category == 'awareness' ? 'selected' : '' }}>News</option>
-                    <option value="meet-leader" {{ $gallery->category == 'meet-leader' ? 'selected' : '' }}>Celebrations</option>
-                    <option value="public-function" {{ $gallery->category == 'public-function' ? 'selected' : '' }}>Promotion</option>
+                    <option value="awareness" {{ $gallery->category == 'News' ? 'selected' : '' }}>News</option>
+                    <option value="meet-leader" {{ $gallery->category == 'Celebrations' ? 'selected' : '' }}>Celebrations</option>
+                    <option value="Religional" {{ $gallery->category == 'Religional' ? 'selected' : '' }}>Religional</option>
+                    <option value="Promotion" {{ $gallery->category == 'Promotion' ? 'selected' : '' }}>Promotion</option>
                 </select>
             </div>
 

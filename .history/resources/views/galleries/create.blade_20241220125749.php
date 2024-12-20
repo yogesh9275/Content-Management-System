@@ -40,9 +40,9 @@
             <label for="category" class="form-label">Category</label>
             <select name="category" id="category" class="form-select" required>
                 <option value="" disabled selected>Select a category</option>
-                <option value="awareness">Awareness</option>
-                <option value="meet-leader">Meet Leader</option>
-                <option value="public-function">Public Function</option>
+                <option value="News">Awareness</option>
+                <option value="Celebrations">Meet Leader</option>
+                <option value="Public-function">Public Function</option>
             </select>
         </div>
 
