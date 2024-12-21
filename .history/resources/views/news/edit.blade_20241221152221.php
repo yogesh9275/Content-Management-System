@@ -15,7 +15,7 @@
             </div>
         @endif
 
-        <form action="{{ route('news.update', $news->id) }}" method="POST" enctype="multipart/form-data" id="news-form">
+        <form action="{{ route('news.update', $news->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
 
@@ -70,4 +70,6 @@
     </div>
     <!-- JavaScript for dynamic behavior -->
     <script src="{{ asset('js/pages/news_edit.js') }}"></script>
+@endsection
+
 @endsection

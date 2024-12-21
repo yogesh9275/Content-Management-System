@@ -42,12 +42,13 @@
                      style="max-width: 100%; max-height: 100%;">
             </div>
 
-            <div class="mb-4 element-div" id="Long Text">
-                <div class="form-label text-dark fw-bold">Details</div>
+            <div class="mb-3">
+                <div class="form-label">Details</div>
                 <div id="editor">
+                    <div id="edit">
+                    </div>
                 </div>
             </div>
-
 
             <input type="hidden" name="details" id="details">
 

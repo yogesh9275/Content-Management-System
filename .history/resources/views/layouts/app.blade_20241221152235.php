@@ -96,13 +96,14 @@
     </script>
 
     <!-- Include Quill script -->
-    <script src="{{ asset('js/quill.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
+    <script src="{{ asset('js/pages/news_edit.js') }}"></script>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        (function() {
             // Initialize Quill editor
             var quill = new Quill('#editor', {
-                theme: 'snow',
+                theme: 'snow', // Use the 'snow' theme, you can also use 'bubble'
                 modules: {
                     toolbar: [
                         [{
@@ -132,23 +133,19 @@
                     ]
                 }
             });
-            // On form submit, get the HTML content from Quill editor
-            const form = document.querySelector('#news-form');
-            form.addEventListener('submit', function(e) {
-                const longText = quill.root.innerHTML; // Get HTML content from Quill editor
 
-                // Ensure the 'details' field exists and set its value
+            // On form submit, get the HTML content from Quill editor
+            const form = document.querySelector('form');
+            form.addEventListener('submit', function(e) {
+                const longText = quill.root.innerHTML; // Get the HTML content from Quill editor
+                console.log(longText); // Log the content to check it
+
+                // Ensure the hidden input exists and set its value
                 if (document.getElementById('details')) {
                     document.getElementById('details').value = longText;
                 }
-
-                // Check if 'details' is empty
-                if (!longText.trim()) {
-                    e.preventDefault(); // Prevent form submission
-                    alert('Details cannot be empty. Please add some content.');
-                }
             });
-        });
+        })();
     </script>
 
 

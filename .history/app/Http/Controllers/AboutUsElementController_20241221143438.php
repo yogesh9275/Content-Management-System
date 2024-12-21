@@ -61,10 +61,10 @@ class AboutUsElementController extends Controller
         } elseif ($element === 'about-header') {
             // Handle the case where 'about-header' corresponds to 'about-data-header'
             $data = $request->input('about-data-header');
-            Log::info('Data of About Header: ' . $data);
         } elseif ($element === 'about-paragraph') {
             // Handle "about-paragraph" element
             $data = $request->input('data-paragraph');
+            LO
         } else {
             // Handle general cases like Header, Paragraph, etc.
             $dataKey = 'data-' . $element;
@@ -291,10 +291,6 @@ class AboutUsElementController extends Controller
             $dataKey = 'data-paragraph-' . $elementType;
             $data = $request->input($dataKey);
             Log::info('Year-specific paragraph element: ' . $elementType . ', Data: ' . $data);
-        }elseif ($elementType === 'about-header') {
-            // Handle the case where 'about-header' corresponds to 'about-data-header'
-            $data = $request->input('about-data-header');
-            Log::info('Data of About Header: ' . $data);
         } elseif ($elementType === 'about-paragraph') {
             // Handle "about-paragraph" element
             $data = $request->input('data-paragraph');

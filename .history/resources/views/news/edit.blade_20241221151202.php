@@ -15,7 +15,7 @@
             </div>
         @endif
 
-        <form action="{{ route('news.update', $news->id) }}" method="POST" enctype="multipart/form-data" id="news-form">
+        <form action="{{ route('news.update', $news->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
 
@@ -70,4 +70,32 @@
     </div>
     <!-- JavaScript for dynamic behavior -->
     <script src="{{ asset('js/pages/news_edit.js') }}"></script>
+@endsection
+
+@section('scripts')
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Initialize Quill editor only if it's the "Edit News" page where Quill editor exists
+        if (document.getElementById('editor')) {
+            var quill = new Quill('#editor', {
+                theme: 'snow',
+                modules: {
+                    toolbar: [
+                        ['bold', 'italic', 'underline'],
+                        [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+                        [{ 'header': '1' }, { 'header': '2' }],
+                        [{ 'align': [] }],
+                        ['link', 'blockquote', 'code-block'],
+                    ]
+                }
+            });
+
+            const form = document.querySelector('form');
+            form.addEventListener('submit', function(e) {
+                const longText = quill.root.innerHTML; // Get HTML content from Quill editor
+                document.getElementById('details').value = longText; // Populate hidden input with Quill content
+            });
+        }
+    });
+</script>
 @endsection

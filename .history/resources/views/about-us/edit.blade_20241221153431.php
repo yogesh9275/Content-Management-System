@@ -155,6 +155,9 @@
                             alt="Image Preview" style="max-width: 50%; max-height: 50%;">
                     </div>
 
+
+                    <input type="hidden" name="data-long-text" id="data-long-text">
+
                     <div class="d-flex justify-content-between">
                         <a id="back-btn" href="{{ route('about-us.index') }}" class="btn btn-secondary">Back</a>
                         <button id="update-btn" type="submit" class="btn btn-primary">Update</button>

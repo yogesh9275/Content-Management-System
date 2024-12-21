@@ -15,7 +15,7 @@
             </div>
         @endif
 
-        <form action="{{ route('news.update', $news->id) }}" method="POST" enctype="multipart/form-data" id="news-form">
+        <form action="{{ route('news.update', $news->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
 
@@ -42,7 +42,7 @@
 
             <div class="mb-3">
                 @if ($news->image_path)
-                    <img src="{{ url($news->image_path) }}" id="currentImagePreview" alt="News Image" style="width: 100%;"
+                    <img src="{{ url( $news->image_path) }}" id="currentImagePreview" alt="News Image" style="width: 100%;"
                         class="mt-2">
                 @endif
 
@@ -54,9 +54,9 @@
 
             <div class="mb-4 element-div" id="Long Text">
                 <div class="form-label text-dark fw-bold">Details</div>
-                <div id="editor">
-                    {!! $news->details !!}
-                </div>
+                    <div id="editor">
+                        {!! $news->details !!}
+                    </div>
             </div>
 
 

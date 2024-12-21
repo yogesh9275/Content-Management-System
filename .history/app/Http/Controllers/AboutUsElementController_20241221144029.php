@@ -291,7 +291,7 @@ class AboutUsElementController extends Controller
             $dataKey = 'data-paragraph-' . $elementType;
             $data = $request->input($dataKey);
             Log::info('Year-specific paragraph element: ' . $elementType . ', Data: ' . $data);
-        }elseif ($elementType === 'about-header') {
+        }elseif ($element === 'about-header') {
             // Handle the case where 'about-header' corresponds to 'about-data-header'
             $data = $request->input('about-data-header');
             Log::info('Data of About Header: ' . $data);

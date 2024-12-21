@@ -45,6 +45,7 @@
             <div class="mb-4 element-div" id="Long Text">
                 <div class="form-label text-dark fw-bold">Details</div>
                 <div id="editor">
+                    {!! $news->details !!}
                 </div>
             </div>
 

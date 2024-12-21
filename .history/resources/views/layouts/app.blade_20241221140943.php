@@ -21,11 +21,9 @@
     <link href="{{ asset('css/Dashboard.css') }}" rel="stylesheet">
     <link href="{{ asset('css/Shop.css') }}" rel="stylesheet">
     <link href="{{ asset('css/Loader.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/Quill/quill.snow.css') }}" rel="stylesheet">
 
     <!-- Custom Styles -->
     <link href="{{ asset('css/Shop.css') }}" rel="stylesheet">
-
     <style>
         div#editor {
             width: 100%;
@@ -95,63 +93,11 @@
         });
     </script>
 
+    <!-- Include Quill styles -->
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+
     <!-- Include Quill script -->
-    <script src="{{ asset('js/quill.js') }}"></script>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Initialize Quill editor
-            var quill = new Quill('#editor', {
-                theme: 'snow',
-                modules: {
-                    toolbar: [
-                        [{
-                            'header': '1'
-                        }, {
-                            'header': '2'
-                        }, {
-                            'font': []
-                        }],
-                        [{
-                            'list': 'ordered'
-                        }, {
-                            'list': 'bullet'
-                        }],
-                        ['bold', 'italic', 'underline'],
-                        ['link'],
-                        ['blockquote'],
-                        [{
-                            'align': []
-                        }],
-                        [{
-                            'color': []
-                        }, {
-                            'background': []
-                        }],
-                        ['code-block']
-                    ]
-                }
-            });
-            // On form submit, get the HTML content from Quill editor
-            const form = document.querySelector('#news-form');
-            form.addEventListener('submit', function(e) {
-                const longText = quill.root.innerHTML; // Get HTML content from Quill editor
-
-                // Ensure the 'details' field exists and set its value
-                if (document.getElementById('details')) {
-                    document.getElementById('details').value = longText;
-                }
-
-                // Check if 'details' is empty
-                if (!longText.trim()) {
-                    e.preventDefault(); // Prevent form submission
-                    alert('Details cannot be empty. Please add some content.');
-                }
-            });
-        });
-    </script>
-
-
+    <script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
 </body>
 
 </html>

@@ -21,10 +21,28 @@
     <link href="{{ asset('css/Dashboard.css') }}" rel="stylesheet">
     <link href="{{ asset('css/Shop.css') }}" rel="stylesheet">
     <link href="{{ asset('css/Loader.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/Quill/quill.snow.css') }}" rel="stylesheet">
 
     <!-- Custom Styles -->
     <link href="{{ asset('css/Shop.css') }}" rel="stylesheet">
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{{ asset('css/froala_editor.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/froala_style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/plugins/code_view.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/plugins/colors.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/plugins/emoticons.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/plugins/image_manager.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/plugins/image.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/plugins/line_breaker.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/plugins/table.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/plugins/char_counter.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/plugins/video.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/plugins/fullscreen.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/plugins/file.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/plugins/quick_insert.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/codemirror.min.css">
+
 
     <style>
         div#editor {
@@ -95,63 +113,11 @@
         });
     </script>
 
+    <!-- Include Quill styles -->
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+
     <!-- Include Quill script -->
-    <script src="{{ asset('js/quill.js') }}"></script>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Initialize Quill editor
-            var quill = new Quill('#editor', {
-                theme: 'snow',
-                modules: {
-                    toolbar: [
-                        [{
-                            'header': '1'
-                        }, {
-                            'header': '2'
-                        }, {
-                            'font': []
-                        }],
-                        [{
-                            'list': 'ordered'
-                        }, {
-                            'list': 'bullet'
-                        }],
-                        ['bold', 'italic', 'underline'],
-                        ['link'],
-                        ['blockquote'],
-                        [{
-                            'align': []
-                        }],
-                        [{
-                            'color': []
-                        }, {
-                            'background': []
-                        }],
-                        ['code-block']
-                    ]
-                }
-            });
-            // On form submit, get the HTML content from Quill editor
-            const form = document.querySelector('#news-form');
-            form.addEventListener('submit', function(e) {
-                const longText = quill.root.innerHTML; // Get HTML content from Quill editor
-
-                // Ensure the 'details' field exists and set its value
-                if (document.getElementById('details')) {
-                    document.getElementById('details').value = longText;
-                }
-
-                // Check if 'details' is empty
-                if (!longText.trim()) {
-                    e.preventDefault(); // Prevent form submission
-                    alert('Details cannot be empty. Please add some content.');
-                }
-            });
-        });
-    </script>
-
-
+    <script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
 </body>
 
 </html>

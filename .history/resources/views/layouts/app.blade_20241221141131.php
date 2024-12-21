@@ -21,10 +21,11 @@
     <link href="{{ asset('css/Dashboard.css') }}" rel="stylesheet">
     <link href="{{ asset('css/Shop.css') }}" rel="stylesheet">
     <link href="{{ asset('css/Loader.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/Quill/quill.snow.css') }}" rel="stylesheet">
 
     <!-- Custom Styles -->
     <link href="{{ asset('css/Shop.css') }}" rel="stylesheet">
+
+
 
     <style>
         div#editor {
@@ -95,14 +96,20 @@
         });
     </script>
 
+    <!-- Include Quill styles -->
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+
     <!-- Include Quill script -->
-    <script src="{{ asset('js/quill.js') }}"></script>
+    <script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
+
+
+
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        (function() {
             // Initialize Quill editor
-            var quill = new Quill('#editor', {
-                theme: 'snow',
+            var quill = new Quill('#edit', {
+                theme: 'snow', // Use the 'snow' theme, you can also use 'bubble'
                 modules: {
                     toolbar: [
                         [{
@@ -132,23 +139,21 @@
                     ]
                 }
             });
-            // On form submit, get the HTML content from Quill editor
-            const form = document.querySelector('#news-form');
-            form.addEventListener('submit', function(e) {
-                const longText = quill.root.innerHTML; // Get HTML content from Quill editor
 
-                // Ensure the 'details' field exists and set its value
-                if (document.getElementById('details')) {
+            // On form submit, get the HTML content from Quill editor
+            const form = document.querySelector('form');
+            form.addEventListener('submit', function(e) {
+                const longText = quill.root.innerHTML; // Get the HTML content from Quill editor
+
+                // Check if the 'data-long-text' field exists, then send to 'data-long-text'
+                if (document.getElementById('data-long-text')) {
+                    document.getElementById('data-long-text').value = longText;
+                } else {
+                    // Otherwise send to the 'details' field
                     document.getElementById('details').value = longText;
                 }
-
-                // Check if 'details' is empty
-                if (!longText.trim()) {
-                    e.preventDefault(); // Prevent form submission
-                    alert('Details cannot be empty. Please add some content.');
-                }
             });
-        });
+        })();
     </script>
 
 
