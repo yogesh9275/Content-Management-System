@@ -67,50 +67,51 @@ class SettingController extends Controller
      * Update the specified resource in storage.
      */
 
-    public function update(Request $request, $id)
-    {
-        // Log the request data
-        Log::info('Starting update process.', [
-            'id' => $id,
-            'request_data' => $request->all(),
-        ]);
+public function update(Request $request, $id)
+{
+    // Log the request data
+    Log::info('Starting update process.', [
+        'id' => $id,
+        'request_data' => $request->all(),
+    ]);
 
-        // Validate the incoming request
-        $validatedData = $request->validate([
-            'media' => 'required|string', // Validate the media selection
-            'links' => 'required_if:media,facebook,instagram,twitter|nullable|url', // Validate the link for specific media options
-            'details' => 'required_if:media,style,script|nullable|string', // Validate the details field for "style" and "script"
-        ]);
+    // Validate the incoming request
+    $validatedData = $request->validate([
+        'media' => 'required|string', // Validate the media selection
+        'links' => 'required_if:media,facebook,instagram,twitter|nullable|url', // Validate the link for specific media options
+        'details' => 'required_if:media,style,script|nullable|string', // Validate the details field for "style" and "script"
+    ]);
 
-        Log::info('Validation successful.', ['validated_data' => $validatedData]);
+    Log::info('Validation successful.', ['validated_data' => $validatedData]);
 
-        // Find the existing setting record by ID
-        $setting = Setting::findOrFail($id);
-        Log::info('Record retrieved successfully.', ['setting' => $setting]);
+    // Find the existing setting record by ID
+    $setting = Setting::findOrFail($id);
+    Log::info('Record retrieved successfully.', ['setting' => $setting]);
 
-        // Determine the value for the 'data' column based on the selected media type
-        $data = [
-            'media' => $request->media,
-            'data' => match ($request->media) {
-                'facebook', 'instagram', 'twitter' => $request->links, // Store the link for social media platforms
-                'style', 'script' => $request->details, // Store the details for style or script
-                default => $request->data, // Handle other media types by storing their corresponding data
-            },
-        ];
+    // Determine the value for the 'data' column based on the selected media type
+    $data = [
+        'media' => $request->media,
+        'data' => match ($request->media) {
+            'facebook', 'instagram', 'twitter' => $request->links, // Store the link for social media platforms
+            'style', 'script' => $request->details, // Store the details for style or script
+            default => $request->data, // Handle other media types by storing their corresponding data
+        },
+    ];
 
-        Log::info('Data prepared for update.', ['update_data' => $data]);
+    Log::info('Data prepared for update.', ['update_data' => $data]);
 
-        // Update the setting record in the database
-        $setting->update($data);
+    // Update the setting record in the database
+    $setting->update($data);
 
-        Log::info('Record updated successfully.', ['updated_record' => $setting]);
+    Log::info('Record updated successfully.', ['updated_record' => $setting]);
 
-        // Redirect to the settings index page with a success message
-        $message = 'Social media account updated successfully!';
-        Log::info($message);
+    // Redirect to the settings index page with a success message
+    $message = 'Social media account updated successfully!';
+    Log::info($message);
 
-        return redirect()->route('settings.index')->with('success', $message);
-    }
+    return redirect()->route('settings.index')->with('success', $message);
+}
+
 
     /**
      * Remove the specified resource from storage.

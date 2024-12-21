@@ -1,4 +1,4 @@
-@section('title', 'Add Media')
+@section('title', 'Add News')
 @extends('layouts.home')
 
 @section('page')
@@ -40,7 +40,7 @@
             <!-- Text Area for Style/Script -->
             <div id="details-field" class="mb-3 d-none">
                 <label for="details" class="form-label">Details</label>
-                <textarea name="details" id="details" class="form-control" rows="10">{{ old('details') }}</textarea>
+                <textarea name="details" id="details" class="form-control" rows="5">{{ old('details') }}</textarea>
             </div>
 
             <div class="d-flex justify-content-between">

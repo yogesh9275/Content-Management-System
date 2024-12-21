@@ -56,37 +56,23 @@
         document.addEventListener('DOMContentLoaded', function () {
             const mediaField = document.getElementById('media');
             const linksField = document.getElementById('links-field');
-            const linksInput = document.getElementById('links');
             const detailsField = document.getElementById('details-field');
-            const detailsInput = document.getElementById('details');
 
-            // Helper function to toggle visibility and enable/disable inputs
-            function toggleFields() {
+            mediaField.addEventListener('change', function () {
                 const selectedMedia = mediaField.value;
 
+                // Show/Hide fields based on the selected media type
                 if (['facebook', 'instagram', 'twitter'].includes(selectedMedia)) {
                     linksField.style.display = 'block';
-                    linksInput.disabled = false;
                     detailsField.style.display = 'none';
-                    detailsInput.disabled = true;
                 } else if (['style', 'script'].includes(selectedMedia)) {
                     linksField.style.display = 'none';
-                    linksInput.disabled = true;
                     detailsField.style.display = 'block';
-                    detailsInput.disabled = false;
                 } else {
                     linksField.style.display = 'none';
-                    linksInput.disabled = true;
                     detailsField.style.display = 'none';
-                    detailsInput.disabled = true;
                 }
-            }
-
-            // Initialize field visibility on page load
-            toggleFields();
-
-            // Attach event listener to the media dropdown
-            mediaField.addEventListener('change', toggleFields);
+            });
         });
     </script>
 @endsection

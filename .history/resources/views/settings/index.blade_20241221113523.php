@@ -23,7 +23,7 @@
                         <div class="card d-flex flex-row align-items-start">
                             <!-- Media Column (Left side) displaying media text -->
                             <div class="card-img-left bg-white text-white d-flex justify-content-center align-items-center"
-                                style="width: fit-content; height: fit-content; padding:0.5rem;">
+                                style="width: fit-content; height: fit-content; padding:1rem;">
                                 @if ($item->media)
                                     <!-- Check the media type and display the appropriate image icon -->
                                     @if ($item->media == 'facebook')
@@ -39,7 +39,7 @@
                                         <img src="{{ asset('social/js.png') }}" alt="Script" class="media-icon"
                                             style="width: 165px; height: 165px; object-fit: contain;">
                                     @elseif ($item->media == 'style')
-                                        <img src="{{ asset('social/css.png') }}" alt="Style" class="media-icon"
+                                        <img src="{{ asset('social/css-.png') }}" alt="Style" class="media-icon"
                                             style="width: 165px; height: 165px; object-fit: contain;">
                                     @else
                                         <span class="media-text">{{ $item->media }}</span>

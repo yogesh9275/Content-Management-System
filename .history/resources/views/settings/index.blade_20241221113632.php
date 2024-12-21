@@ -23,7 +23,7 @@
                         <div class="card d-flex flex-row align-items-start">
                             <!-- Media Column (Left side) displaying media text -->
                             <div class="card-img-left bg-white text-white d-flex justify-content-center align-items-center"
-                                style="width: fit-content; height: fit-content; padding:0.5rem;">
+                                style="width: fit-content; height: fit-content; padding:0.5rem 0;">
                                 @if ($item->media)
                                     <!-- Check the media type and display the appropriate image icon -->
                                     @if ($item->media == 'facebook')

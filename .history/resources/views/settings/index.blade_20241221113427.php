@@ -23,7 +23,7 @@
                         <div class="card d-flex flex-row align-items-start">
                             <!-- Media Column (Left side) displaying media text -->
                             <div class="card-img-left bg-white text-white d-flex justify-content-center align-items-center"
-                                style="width: fit-content; height: fit-content; padding:0.5rem;">
+                                style="width: fit-content; height: fit-content; padding:1rem;">
                                 @if ($item->media)
                                     <!-- Check the media type and display the appropriate image icon -->
                                     @if ($item->media == 'facebook')
@@ -59,7 +59,7 @@
                                 <!-- Links section (below the title) -->
                                 @if ($item->data)
                                     <div class="mb-2 p-2 border" style="background-color: #f5f5f5;">
-                                        <strong>Data:</strong> <span>{{ $item->data }}</span>
+                                        <strong>Links:</strong> <span>{{ $item->data }}</span>
                                     </div>
                                 @endif
 
